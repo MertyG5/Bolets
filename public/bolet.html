@@ -308,6 +308,12 @@
                 return found?.value || "";
             };
 
+            const clampScore = (value) => {
+                const parsed = Number(value);
+                if (!Number.isFinite(parsed)) return 1;
+                return Math.min(5, Math.max(1, Math.round(parsed)));
+            };
+
             const getCulinaryScore = (description) => {
                 const text = (description || "").toLowerCase();
                 if (text.includes("excel") || text.includes("molt preuat") || text.includes("molt apreciat")) return 5;
@@ -357,8 +363,15 @@
                     const tree = getPropertyValue(item, "Arbre associat") || "No especificat";
                     const season = getPropertyValue(item, "Època") || "No especificada";
 
-                    const culinaryScore = getCulinaryScore(description);
-                    const toxicityScore = getToxicityScore(description);
+                    const culinaryScoreRaw = getPropertyValue(item, "Valor culinari (1-5)");
+                    const toxicityScoreRaw = getPropertyValue(item, "Toxicitat (1-5)");
+
+                    const culinaryScore = culinaryScoreRaw !== ""
+                        ? clampScore(culinaryScoreRaw)
+                        : getCulinaryScore(description);
+                    const toxicityScore = toxicityScoreRaw !== ""
+                        ? clampScore(toxicityScoreRaw)
+                        : getToxicityScore(description);
                     const isToxic = toxicityScore >= 3;
 
                     document.title = `Guia de Bolets - ${commonName}`;

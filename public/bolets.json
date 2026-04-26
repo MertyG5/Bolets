@@ -1,4 +1,4 @@
-{
+﻿{
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -23,9 +23,17 @@
                         ],
                         "description": "La gírgola de pi té forma d'orella o copinya amb la part superior del capell oberta com un ventall i el peu que sembla una continuació del mateix, que pot ser totalment excèntric o lateral. El capell mesura de 5 a 14 cm de diàmetre, és gelatinós en temps humit, llis, lluent i amb taques blanquinoses i de color de gris a marró fosc. El peu és una mica més clar que el capell contrastant amb les làmines que són blanquinoses, atapeïdes i molt decurrents. Les espores són blanques en massa, el·líptiques, llises, de 7-10 x 4-5 micres. Toxicitat: Baixa.",
                         "image": "img/Hohenhuehelia_geogenia.jpg",
-                        "culinaryScore": 4,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -67,9 +75,17 @@
                         ],
                         "description": "Xampinyó blanc amb capell de quasi 15 cm de diàmetre que passa de convex a quasi pla amb el centre un poc deprimit i el marge gruixut i massís. Cutícula inicialment llisa i després coberta d'esquames. Davall el capell es troben nombroses làmines lliures, estretes, de color rosa salmó a gris carn. El peu de color blanc és irregular, cilíndric, gruixut, ple i rabassut. Aquest acaba típicament en punta i és llis per damunt l'anell, que és ínfer, i per davall pot presentar esquames de color terrós. Les espores són de color marró fosc en massa, de 5,5-8 x 4,5-6 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bernardii.jpg",
-                        "culinaryScore": 4,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -112,9 +128,17 @@
                         ],
                         "description": "Aquest xampinyó blanquinós és rabassut i globós primerament i, amb el temps s'enfonsa al centre. Té nombroses làmines, atapeïdes i lliures de color carn. El peu és blanc i rabassut amb fibril·les longitudinals. L'anell d'aquesta espècie és molt característic per estar xapat en dos o haver dos anells a alçades diferents, fet que pot confondre amb la presència de volva. Les espores són de color marró en massa i subgloboses, de 5-6,5 x 4-5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bitorquis.jpg",
-                        "culinaryScore": 3,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 3
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -158,9 +182,17 @@
                         ],
                         "description": "Xampinyó blanc, blanc brut, rosat o terrós, amb un capell al principi esfèric, que després s'estén tornant convex i finalment pla de 4 a 12 cm de diàmetre. La superfície és llisa al principi, però pot presentar algunes esquames amb el temps. Les làmines estan lliures, atapeïdes, rosades al principi per passar a color xocolata, pel color de les espores. El peu és curt, cilíndric i gruixat de 3 a 5 x 1 a 2 cm, de color blanc i un poc grogós a la base i provist d'un anell membranós blanc que es perd fàcilment. Les espores són de color terrós porpra, ovoïdals, de 7-8 x 4-5,5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_campestris.jpg",
-                        "culinaryScore": 4,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -202,9 +234,17 @@
                         ],
                         "description": "Aquest xampinyó posseeix un capell de 5 a 8 cm de diàmetre, hemisfèric al principi passant a pla i lleugerament deprimit al centre. La cutícula està dissociada en petites esquames molt juntes en forma de metxes de color que van del color caramel al marró un poc grisenc i un poc violaci. Per davall aquest, les làmines són lliures, estretes, de color rosa salmó a negrós. El peu és ample, amb petites esquames de color un poc rogenc que es troben per sobre de l'anell, per sota del qual és de color blanc. L'anell és blanquinós, ínfer i abraça el peu, esfilagarsat cap al marge. Les espores són negroses en massa, quasi rodones, de 5-6 x 4-5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_devoniensis.jpg",
-                        "culinaryScore": 3,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 3
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -246,9 +286,17 @@
                         ],
                         "description": "Bolet amb el peu de major dimensions que el capell. El peu de 10 a 15 cm és cilíndric i més gruixat a la base de color més clar que el capell. Aquest de 10 a 20 cm de diàmetre, al principi és convex i amb el contorn molt enrotllat, però després s'estén i apareix deprimit pel centre i amb un mamelló, conservant una mica els marges un poc enrotllats. És de color rosa carn o groc ocraci molt clar. Davall el capell presenta nombroses làmines molt espaiades, decurrents i de color blanquinós. Les espores són blanques en massa, el·lipsoïdals, de 6-7 x 5-6,5 micres. Toxicitat: Baixa.",
                         "image": "img/Clitocybe_geotropa.jpg",
-                        "culinaryScore": 5,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 5
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -290,9 +338,17 @@
                         ],
                         "description": "Té un capell de fins a 10 cm de diàmetre. Primer hemisfèric per acabar pla i amb esquames fibril·loses de color marró ocre. Les làmines són lliures, pròximes al peu i de color rosa grisenc que canvia a negre amb el temps i amb l'aresta blanquinosa. Les espores són marrons porpres en massa, el·líptiques, de 5-7 x 3-4 micres. El peu dur un anell senzill, ample i blanc, és llarg i no molt gruixut amb la base bulbosa. És blanc i torna vermell quan el toquem. Toxicitat: Baixa.",
                         "image": "img/Agaricus_sylvaticus.jpg",
-                        "culinaryScore": 4,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -334,9 +390,17 @@
                         ],
                         "description": "Xampinyó blanc amb capell de quasi 15 cm de diàmetre que passa de convex a quasi pla amb el centre un poc deprimit i el marge gruixut i massís. Cutícula inicialment llisa i després coberta d'esquames. Davall el capell es troben nombroses làmines lliures, estretes, de color rosa salmó a gris carn. El peu de color blanc és irregular, cilíndric, gruixut, ple i rabassut. Aquest acaba típicament en punta i és llis per damunt l'anell, que és ínfer, i per davall pot presentar esquames de color terrós. Les espores són de color marró fosc en massa, de 5,5-8 x 4,5-6 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bernardii.jpg",
-                        "culinaryScore": 4,
-                        "toxicityScore": 1,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 1
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -378,9 +442,17 @@
                         ],
                         "description": "Aquest bolet blanc posseix un capell de fins a 9 cm de diàmetre, hemisfèric i posteriorment més pla i enfonsat una mica al centre. El capell pot tornar groc quan el manipulem. Davall el capell trobem les làmines blanc rosades, que passen a rosa i finalment marró xocolata amb l'aresta blanquinosa. El peu curt i corbat porta un anell súper amb el marge bastant marcat. Les espores són marró en massa i quasi rodones, de 5-7 x 4-5 micres. Toxicitat: Alta.",
                         "image": "img/Agaricus_pseudopratensis.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 4,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 4
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -405,9 +477,17 @@
                         ],
                         "description": "Bolet de color blanc que es caracteritza per canviar tot ell de color quan es toca, tornant-se groc i per l'olor a gas que fa. El capell de 4 a 15 cm de diàmetre és globós al principi per passar després a pla. Les làmines són de color rosa passant posteriorment a color marró xocolata, fines, apretades i lliures. El peu, blanc, és cilíndric, uniforme, ondulat i de 8 a 20 cm de longitud. L'anell és ample, persistent i presenta esquames a la part inferior. Les espores són de color marró violaci en massa, ovoides, de 5-6,5 x 3,5-4 micres. Toxicitat: Alta.",
                         "image": "img/Agaricus_xanthodermus.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 4,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 4
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -432,9 +512,17 @@
                         ],
                         "description": "Espècie molt semblant a A.ovoidea però més petita i quasi mai presenta restes de vel sobre el capell. L'anell és més persistent i estriat. La volva de color ocre està molt aferrada al peu. Les espores són blanques en massa, d'el·lipsoidals a oblongues de 8-11 x 5-7 micres. Toxicitat: Alta.",
                         "image": "img/Amanita_proxima.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 4,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 4
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -459,9 +547,17 @@
                         ],
                         "description": "Bolet amb un capell primer cònic i després aplanat amb els marges estriats i de 5-10 cm de diàmetre, de color marró clar o marró grisós. Aquest està cobert al principi per petites esquames blanques concèntriques que són els restes del vel general, que es separen fàcilment per les gotes de pluja o amb els dits. Davall el capell té làmines blanques, fines i apretades, lliures del peu. El peu és cilíndric o lleugerament engruixut a la base, de 6-12 x 0,5-1,5 cm, llis, blanc i provist d'un anell membranós, prim i generalment molt regular, blanc i quasi gens o gens estriat per la cara superior. Les espores són blanques en massa, el·líptiques, de 10 x 8 micres. Toxicitat: Alta.",
                         "image": "img/Amanita_pantherina.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 5,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 5
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -486,9 +582,17 @@
                         ],
                         "description": "La farinera borda té un capell inicialment acampanat i després pla de 6-14 cm de diàmetre amb una superfície llisa de color que varia de groc llimona, blanc grogós, a verd oliva obscur i fins i tot blanc. En general no presenta esquames o plaques esquamoses blanques, encara que poden estar als exemplars més joves però desapareixen ràpidament. Les làmines són blanques, lliures, juntes i amples. El peu de 8-17 x 1-2 cm és blanquinós o amb tonalitats verdoses, cilíndric i presenta un anell membranós, persistent, caigut i amb estries ben marcades. La volva és blanca, membranosa, persistent i envolta el peu com si es tractés d'un petit sac. Les espores són blanques en massa, ovoides, de 8-11 x 7-9 micres. Toxicitat: Alta.",
                         "image": "img/Amanita_phalloides.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 5,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 5
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -513,9 +617,17 @@
                         ],
                         "description": "Espècie molt semblant a A.ovoidea però més petita i quasi mai presenta restes de vel sobre el capell. L'anell és més persistent i estriat. La volva de color ocre està molt aferrada al peu. Les espores són blanques en massa, d'el·lipsoidals a oblongues de 8-11 x 5-7 micres. Toxicitat: Alta.",
                         "image": "img/Amanita_proxima.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 4,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 4
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -540,9 +652,17 @@
                         ],
                         "description": "Bolet amb un gran capell blan de fins a 18 cm de diàmetre convex i un poc deprimit al centre de coloració variada, de blanc terrós a gris cendra, dominant sovint els color rosats. El marge és ondulat, sobretot als exemplars adults. Davall el capell es troben tubs curts i els porus són petits, angulosos, primer grocs però aviat es tornen blaus amb la pressió dels dits. El peu dur i compacte és més prim a la base i cap a dalt, engruixit cap enmig. Aquest és de color groc més o manco clar, passant amb el temps a color marronenc, tornant blau si el tocam. Les espores són marró olivàcies en massa, el·lipsoidals, llises, d'11-16 x 5-6 micres. Toxicitat: Alta.",
                         "image": "img/Boletus_lupinus.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 4,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 4
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",
@@ -569,9 +689,17 @@
                         ],
                         "description": "Presenta un capell de fins a 40 cm de diàmetre de forma convexa, carnós, amb el marge girat interiorment i després ondulat. És com a vellutat, llis i de color blanc brut o blanc grisenc però mai rogenc ni rosa. Té tubs llargs, rodejant el peu, grocs o grocs verdosos tornant blaus quan es toquen amb els dits. Els porus són més o manco rodons, grocs als exemplars joves i ataronjats o vermells quan són madurs. El peu és esfèric, gruixat, de color groc o groc ataronjat a la part superior i vermell porpra a la part inferior. Està recobert per un reticle poligonal de malla ample de colors vermell, rosa i blanquinós. Les espores són marró oliva en massa, fusiformes, d'11-16 x 5-7 micres. Toxicitat: Alta.",
                         "image": "img/Boletus_satanas.jpg",
-                        "culinaryScore": 1,
-                        "toxicityScore": 5,
                         "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 1
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 5
+                            },
                             {
                                 "@type": "PropertyValue",
                                 "name": "Arbre associat",

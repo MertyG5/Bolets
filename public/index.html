@@ -236,6 +236,12 @@
                 return Math.min(5, Math.max(1, Math.round(parsed)));
             };
 
+            const getPropertyValue = (item, propName) => {
+                const props = Array.isArray(item?.additionalProperty) ? item.additionalProperty : [];
+                const found = props.find((prop) => String(prop?.name || "").toLowerCase() === String(propName).toLowerCase());
+                return found?.value;
+            };
+
             const renderCard = (entry) => {
                 const item = entry?.item || {};
                 const position = Number(entry?.position) || 1;
@@ -246,8 +252,8 @@
                 const description = item.description || "";
                 const image = item.image || "https://picsum.photos/800/600?blur=1";
 
-                const culinaryScore = clampScore(item.culinaryScore);
-                const toxicityScore = clampScore(item.toxicityScore);
+                const culinaryScore = clampScore(getPropertyValue(item, "Valor culinari (1-5)"));
+                const toxicityScore = clampScore(getPropertyValue(item, "Toxicitat (1-5)"));
                 const isToxic = toxicityScore >= 3;
                 const isLethal = toxicityScore >= 5;
 
