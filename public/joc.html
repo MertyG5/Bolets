@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mallorca Mushroom Quiz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11d432",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102213",
+                        "neutral-900": "#111812",
+                        "neutral-100": "#f0f4f1",
+                        "neutral-200": "#dbe6dd",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-neutral-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-neutral-200 dark:border-white/10 px-6 md:px-20 py-4 bg-white dark:bg-background-dark/50 sticky top-0 z-10 backdrop-blur-md">
+<div class="flex items-center gap-4 text-neutral-900 dark:text-slate-100">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-neutral-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Mallorca Mushroom Guide</h2>
+</div>
+<div class="flex gap-3">
+<div class="flex min-w-[84px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-neutral-900 text-sm font-bold leading-normal shadow-sm">
+<span class="truncate">Score: 3/8</span>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-neutral-100 dark:bg-white/10 text-neutral-900 dark:text-slate-100 hover:bg-neutral-200 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[640px] w-full px-4">
+<!-- Question Header -->
+<div class="text-center mb-6">
+<span class="text-primary font-bold text-sm tracking-widest uppercase">Question 4 of 8</span>
+<h1 class="text-neutral-900 dark:text-slate-100 text-3xl font-extrabold leading-tight mt-2">What mushroom is this?</h1>
+</div>
+<!-- Image Section -->
+<div class="w-full bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-neutral-200 dark:border-white/10 mb-8">
+<div class="w-full aspect-[4/3] rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up photo of a golden yellow Chanterelle mushroom in moss" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBChZnFtwY1OfNDZjVBTDLV9gjY6Jftf700nJ7nVBwuXGapBkQklUZoBWaEzbD3V8nO-5MygldhUPuc8ZTDWhV9RSex8a1M6cDd_vmAXGG2VcX0Qx0WDIyV91iHHj4Y1uXxynNnY2r2_fmQHGKsP6uPo7NKVtWHSmk_0m1CDRIm08yxMSxGT6_R-_4UdT-teSE4HaJZTQJM64rVoJepC45IuEnMCE0AI7wrzZfiNgMhDcchsC4v5Oqx5TlG3UQq1y74IF8xchgt7mrH");'>
+</div>
+</div>
+</div>
+<!-- Options Section -->
+<div class="grid grid-cols-1 gap-4 mb-10">
+<button class="group flex items-center justify-between w-full px-6 py-5 bg-white dark:bg-white/5 border-2 border-neutral-100 dark:border-white/10 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all active:scale-[0.98]">
+<span class="text-lg font-bold text-neutral-900 dark:text-slate-100">Picornell</span>
+<span class="material-symbols-outlined text-neutral-200 group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between w-full px-6 py-5 bg-white dark:bg-white/5 border-2 border-neutral-100 dark:border-white/10 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all active:scale-[0.98]">
+<span class="text-lg font-bold text-neutral-900 dark:text-slate-100">Esclata-sang</span>
+<span class="material-symbols-outlined text-neutral-200 group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between w-full px-6 py-5 bg-white dark:bg-white/5 border-2 border-neutral-100 dark:border-white/10 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all active:scale-[0.98]">
+<span class="text-lg font-bold text-neutral-900 dark:text-slate-100">Bolet de tinta</span>
+<span class="material-symbols-outlined text-neutral-200 group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Progress Bar Footer -->
+<div class="mt-auto pt-6 border-t border-neutral-200 dark:border-white/10">
+<div class="flex justify-between items-center mb-3">
+<span class="text-neutral-900 dark:text-slate-100 font-semibold">Quiz Progress</span>
+<span class="text-neutral-900 dark:text-slate-100 text-sm font-medium">37%</span>
+</div>
+<div class="w-full h-3 bg-neutral-200 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_10px_rgba(17,212,50,0.4)] rounded-full transition-all duration-500" style="width: 37.5%;"></div>
+</div>
+</div>
+<!-- Navigation Footer -->
+<div class="flex justify-between items-center mt-8 px-2">
+<button class="flex items-center gap-2 text-neutral-900/60 dark:text-slate-400 font-bold hover:text-neutral-900 dark:hover:text-slate-100 transition-colors">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+<span>Back to Catalog</span>
+</button>
+<button class="text-primary font-bold hover:underline">
+                            Skip this one
+                        </button>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
