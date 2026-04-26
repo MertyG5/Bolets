@@ -78,8 +78,6 @@
 <div class="hidden lg:flex items-center gap-8">
 <a class="text-sm font-semibold text-[#111812] hover:text-primary transition-colors" href="#">Catàleg</a>
 <a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="#">Mapa de descobertes</a>
-<a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="#">Seguretat</a>
-<a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="#">Comunitat</a>
 <a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="./joc.html">Joc</a>
 </div>
 <div class="flex items-center gap-3">
@@ -87,9 +85,6 @@
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#618968] text-xl">search</span>
 <input class="pl-10 pr-4 py-2 bg-background-light border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-48 lg:w-64 transition-all" placeholder="Cercar bolet..." type="text"/>
 </div>
-<button class="p-2 hover:bg-background-light rounded-full text-[#111812]">
-<span class="material-symbols-outlined">account_circle</span>
-</button>
 </div>
 </header>
 <main class="flex-1 flex flex-col lg:flex-row max-w-7xl mx-auto w-full gap-6 p-4 md:p-6" id="main-content">
@@ -235,19 +230,10 @@
                 return html;
             };
 
-            const getCulinaryScore = (description) => {
-                const text = (description || "").toLowerCase();
-                if (text.includes("excel") || text.includes("molt preuat") || text.includes("molt apreciat")) return 5;
-                if (text.includes("bon comestible") || text.includes("versàtil") || text.includes("bona qualitat")) return 4;
-                if (text.includes("comestible")) return 3;
-                return 1;
-            };
-
-            const getToxicityScore = (description) => {
-                const text = (description || "").toLowerCase();
-                if (text.includes("toxicitat: alta") || text.includes("letal") || text.includes("mortal")) return 5;
-                if (text.includes("toxicitat: baixa")) return 1;
-                return 1;
+            const clampScore = (value) => {
+                const parsed = Number(value);
+                if (!Number.isFinite(parsed)) return 1;
+                return Math.min(5, Math.max(1, Math.round(parsed)));
             };
 
             const renderCard = (entry) => {
@@ -260,8 +246,8 @@
                 const description = item.description || "";
                 const image = item.image || "https://picsum.photos/800/600?blur=1";
 
-                const culinaryScore = getCulinaryScore(description);
-                const toxicityScore = getToxicityScore(description);
+                const culinaryScore = clampScore(item.culinaryScore);
+                const toxicityScore = clampScore(item.toxicityScore);
                 const isToxic = toxicityScore >= 3;
                 const isLethal = toxicityScore >= 5;
 
@@ -269,8 +255,8 @@
                 const imageStyle = isToxic ? "grayscale" : "";
                 const nameClass = isToxic ? "text-lg font-bold text-red-700" : "text-lg font-bold text-[#111812] group-hover:text-primary transition-colors";
                 const badge = isToxic
-                    ? `<span class=\"absolute top-3 right-3 ${isLethal ? "bg-red-600" : "bg-red-500"} px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-white shadow-sm\">${isLethal ? "Lethal" : "Toxic"}</span>`
-                    : "<span class=\"absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm\">Edible</span>";
+                    ? `<span class=\"absolute top-3 right-3 ${isLethal ? "bg-red-600" : "bg-red-500"} px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-white shadow-sm\">${isLethal ? "Molt tòxic" : "Tòxic"}</span>`
+                    : "<span class=\"absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm\">Comestible</span>";
 
                 return `
                     <a href=\"./bolet.html?pos=${position}\" class=\"block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow ${cardBorder} group\">
@@ -308,7 +294,7 @@
                     const elements = Array.isArray(list?.itemListElement) ? list.itemListElement : [];
 
                     if (countNode) {
-                        countNode.textContent = `${elements.length} especies encontradas`;
+                        countNode.textContent = `${elements.length} espècies trobades`;
                     }
 
                     grid.innerHTML = elements.map((entry) => renderCard(entry)).join("");
