@@ -116,29 +116,32 @@
 <!-- Culinary Value -->
 <div class="mb-6">
 <label class="text-xs font-bold uppercase text-[#618968] mb-3 block">Valor culinari</label>
-<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg">
-<button class="p-1 hover:text-primary text-[#111812]"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 hover:text-primary text-[#111812]"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 hover:text-primary text-[#111812]"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">restaurant</span></button>
+<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg" id="culinary-filter">
+<button class="p-1 hover:text-primary text-[#111812]" data-score="1" type="button"><span class="material-symbols-outlined">restaurant</span></button>
+<button class="p-1 hover:text-primary text-[#111812]" data-score="2" type="button"><span class="material-symbols-outlined">restaurant</span></button>
+<button class="p-1 hover:text-primary text-[#111812]" data-score="3" type="button"><span class="material-symbols-outlined">restaurant</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span class="material-symbols-outlined">restaurant</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span class="material-symbols-outlined">restaurant</span></button>
 </div>
-<p class="text-[10px] text-[#618968] mt-2">Mínim 3 forquilles</p>
+<p class="text-[10px] text-[#618968] mt-2" id="culinary-filter-label">Mínim 3 forquilles</p>
 </div>
 <!-- Toxicity -->
 <div class="mb-6">
 <label class="text-xs font-bold uppercase text-[#618968] mb-3 block">Nivell de toxicitat</label>
-<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg">
-<button class="p-1 text-red-500"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">skull</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]"><span class="material-symbols-outlined">skull</span></button>
+<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg" id="toxicity-filter">
+<button class="p-1 text-red-500" data-score="1" type="button"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">skull</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="2" type="button"><span class="material-symbols-outlined">skull</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="3" type="button"><span class="material-symbols-outlined">skull</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span class="material-symbols-outlined">skull</span></button>
+<button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span class="material-symbols-outlined">skull</span></button>
 </div>
-<p class="text-[10px] text-[#618968] mt-2">Mostrar només segures</p>
+<p class="text-[10px] text-[#618968] mt-2" id="toxicity-filter-label">Mostrar només segures</p>
 </div>
-<button class="w-full py-3 bg-[#111812] text-white rounded-lg font-bold text-sm hover:bg-primary transition-all">
+<button class="w-full py-3 bg-[#111812] text-white rounded-lg font-bold text-sm hover:bg-primary transition-all" id="apply-filters" type="button">
                     Aplicar filtres
+                </button>
+<button class="w-full mt-2 py-3 bg-background-light text-[#111812] rounded-lg font-bold text-sm hover:bg-primary/10 transition-all" id="clear-filters" type="button">
+                    Neteja filtres
                 </button>
 </div>
 <!-- Ad/Info Card -->
@@ -208,6 +211,12 @@
         (function () {
             const grid = document.getElementById("mushroom-grid");
             const countNode = document.getElementById("species-count");
+            const culinaryFilterNode = document.getElementById("culinary-filter");
+            const toxicityFilterNode = document.getElementById("toxicity-filter");
+            const culinaryFilterLabel = document.getElementById("culinary-filter-label");
+            const toxicityFilterLabel = document.getElementById("toxicity-filter-label");
+            const applyFiltersButton = document.getElementById("apply-filters");
+            const clearFiltersButton = document.getElementById("clear-filters");
 
             if (!grid) {
                 return;
@@ -241,6 +250,115 @@
                 const found = props.find((prop) => String(prop?.name || "").toLowerCase() === String(propName).toLowerCase());
                 return found?.value;
             };
+
+            const getScores = (item) => ({
+                culinary: clampScore(getPropertyValue(item, "Valor culinari (1-5)")),
+                toxicity: clampScore(getPropertyValue(item, "Toxicitat (1-5)"))
+            });
+
+            const DEFAULT_MIN_CULINARY = 1;
+            const DEFAULT_MAX_TOXICITY = 5;
+
+            const state = {
+                minCulinary: null,
+                maxToxicity: null,
+                entries: []
+            };
+
+            const setFilterButtonsUI = () => {
+                if (culinaryFilterNode) {
+                    const buttons = culinaryFilterNode.querySelectorAll("button[data-score]");
+                    buttons.forEach((button) => {
+                        const score = Number(button.dataset.score || "1");
+                        const active = state.minCulinary !== null && score <= state.minCulinary;
+                        button.className = active
+                            ? "p-1 text-[#111812] hover:text-primary"
+                            : "p-1 text-[#dbe6dd] hover:text-primary";
+                    });
+                }
+
+                if (toxicityFilterNode) {
+                    const buttons = toxicityFilterNode.querySelectorAll("button[data-score]");
+                    buttons.forEach((button) => {
+                        const score = Number(button.dataset.score || "1");
+                        const active = state.maxToxicity !== null && score <= state.maxToxicity;
+                        const icon = button.querySelector(".material-symbols-outlined");
+                        button.className = active
+                            ? "p-1 text-red-500"
+                            : "p-1 text-[#dbe6dd]";
+                        if (icon) {
+                            icon.style.fontVariationSettings = active ? "'FILL' 1" : "'FILL' 0";
+                        }
+                    });
+                }
+
+                if (culinaryFilterLabel) {
+                    culinaryFilterLabel.textContent = state.minCulinary === null
+                        ? "Sense mínim de forquilles"
+                        : `Mínim ${state.minCulinary} forquilles`;
+                }
+
+                if (toxicityFilterLabel) {
+                    toxicityFilterLabel.textContent = state.maxToxicity === null
+                        ? "Sense límit de toxicitat"
+                        : `Toxicitat màxima ${state.maxToxicity}/5`;
+                }
+            };
+
+            const applyFilters = () => {
+                const filtered = state.entries.filter((entry) => {
+                    const item = entry?.item || {};
+                    const scores = getScores(item);
+                    const culinaryOk = state.minCulinary === null || scores.culinary >= state.minCulinary;
+                    const toxicityOk = state.maxToxicity === null || scores.toxicity >= state.maxToxicity;
+                    return culinaryOk && toxicityOk;
+                });
+
+                if (countNode) {
+                    countNode.textContent = `${filtered.length} espècies trobades`;
+                }
+
+                grid.innerHTML = filtered.map((entry) => renderCard(entry)).join("");
+            };
+
+            if (culinaryFilterNode) {
+                culinaryFilterNode.addEventListener("click", (event) => {
+                    const target = event.target;
+                    if (!(target instanceof Element)) return;
+                    const button = target.closest("button[data-score]");
+                    if (!button) return;
+                    const selectedScore = clampScore(button.dataset.score);
+                    state.minCulinary = state.minCulinary === selectedScore ? null : selectedScore;
+                    setFilterButtonsUI();
+                    applyFilters();
+                });
+            }
+
+            if (toxicityFilterNode) {
+                toxicityFilterNode.addEventListener("click", (event) => {
+                    const target = event.target;
+                    if (!(target instanceof Element)) return;
+                    const button = target.closest("button[data-score]");
+                    if (!button) return;
+                    const selectedScore = clampScore(button.dataset.score);
+                    state.maxToxicity = state.maxToxicity === selectedScore ? null : selectedScore;
+                    setFilterButtonsUI();
+                    applyFilters();
+                });
+            }
+
+            if (applyFiltersButton) {
+                applyFiltersButton.addEventListener("click", applyFilters);
+            }
+
+            if (clearFiltersButton) {
+                clearFiltersButton.addEventListener("click", () => {
+                    state.minCulinary = null;
+                    state.maxToxicity = null;
+                    setFilterButtonsUI();
+                    applyFilters();
+                });
+            }
 
             const renderCard = (entry) => {
                 const item = entry?.item || {};
@@ -299,11 +417,9 @@
                     const list = graph.find((node) => node?.["@type"] === "ItemList");
                     const elements = Array.isArray(list?.itemListElement) ? list.itemListElement : [];
 
-                    if (countNode) {
-                        countNode.textContent = `${elements.length} espècies trobades`;
-                    }
-
-                    grid.innerHTML = elements.map((entry) => renderCard(entry)).join("");
+                    state.entries = elements;
+                    setFilterButtonsUI();
+                    applyFilters();
                 })
                 .catch(() => {
                     grid.innerHTML = "";
