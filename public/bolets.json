@@ -71,7 +71,7 @@
                         "@type": "Taxon",
                         "name": "Agaricus bernardii",
                         "alternateName": [
-                            "Xampinyó"
+                            "Xampinyó Comú"
                         ],
                         "description": "Xampinyó blanc amb capell de quasi 15 cm de diàmetre que passa de convex a quasi pla amb el centre un poc deprimit i el marge gruixut i massís. Cutícula inicialment llisa i després coberta d'esquames. Davall el capell es troben nombroses làmines lliures, estretes, de color rosa salmó a gris carn. El peu de color blanc és irregular, cilíndric, gruixut, ple i rabassut. Aquest acaba típicament en punta i és llis per damunt l'anell, que és ínfer, i per davall pot presentar esquames de color terrós. Les espores són de color marró fosc en massa, de 5,5-8 x 4,5-6 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bernardii.jpg",
@@ -124,7 +124,7 @@
                         "name": "Agaricus bitorquis",
                         "alternateName": [
                             "Bolet",
-                            "Xampinyó"
+                            "Xampinyó Blanc"
                         ],
                         "description": "Aquest xampinyó blanquinós és rabassut i globós primerament i, amb el temps s'enfonsa al centre. Té nombroses làmines, atapeïdes i lliures de color carn. El peu és blanc i rabassut amb fibril·les longitudinals. L'anell d'aquesta espècie és molt característic per estar xapat en dos o haver dos anells a alçades diferents, fet que pot confondre amb la presència de volva. Les espores són de color marró en massa i subgloboses, de 5-6,5 x 4-5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bitorquis.jpg",
@@ -178,7 +178,7 @@
                         "alternateName": [
                             "Bolet",
                             "Pexigà",
-                            "Xampinyó"
+                            "Xampinyó de camp"
                         ],
                         "description": "Xampinyó blanc, blanc brut, rosat o terrós, amb un capell al principi esfèric, que després s'estén tornant convex i finalment pla de 4 a 12 cm de diàmetre. La superfície és llisa al principi, però pot presentar algunes esquames amb el temps. Les làmines estan lliures, atapeïdes, rosades al principi per passar a color xocolata, pel color de les espores. El peu és curt, cilíndric i gruixat de 3 a 5 x 1 a 2 cm, de color blanc i un poc grogós a la base i provist d'un anell membranós blanc que es perd fàcilment. Les espores són de color terrós porpra, ovoïdals, de 7-8 x 4-5,5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_campestris.jpg",
@@ -230,7 +230,7 @@
                         "@type": "Taxon",
                         "name": "Agaricus devoniensis",
                         "alternateName": [
-                            "Xampinyó"
+                            "Xampinyó bord"
                         ],
                         "description": "Aquest xampinyó posseeix un capell de 5 a 8 cm de diàmetre, hemisfèric al principi passant a pla i lleugerament deprimit al centre. La cutícula està dissociada en petites esquames molt juntes en forma de metxes de color que van del color caramel al marró un poc grisenc i un poc violaci. Per davall aquest, les làmines són lliures, estretes, de color rosa salmó a negrós. El peu és ample, amb petites esquames de color un poc rogenc que es troben per sobre de l'anell, per sota del qual és de color blanc. L'anell és blanquinós, ínfer i abraça el peu, esfilagarsat cap al marge. Les espores són negroses en massa, quasi rodones, de 5-6 x 4-5 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_devoniensis.jpg",
@@ -334,7 +334,7 @@
                         "@type": "Taxon",
                         "name": "Agaricus sylvaticus",
                         "alternateName": [
-                            "Xampinyó"
+                            "Xampinyó de bosc"
                         ],
                         "description": "Té un capell de fins a 10 cm de diàmetre. Primer hemisfèric per acabar pla i amb esquames fibril·loses de color marró ocre. Les làmines són lliures, pròximes al peu i de color rosa grisenc que canvia a negre amb el temps i amb l'aresta blanquinosa. Les espores són marrons porpres en massa, el·líptiques, de 5-7 x 3-4 micres. El peu dur un anell senzill, ample i blanc, és llarg i no molt gruixut amb la base bulbosa. És blanc i torna vermell quan el toquem. Toxicitat: Baixa.",
                         "image": "img/Agaricus_sylvaticus.jpg",
@@ -386,7 +386,7 @@
                         "@type": "Taxon",
                         "name": "Agaricus bernardii",
                         "alternateName": [
-                            "Xampinyó"
+                            "Xampinyó Blanc"
                         ],
                         "description": "Xampinyó blanc amb capell de quasi 15 cm de diàmetre que passa de convex a quasi pla amb el centre un poc deprimit i el marge gruixut i massís. Cutícula inicialment llisa i després coberta d'esquames. Davall el capell es troben nombroses làmines lliures, estretes, de color rosa salmó a gris carn. El peu de color blanc és irregular, cilíndric, gruixut, ple i rabassut. Aquest acaba típicament en punta i és llis per damunt l'anell, que és ínfer, i per davall pot presentar esquames de color terrós. Les espores són de color marró fosc en massa, de 5,5-8 x 4,5-6 micres. Toxicitat: Baixa.",
                         "image": "img/Agaricus_bernardii.jpg",
@@ -438,7 +438,7 @@
                         "@type": "Taxon",
                         "name": "Agaricus pseudopratensis var. niveus",
                         "alternateName": [
-                            "Xampinyó"
+                            "Xampinyó Rosat"
                         ],
                         "description": "Aquest bolet blanc posseix un capell de fins a 9 cm de diàmetre, hemisfèric i posteriorment més pla i enfonsat una mica al centre. El capell pot tornar groc quan el manipulem. Davall el capell trobem les làmines blanc rosades, que passen a rosa i finalment marró xocolata amb l'aresta blanquinosa. El peu curt i corbat porta un anell súper amb el marge bastant marcat. Les espores són marró en massa i quasi rodones, de 5-7 x 4-5 micres. Toxicitat: Alta.",
                         "image": "img/Agaricus_pseudopratensis.jpg",

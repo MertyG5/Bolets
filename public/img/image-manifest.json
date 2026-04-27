@@ -1,0 +1,590 @@
+{
+  "img/Agaricus_bernardii.jpg": {
+    "width": 645,
+    "height": 430,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_bernardii-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_bernardii-480.jpg"
+        },
+        {
+          "width": 645,
+          "src": "img/Agaricus_bernardii-645.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_bernardii-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_bernardii-480.webp"
+        },
+        {
+          "width": 645,
+          "src": "img/Agaricus_bernardii-645.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_bernardii-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_bernardii-480.avif"
+        },
+        {
+          "width": 645,
+          "src": "img/Agaricus_bernardii-645.avif"
+        }
+      ]
+    }
+  },
+  "img/Agaricus_pseudopratensis.jpg": {
+    "width": 936,
+    "height": 624,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_pseudopratensis-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_pseudopratensis-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_pseudopratensis-768.jpg"
+        },
+        {
+          "width": 936,
+          "src": "img/Agaricus_pseudopratensis-936.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_pseudopratensis-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_pseudopratensis-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_pseudopratensis-768.webp"
+        },
+        {
+          "width": 936,
+          "src": "img/Agaricus_pseudopratensis-936.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_pseudopratensis-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_pseudopratensis-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_pseudopratensis-768.avif"
+        },
+        {
+          "width": 936,
+          "src": "img/Agaricus_pseudopratensis-936.avif"
+        }
+      ]
+    }
+  },
+  "img/Agaricus_sylvaticus.jpg": {
+    "width": 1204,
+    "height": 835,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_sylvaticus-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_sylvaticus-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_sylvaticus-768.jpg"
+        },
+        {
+          "width": 1024,
+          "src": "img/Agaricus_sylvaticus-1024.jpg"
+        },
+        {
+          "width": 1204,
+          "src": "img/Agaricus_sylvaticus-1204.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_sylvaticus-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_sylvaticus-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_sylvaticus-768.webp"
+        },
+        {
+          "width": 1024,
+          "src": "img/Agaricus_sylvaticus-1024.webp"
+        },
+        {
+          "width": 1204,
+          "src": "img/Agaricus_sylvaticus-1204.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_sylvaticus-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_sylvaticus-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_sylvaticus-768.avif"
+        },
+        {
+          "width": 1024,
+          "src": "img/Agaricus_sylvaticus-1024.avif"
+        },
+        {
+          "width": 1204,
+          "src": "img/Agaricus_sylvaticus-1204.avif"
+        }
+      ]
+    }
+  },
+  "img/Agaricus_xanthodermus.jpg": {
+    "width": 800,
+    "height": 531,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_xanthodermus-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_xanthodermus-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_xanthodermus-768.jpg"
+        },
+        {
+          "width": 800,
+          "src": "img/Agaricus_xanthodermus-800.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_xanthodermus-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_xanthodermus-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_xanthodermus-768.webp"
+        },
+        {
+          "width": 800,
+          "src": "img/Agaricus_xanthodermus-800.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Agaricus_xanthodermus-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Agaricus_xanthodermus-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Agaricus_xanthodermus-768.avif"
+        },
+        {
+          "width": 800,
+          "src": "img/Agaricus_xanthodermus-800.avif"
+        }
+      ]
+    }
+  },
+  "img/Amanita_pantherina.jpg": {
+    "width": 1280,
+    "height": 720,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Amanita_pantherina-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_pantherina-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_pantherina-768.jpg"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_pantherina-1024.jpg"
+        },
+        {
+          "width": 1280,
+          "src": "img/Amanita_pantherina-1280.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Amanita_pantherina-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_pantherina-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_pantherina-768.webp"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_pantherina-1024.webp"
+        },
+        {
+          "width": 1280,
+          "src": "img/Amanita_pantherina-1280.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Amanita_pantherina-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_pantherina-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_pantherina-768.avif"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_pantherina-1024.avif"
+        },
+        {
+          "width": 1280,
+          "src": "img/Amanita_pantherina-1280.avif"
+        }
+      ]
+    }
+  },
+  "img/Amanita_phalloides.jpg": {
+    "width": 1278,
+    "height": 853,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Amanita_phalloides-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_phalloides-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_phalloides-768.jpg"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_phalloides-1024.jpg"
+        },
+        {
+          "width": 1278,
+          "src": "img/Amanita_phalloides-1278.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Amanita_phalloides-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_phalloides-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_phalloides-768.webp"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_phalloides-1024.webp"
+        },
+        {
+          "width": 1278,
+          "src": "img/Amanita_phalloides-1278.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Amanita_phalloides-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_phalloides-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_phalloides-768.avif"
+        },
+        {
+          "width": 1024,
+          "src": "img/Amanita_phalloides-1024.avif"
+        },
+        {
+          "width": 1278,
+          "src": "img/Amanita_phalloides-1278.avif"
+        }
+      ]
+    }
+  },
+  "img/Amanita_proxima.jpg": {
+    "width": 936,
+    "height": 624,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Amanita_proxima-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_proxima-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_proxima-768.jpg"
+        },
+        {
+          "width": 936,
+          "src": "img/Amanita_proxima-936.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Amanita_proxima-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_proxima-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_proxima-768.webp"
+        },
+        {
+          "width": 936,
+          "src": "img/Amanita_proxima-936.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Amanita_proxima-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Amanita_proxima-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Amanita_proxima-768.avif"
+        },
+        {
+          "width": 936,
+          "src": "img/Amanita_proxima-936.avif"
+        }
+      ]
+    }
+  },
+  "img/Boletus_lupinus.jpg": {
+    "width": 1204,
+    "height": 842,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Boletus_lupinus-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_lupinus-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_lupinus-768.jpg"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_lupinus-1024.jpg"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_lupinus-1204.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Boletus_lupinus-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_lupinus-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_lupinus-768.webp"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_lupinus-1024.webp"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_lupinus-1204.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Boletus_lupinus-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_lupinus-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_lupinus-768.avif"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_lupinus-1024.avif"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_lupinus-1204.avif"
+        }
+      ]
+    }
+  },
+  "img/Boletus_satanas.jpg": {
+    "width": 1204,
+    "height": 839,
+    "variants": {
+      "jpg": [
+        {
+          "width": 320,
+          "src": "img/Boletus_satanas-320.jpg"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_satanas-480.jpg"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_satanas-768.jpg"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_satanas-1024.jpg"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_satanas-1204.jpg"
+        }
+      ],
+      "webp": [
+        {
+          "width": 320,
+          "src": "img/Boletus_satanas-320.webp"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_satanas-480.webp"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_satanas-768.webp"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_satanas-1024.webp"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_satanas-1204.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 320,
+          "src": "img/Boletus_satanas-320.avif"
+        },
+        {
+          "width": 480,
+          "src": "img/Boletus_satanas-480.avif"
+        },
+        {
+          "width": 768,
+          "src": "img/Boletus_satanas-768.avif"
+        },
+        {
+          "width": 1024,
+          "src": "img/Boletus_satanas-1024.avif"
+        },
+        {
+          "width": 1204,
+          "src": "img/Boletus_satanas-1204.avif"
+        }
+      ]
+    }
+  }
+}

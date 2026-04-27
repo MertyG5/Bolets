@@ -12,7 +12,7 @@
 <body class="bg-background-light text-[#111812] min-h-screen flex flex-col"><section class="relative h-screen w-full flex items-center justify-center overflow-hidden" id="landing-hero">
 <!-- Background Image -->
 <div class="absolute inset-0 z-0">
-<img alt="Forest background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTnA7wFkRpN4cdeB1pkSkjrHJkuBpxGykjlp2Y8NKjNQVEtKoMyyobeI7_F1QurPzmvERhJBDdRBiEaaHam3rDfBEkBMZu3D5hd48bEElBaFMnX92f2i9ISHChK-DuaCeBiBA9sdycWKn0LMqlNh4vHDQVGI0571QLgb17Dbzfv28mJk0V0dbL4KNDSC5ZfLaek_CJdjegdDp4-JzeWmhMFYZA6kbtxBJG1hUCFq-ja-Ljcjj6mgE_uje4HopPHC_46Kb9XQQ4ZVgS"/>
+<img alt="Fons de bolets" class="w-full h-full object-cover" decoding="async" fetchpriority="high" height="1080" loading="eager" src="./img/boletFons.jpg" width="1920"/>
 <div class="absolute inset-0 bg-black/40"></div>
 </div>
 <!-- Content -->
@@ -145,8 +145,13 @@ Tornar al catàleg
 </div>
 
 <div class="rounded-xl overflow-hidden bg-white shadow-sm ring-1 ring-[#dbe6dd] mb-8 max-w-4xl mx-auto w-full" id="detail-hero-card">
-<div class="bg-center bg-no-repeat bg-[#e8efe9]" data-alt="Imatge del bolet" id="detail-hero-image">
-<div class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
+<div class="bg-[#e8efe9]" data-alt="Imatge del bolet" id="detail-hero-image">
+<picture id="detail-hero-picture">
+<source id="detail-hero-source-avif" type="image/avif"/>
+<source id="detail-hero-source-webp" type="image/webp"/>
+<img alt="Imatge del bolet" decoding="async" fetchpriority="high" height="900" id="detail-hero-img" loading="eager" src="https://picsum.photos/1440/900?blur=1" width="1440"/>
+</picture>
+<div class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 detail-hero-overlay">
 <div>
 <p class="text-white/90 text-sm mb-2" id="detail-breadcrumb-name"></p>
 <h1 class="text-white text-4xl md:text-5xl font-black tracking-tight mb-2" id="detail-mushroom-name"></h1>

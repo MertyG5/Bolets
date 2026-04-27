@@ -11,7 +11,9 @@
         catalogView: document.getElementById("catalog-view"),
         detailView: document.getElementById("detail-view"),
         detailBackButton: document.getElementById("detail-back-btn"),
-        detailHeroImage: document.getElementById("detail-hero-image"),
+        detailHeroImg: document.getElementById("detail-hero-img"),
+        detailHeroSourceAvif: document.getElementById("detail-hero-source-avif"),
+        detailHeroSourceWebp: document.getElementById("detail-hero-source-webp"),
         detailBreadcrumbName: document.getElementById("detail-breadcrumb-name"),
         detailMushroomName: document.getElementById("detail-mushroom-name"),
         detailMushroomScientific: document.getElementById("detail-mushroom-scientific"),
@@ -37,19 +39,21 @@
         landingHero: document.getElementById("landing-hero")
     };
 
-    if (!dom.grid) {
-        return;
-    }
+    if (!dom.grid) return;
+
+    const CARD_FALLBACK = "img/Agaricus_bernardii.jpg";
+    const HERO_FALLBACK = "img/Agaricus_bernardii.jpg";
 
     const state = {
         entries: [],
         filteredEntries: [],
+        imageManifest: {},
         minCulinary: null,
         maxToxicity: null,
         selectedEntry: null,
         speechText: "",
         utterance: null,
-        speechState: "stopped" // stopped | playing | paused
+        speechState: "stopped"
     };
 
     const escapeHtml = (value) => String(value ?? "")
@@ -64,6 +68,9 @@
         if (!Number.isFinite(parsed)) return 1;
         return Math.min(5, Math.max(1, Math.round(parsed)));
     };
+
+    const normalizeImagePath = (src) => String(src || "").replace(/^\.\//, "");
+    const isRemote = (src) => /^https?:\/\//i.test(String(src || ""));
 
     const getPropertyValue = (item, propName) => {
         const props = Array.isArray(item?.additionalProperty) ? item.additionalProperty : [];
@@ -86,6 +93,91 @@
         return html;
     };
 
+    const buildSrcSet = (variants) => (Array.isArray(variants)
+        ? variants.map((variant) => `${variant.src} ${variant.width}w`).join(", ")
+        : "");
+
+    const getImageMeta = (src) => {
+        if (!src || isRemote(src)) return null;
+        const key = normalizeImagePath(src);
+        return state.imageManifest[key] || null;
+    };
+
+    const getLargestVariant = (variants) => {
+        if (!Array.isArray(variants) || variants.length === 0) return "";
+        return variants[variants.length - 1].src;
+    };
+
+    const buildCardImageMarkup = (src, alt, extraClass) => {
+        const safeAlt = escapeHtml(alt);
+        const safeSrc = escapeHtml(src || CARD_FALLBACK);
+        const meta = getImageMeta(src);
+
+        if (!meta) {
+            return `<img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"640\" height=\"426\" src=\"${safeSrc}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}';this.srcset=''\"/>`;
+        }
+
+        const avifSrcSet = buildSrcSet(meta.variants?.avif);
+        const webpSrcSet = buildSrcSet(meta.variants?.webp);
+        const jpgSrcSet = buildSrcSet(meta.variants?.jpg);
+        const fallback = getLargestVariant(meta.variants?.jpg) || safeSrc;
+        const sizes = "(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw";
+
+        return `
+            <picture>
+                ${avifSrcSet ? `<source type=\"image/avif\" srcset=\"${avifSrcSet}\" sizes=\"${sizes}\"/>` : ""}
+                ${webpSrcSet ? `<source type=\"image/webp\" srcset=\"${webpSrcSet}\" sizes=\"${sizes}\"/>` : ""}
+                <img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"${meta.width}\" height=\"${meta.height}\" src=\"${fallback}\" srcset=\"${jpgSrcSet}\" sizes=\"${sizes}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}';this.srcset=''\"/>
+            </picture>
+        `;
+    };
+
+    const setDetailHeroImage = (src, alt) => {
+        if (!dom.detailHeroImg) return;
+
+        const safeAlt = alt || "Imatge del bolet";
+        const safeSrc = src || HERO_FALLBACK;
+        const meta = getImageMeta(src);
+
+        dom.detailHeroImg.alt = safeAlt;
+        dom.detailHeroImg.decoding = "async";
+        dom.detailHeroImg.loading = "eager";
+        dom.detailHeroImg.fetchPriority = "high";
+
+        if (!meta) {
+            const localCandidate = !isRemote(safeSrc) ? safeSrc : HERO_FALLBACK;
+            if (dom.detailHeroSourceAvif) dom.detailHeroSourceAvif.srcset = "";
+            if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
+            dom.detailHeroImg.srcset = "";
+            dom.detailHeroImg.sizes = "100vw";
+            dom.detailHeroImg.width = 1440;
+            dom.detailHeroImg.height = 900;
+            dom.detailHeroImg.src = localCandidate;
+            return;
+        }
+
+        const avifSrcSet = buildSrcSet(meta.variants?.avif);
+        const webpSrcSet = buildSrcSet(meta.variants?.webp);
+        const jpgSrcSet = buildSrcSet(meta.variants?.jpg);
+        const fallback = getLargestVariant(meta.variants?.jpg) || safeSrc;
+        const sizes = "(min-width: 1024px) 960px, 100vw";
+
+        if (dom.detailHeroSourceAvif) {
+            dom.detailHeroSourceAvif.srcset = avifSrcSet;
+            dom.detailHeroSourceAvif.sizes = sizes;
+        }
+        if (dom.detailHeroSourceWebp) {
+            dom.detailHeroSourceWebp.srcset = webpSrcSet;
+            dom.detailHeroSourceWebp.sizes = sizes;
+        }
+
+        dom.detailHeroImg.srcset = jpgSrcSet;
+        dom.detailHeroImg.sizes = sizes;
+        dom.detailHeroImg.width = meta.width;
+        dom.detailHeroImg.height = meta.height;
+        dom.detailHeroImg.src = fallback;
+    };
+
     const setFilterButtonsUI = () => {
         if (dom.culinaryFilter) {
             const buttons = dom.culinaryFilter.querySelectorAll("button[data-score]");
@@ -105,9 +197,7 @@
                 const active = state.maxToxicity !== null && score <= state.maxToxicity;
                 const icon = button.querySelector(".material-symbols-outlined");
                 button.className = active ? "p-1 text-red-500" : "p-1 text-[#dbe6dd]";
-                if (icon) {
-                    icon.style.fontVariationSettings = active ? "'FILL' 1" : "'FILL' 0";
-                }
+                if (icon) icon.style.fontVariationSettings = active ? "'FILL' 1" : "'FILL' 0";
             });
         }
 
@@ -131,7 +221,7 @@
             ? item.alternateName[0]
             : item.name || "Bolet";
         const scientificName = item.name || "Taxon desconegut";
-        const image = item.image || "https://picsum.photos/800/600?blur=1";
+        const image = item.image || CARD_FALLBACK;
 
         const scores = getScores(item);
         const isToxic = scores.toxicity >= 3;
@@ -144,10 +234,12 @@
             ? `<span class=\"absolute top-3 right-3 ${isLethal ? "bg-red-600" : "bg-red-500"} px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-white shadow-sm\">${isLethal ? "Molt tòxic" : "Tòxic"}</span>`
             : "<span class=\"absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm\">Comestible</span>";
 
+        const imageMarkup = buildCardImageMarkup(image, commonName, `group-hover:scale-105 transition-transform duration-500 ${imageStyle}`);
+
         return `
             <button type=\"button\" data-pos=\"${position}\" class=\"open-detail text-left block w-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow ${cardBorder} group\">
                 <div class=\"h-48 overflow-hidden relative\">
-                    <img class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${imageStyle}\" alt=\"${escapeHtml(commonName)}\" src=\"${escapeHtml(image)}\"/>
+                    ${imageMarkup}
                     ${isToxic ? "<div class=\"absolute inset-0 bg-red-900/10 group-hover:bg-transparent transition-colors\"></div>" : ""}
                     ${badge}
                 </div>
@@ -176,17 +268,12 @@
             return culinaryOk && toxicityOk;
         });
 
-        if (dom.count) {
-            dom.count.textContent = `${state.filteredEntries.length} espècies trobades`;
-        }
-
+        if (dom.count) dom.count.textContent = `${state.filteredEntries.length} espècies trobades`;
         dom.grid.innerHTML = state.filteredEntries.map((entry) => renderCard(entry)).join("");
     };
 
     const setAudioButtonState = (mode) => {
-        if (!dom.audioButton || !dom.audioButtonIcon || !dom.audioButtonText) {
-            return;
-        }
+        if (!dom.audioButton || !dom.audioButtonIcon || !dom.audioButtonText) return;
 
         if (mode === "playing") {
             dom.audioButton.setAttribute("aria-pressed", "true");
@@ -211,10 +298,7 @@
     };
 
     const stopSpeech = () => {
-        const synth = window.speechSynthesis;
-        if (synth) {
-            synth.cancel();
-        }
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
         state.utterance = null;
         state.speechState = "stopped";
         setAudioButtonState("stopped");
@@ -222,9 +306,7 @@
 
     const playSpeech = () => {
         const synth = window.speechSynthesis;
-        if (!synth || !state.speechText) {
-            return;
-        }
+        if (!synth || !state.speechText) return;
 
         const utterance = new SpeechSynthesisUtterance(state.speechText);
         utterance.lang = "ca-ES";
@@ -239,13 +321,7 @@
             }
         };
 
-        utterance.onerror = () => {
-            if (state.utterance === utterance) {
-                state.utterance = null;
-                state.speechState = "stopped";
-                setAudioButtonState("stopped");
-            }
-        };
+        utterance.onerror = utterance.onend;
 
         state.utterance = utterance;
         state.speechState = "playing";
@@ -255,9 +331,7 @@
 
     const toggleSpeech = () => {
         const synth = window.speechSynthesis;
-        if (!synth || !state.speechText) {
-            return;
-        }
+        if (!synth || !state.speechText) return;
 
         if (state.speechState === "playing" && synth.speaking) {
             synth.pause();
@@ -297,9 +371,7 @@
     };
 
     const showDetailView = (entry, pushHistory) => {
-        if (!entry?.item) {
-            return;
-        }
+        if (!entry?.item) return;
 
         state.selectedEntry = entry;
         const item = entry.item;
@@ -309,7 +381,7 @@
             : item.name || "Bolet";
         const scientific = item.name || "Taxon";
         const description = item.description || "Sense descripció.";
-        const image = item.image || "";
+        const image = item.image || HERO_FALLBACK;
         const tree = getPropertyValue(item, "Arbre associat") || "No especificat";
         const season = getPropertyValue(item, "Època") || "No especificada";
         const culinaryScore = clampScore(getPropertyValue(item, "Valor culinari (1-5)"));
@@ -321,7 +393,7 @@
         if (dom.detailBreadcrumbName) dom.detailBreadcrumbName.textContent = commonName;
         if (dom.detailMushroomName) dom.detailMushroomName.textContent = commonName;
         if (dom.detailMushroomScientific) dom.detailMushroomScientific.textContent = scientific;
-        if (dom.detailHeroImage && image) dom.detailHeroImage.style.backgroundImage = `url("${image}")`;
+        setDetailHeroImage(image, commonName);
 
         if (dom.detailCharacteristics) dom.detailCharacteristics.textContent = description;
         if (dom.detailHabitat) dom.detailHabitat.textContent = `Arbre associat principal: ${tree}.`;
@@ -415,8 +487,14 @@
         showCatalogView();
     });
 
-    dom.audioButton?.addEventListener("click", () => {
-        toggleSpeech();
+    dom.audioButton?.addEventListener("click", toggleSpeech);
+
+    dom.detailHeroImg?.addEventListener("error", () => {
+        if (!dom.detailHeroImg) return;
+        dom.detailHeroImg.srcset = "";
+        dom.detailHeroImg.src = HERO_FALLBACK;
+        if (dom.detailHeroSourceAvif) dom.detailHeroSourceAvif.srcset = "";
+        if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
     });
 
     dom.culinaryFilter?.addEventListener("click", (event) => {
@@ -424,7 +502,6 @@
         if (!(target instanceof Element)) return;
         const button = target.closest("button[data-score]");
         if (!button) return;
-
         const selectedScore = clampScore(button.dataset.score);
         state.minCulinary = state.minCulinary === selectedScore ? null : selectedScore;
         setFilterButtonsUI();
@@ -436,7 +513,6 @@
         if (!(target instanceof Element)) return;
         const button = target.closest("button[data-score]");
         if (!button) return;
-
         const selectedScore = clampScore(button.dataset.score);
         state.maxToxicity = state.maxToxicity === selectedScore ? null : selectedScore;
         setFilterButtonsUI();
@@ -461,17 +537,22 @@
         showCatalogView();
     });
 
-    window.addEventListener("beforeunload", () => {
-        stopSpeech();
-    });
+    window.addEventListener("beforeunload", stopSpeech);
 
-    fetch("./bolets.json")
-        .then((response) => {
-            if (!response.ok) throw new Error("No s'ha pogut carregar bolets.json");
-            return response.json();
-        })
-        .then((data) => {
-            const graph = Array.isArray(data?.["@graph"]) ? data["@graph"] : [];
+    const fetchJson = (url, fallbackValue) => fetch(url)
+        .then((response) => (response.ok ? response.json() : fallbackValue))
+        .catch(() => fallbackValue);
+
+    Promise.all([
+        fetchJson("./bolets.json", null),
+        fetchJson("./img/image-manifest.json", {})
+    ])
+        .then(([boletsData, imageManifest]) => {
+            if (!boletsData) throw new Error("No s'ha pogut carregar bolets.json");
+
+            state.imageManifest = imageManifest && typeof imageManifest === "object" ? imageManifest : {};
+
+            const graph = Array.isArray(boletsData?.["@graph"]) ? boletsData["@graph"] : [];
             const list = graph.find((node) => node?.["@type"] === "ItemList");
             const elements = Array.isArray(list?.itemListElement) ? list.itemListElement : [];
 
