@@ -1,0 +1,725 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "Quiz de Bolets de Mallorca",
+    "alternateName": "Mallorca Mushroom Quiz",
+    "description": "Posa a prova els teus coneixements sobre les espècies de bolets de les Illes Balears.",
+    "educationalLevel": "beginner",
+    "inLanguage": ["ca", "en"],
+    "about": {
+        "@type": "Thing",
+        "name": "Micologia de les Illes Balears",
+        "sameAs": "https://ca.wikipedia.org/wiki/Micologia"
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Bolets de Mallorca"
+    },
+    "dateCreated": "2026-05-04",
+    "hasPart": [
+        {
+            "@type": "Question",
+            "name": "Quin d'aquests bolets té el valor culinari més alt (5/5)?",
+            "text": "Quin d'aquests bolets té el valor culinari més alt (5/5)?",
+            "image": "img/Clitocybe_geotropa.jpg",
+            "difficulty": "Easy",
+            "answers": {
+                "answer_a": "Gírgola (Hohenhuehelia geogenia)",
+                "answer_b": "Xampinyó de camp (Agaricus campestris)",
+                "answer_c": "Candela de bruc (Clitocybe geotropa)",
+                "answer_d": "Xampinyó de bosc (Agaricus sylvaticus)"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "La Candela de bruc (Clitocybe geotropa) té el valor culinari màxim de 5/5 i es troba als alzinars de Mallorca durant la tardor.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Candela de bruc (Clitocybe geotropa)"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Gírgola (Hohenhuehelia geogenia)" },
+                { "@type": "Answer", "text": "Xampinyó de camp (Agaricus campestris)" },
+                { "@type": "Answer", "text": "Candela de bruc (Clitocybe geotropa)" },
+                { "@type": "Answer", "text": "Xampinyó de bosc (Agaricus sylvaticus)" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which of these mushrooms has the highest culinary value (5/5)?",
+                    "explanation": "The Funnel Chanterelle (Clitocybe geotropa) has the maximum culinary value of 5/5 and is found in the oak woodlands of Mallorca during autumn.",
+                    "answers": {
+                        "answer_a": "Oyster mushroom (Hohenhuehelia geogenia)",
+                        "answer_b": "Field mushroom (Agaricus campestris)",
+                        "answer_c": "Funnel Chanterelle (Clitocybe geotropa)",
+                        "answer_d": "Forest mushroom (Agaricus sylvaticus)"
+                    },
+                    "acceptedAnswer": "Funnel Chanterelle (Clitocybe geotropa)"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin d'aquests bolets és mortal (toxicitat 5/5)?",
+            "text": "Quin d'aquests bolets és mortal (toxicitat 5/5)?",
+            "image": "img/Amanita_phalloides.jpg",
+            "difficulty": "Easy",
+            "answers": {
+                "answer_a": "Xampinyó Rosat (Agaricus pseudopratensis)",
+                "answer_b": "Farinera (Amanita proxima)",
+                "answer_c": "Xampinyó (Agaricus xanthodermus)",
+                "answer_d": "Farinera borda (Amanita phalloides)"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "false",
+                "answer_d_correct": "true"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Amanita phalloides (Farinera borda) té una toxicitat de 5/5 i és un dels bolets més mortals del món. La seva ingestió pot ser fatal sense tractament mèdic immediat.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Farinera borda (Amanita phalloides)"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Xampinyó Rosat (Agaricus pseudopratensis)" },
+                { "@type": "Answer", "text": "Farinera (Amanita proxima)" },
+                { "@type": "Answer", "text": "Xampinyó (Agaricus xanthodermus)" },
+                { "@type": "Answer", "text": "Farinera borda (Amanita phalloides)" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which of these mushrooms is deadly (toxicity 5/5)?",
+                    "explanation": "Amanita phalloides (Death Cap) has a toxicity of 5/5 and is one of the deadliest mushrooms in the world. Ingestion can be fatal without immediate medical treatment.",
+                    "answers": {
+                        "answer_a": "Pinkish Mushroom (Agaricus pseudopratensis)",
+                        "answer_b": "Warty Amanita (Amanita proxima)",
+                        "answer_c": "Yellow Staining Mushroom (Agaricus xanthodermus)",
+                        "answer_d": "Death Cap (Amanita phalloides)"
+                    },
+                    "acceptedAnswer": "Death Cap (Amanita phalloides)"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "A quina temporada apareix la Gírgola (Hohenhuehelia geogenia)?",
+            "text": "A quina temporada apareix la Gírgola (Hohenhuehelia geogenia)?",
+            "image": "img/Hohenhuehelia_geogenia.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Primavera",
+                "answer_b": "Estiu",
+                "answer_c": "Tardor",
+                "answer_d": "Hivern"
+            },
+            "correct_answers": {
+                "answer_a_correct": "true",
+                "answer_b_correct": "false",
+                "answer_c_correct": "false",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "La Gírgola de pi (Hohenhuehelia geogenia) és un bolet primaveral que creix als alzinars, pinars i altres coníferes de la Serra de Tramuntana.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Primavera"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Primavera" },
+                { "@type": "Answer", "text": "Estiu" },
+                { "@type": "Answer", "text": "Tardor" },
+                { "@type": "Answer", "text": "Hivern" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "In which season does the Oyster mushroom (Hohenhuehelia geogenia) appear?",
+                    "explanation": "The Pine Oyster (Hohenhuehelia geogenia) is a spring mushroom that grows in oak woodlands, pine forests and other conifers of the Tramuntana Range.",
+                    "answers": {
+                        "answer_a": "Spring",
+                        "answer_b": "Summer",
+                        "answer_c": "Autumn",
+                        "answer_d": "Winter"
+                    },
+                    "acceptedAnswer": "Spring"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin bolet es caracteritza per canviar de color a groc intens quan el toquem?",
+            "text": "Quin bolet es caracteritza per canviar de color a groc intens quan el toquem?",
+            "image": "img/Agaricus_xanthodermus.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Farinera (Amanita proxima)",
+                "answer_b": "Xampinyó bord (Agaricus devoniensis)",
+                "answer_c": "Xampinyó (Agaricus xanthodermus)",
+                "answer_d": "Xampinyó de camp (Agaricus campestris)"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Agaricus xanthodermus es caracteritza per tornar-se groc intensament quan el toquem i per fer una olor desagradable a gas. Té una toxicitat de 4/5.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Xampinyó (Agaricus xanthodermus)"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Farinera (Amanita proxima)" },
+                { "@type": "Answer", "text": "Xampinyó bord (Agaricus devoniensis)" },
+                { "@type": "Answer", "text": "Xampinyó (Agaricus xanthodermus)" },
+                { "@type": "Answer", "text": "Xampinyó de camp (Agaricus campestris)" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which mushroom turns bright yellow when touched?",
+                    "explanation": "Agaricus xanthodermus is characterized by turning intensely yellow when touched and by giving off an unpleasant gas smell. It has a toxicity of 4/5.",
+                    "answers": {
+                        "answer_a": "Warty Amanita (Amanita proxima)",
+                        "answer_b": "Wild Mushroom (Agaricus devoniensis)",
+                        "answer_c": "Yellow Staining Mushroom (Agaricus xanthodermus)",
+                        "answer_d": "Field Mushroom (Agaricus campestris)"
+                    },
+                    "acceptedAnswer": "Yellow Staining Mushroom (Agaricus xanthodermus)"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "A quina zona de Mallorca es troba el Bolet del dimoni (Boletus satanas)?",
+            "text": "A quina zona de Mallorca es troba el Bolet del dimoni (Boletus satanas)?",
+            "image": "img/Boletus_satanas.jpg",
+            "difficulty": "Hard",
+            "answers": {
+                "answer_a": "Sóller",
+                "answer_b": "Alcúdia",
+                "answer_c": "Petra",
+                "answer_d": "Inca"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "El Bolet del dimoni (Boletus satanas) es pot trobar a Petra, als alzinars i pinars de Mallorca, principalment durant l'hivern. Té una toxicitat màxima de 5/5.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Petra"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Sóller" },
+                { "@type": "Answer", "text": "Alcúdia" },
+                { "@type": "Answer", "text": "Petra" },
+                { "@type": "Answer", "text": "Inca" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "In which area of Mallorca can Satan's Bolete (Boletus satanas) be found?",
+                    "explanation": "Satan's Bolete (Boletus satanas) can be found in Petra, in the oak woodlands and pine forests of Mallorca, mainly during winter. It has a maximum toxicity of 5/5.",
+                    "answers": {
+                        "answer_a": "Sóller",
+                        "answer_b": "Alcúdia",
+                        "answer_c": "Petra",
+                        "answer_d": "Inca"
+                    },
+                    "acceptedAnswer": "Petra"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin és el nom popular català del bolet Amanita pantherina?",
+            "text": "Quin és el nom popular català del bolet Amanita pantherina?",
+            "image": "img/Amanita_pantherina.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Farinera",
+                "answer_b": "Farinera borda",
+                "answer_c": "Candela de bruc",
+                "answer_d": "Pixacà"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "false",
+                "answer_d_correct": "true"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "El Pixacà (Amanita pantherina) és un bolet molt tòxic (5/5) que creix als alzinars de Mallorca durant la tardor. No s'ha de confondre amb cap espècie comestible.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pixacà"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Farinera" },
+                { "@type": "Answer", "text": "Farinera borda" },
+                { "@type": "Answer", "text": "Candela de bruc" },
+                { "@type": "Answer", "text": "Pixacà" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "What is the popular Catalan name for Amanita pantherina?",
+                    "explanation": "Pixacà (Amanita pantherina) is a very toxic mushroom (5/5) that grows in the oak woodlands of Mallorca during autumn. It must not be confused with any edible species.",
+                    "answers": {
+                        "answer_a": "Farinera",
+                        "answer_b": "Death Cap",
+                        "answer_c": "Funnel Chanterelle",
+                        "answer_d": "Pixacà (Panther Cap)"
+                    },
+                    "acceptedAnswer": "Pixacà (Panther Cap)"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin d'aquests bolets és segur per consumir i apareix a l'hivern?",
+            "text": "Quin d'aquests bolets és segur per consumir i apareix a l'hivern?",
+            "image": "img/Agaricus_campestris.jpg",
+            "difficulty": "Easy",
+            "answers": {
+                "answer_a": "Agaricus xanthodermus",
+                "answer_b": "Boletus satanas",
+                "answer_c": "Agaricus campestris",
+                "answer_d": "Amanita pantherina"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Agaricus campestris (Xampinyó de camp) és un bolet comestible d'hivern amb valor culinari de 4/5 i toxicitat 0. Es troba a pastures, pradells i jardins d'Alcúdia.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Agaricus campestris"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Agaricus xanthodermus" },
+                { "@type": "Answer", "text": "Boletus satanas" },
+                { "@type": "Answer", "text": "Agaricus campestris" },
+                { "@type": "Answer", "text": "Amanita pantherina" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which of these mushrooms is safe to eat and appears in winter?",
+                    "explanation": "Agaricus campestris (Field Mushroom) is an edible winter mushroom with a culinary value of 4/5 and toxicity 0. It is found in pastures, meadows and gardens of Alcúdia.",
+                    "answers": {
+                        "answer_a": "Agaricus xanthodermus",
+                        "answer_b": "Boletus satanas",
+                        "answer_c": "Agaricus campestris",
+                        "answer_d": "Amanita pantherina"
+                    },
+                    "acceptedAnswer": "Agaricus campestris"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin bolet té un capell que pot arribar als 40 cm de diàmetre?",
+            "text": "Quin bolet té un capell que pot arribar als 40 cm de diàmetre?",
+            "image": "img/Boletus_satanas.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Clitocybe geotropa",
+                "answer_b": "Amanita phalloides",
+                "answer_c": "Boletus satanas",
+                "answer_d": "Hohenhuehelia geogenia"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "El Boletus satanas (Bolet del dimoni) pot presentar un capell de fins a 40 cm de diàmetre de forma convexa i carnosa. És un dels bolets més grans i més tòxics (5/5) de Mallorca.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Boletus satanas"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Clitocybe geotropa" },
+                { "@type": "Answer", "text": "Amanita phalloides" },
+                { "@type": "Answer", "text": "Boletus satanas" },
+                { "@type": "Answer", "text": "Hohenhuehelia geogenia" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which mushroom can have a cap reaching 40 cm in diameter?",
+                    "explanation": "Boletus satanas (Satan's Bolete) can have a cap of up to 40 cm in diameter of convex and fleshy shape. It is one of the largest and most toxic (5/5) mushrooms in Mallorca.",
+                    "answers": {
+                        "answer_a": "Clitocybe geotropa",
+                        "answer_b": "Amanita phalloides",
+                        "answer_c": "Boletus satanas",
+                        "answer_d": "Hohenhuehelia geogenia"
+                    },
+                    "acceptedAnswer": "Boletus satanas"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "A quina zona de Mallorca es pot trobar la Farinera borda (Amanita phalloides)?",
+            "text": "A quina zona de Mallorca es pot trobar la Farinera borda (Amanita phalloides)?",
+            "image": "img/Amanita_phalloides.jpg",
+            "difficulty": "Hard",
+            "answers": {
+                "answer_a": "Sóller",
+                "answer_b": "Campos",
+                "answer_c": "Andratx",
+                "answer_d": "Pollença"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "true",
+                "answer_c_correct": "false",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "La Farinera borda (Amanita phalloides) és una espècie mortal que es troba als alzinars i pinars de Campos, a la part sud de Mallorca, principalment a la primavera.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Campos"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Sóller" },
+                { "@type": "Answer", "text": "Campos" },
+                { "@type": "Answer", "text": "Andratx" },
+                { "@type": "Answer", "text": "Pollença" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "In which area of Mallorca can the Death Cap (Amanita phalloides) be found?",
+                    "explanation": "The Death Cap (Amanita phalloides) is a lethal species found in the oak woodlands and pine forests of Campos, in the southern part of Mallorca, mainly in spring.",
+                    "answers": {
+                        "answer_a": "Sóller",
+                        "answer_b": "Campos",
+                        "answer_c": "Andratx",
+                        "answer_d": "Pollença"
+                    },
+                    "acceptedAnswer": "Campos"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin és l'hàbitat principal de la Candela de bruc (Clitocybe geotropa)?",
+            "text": "Quin és l'hàbitat principal de la Candela de bruc (Clitocybe geotropa)?",
+            "image": "img/Clitocybe_geotropa.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Dunes costaneres",
+                "answer_b": "Alzinar",
+                "answer_c": "Pinar",
+                "answer_d": "Garriga d'ullastre"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "true",
+                "answer_c_correct": "false",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "La Candela de bruc (Clitocybe geotropa) creix als alzinars de Mallorca, principalment a la zona de Sóller, durant la tardor entre octubre i desembre.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Alzinar"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Dunes costaneres" },
+                { "@type": "Answer", "text": "Alzinar" },
+                { "@type": "Answer", "text": "Pinar" },
+                { "@type": "Answer", "text": "Garriga d'ullastre" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "What is the main habitat of the Funnel Chanterelle (Clitocybe geotropa)?",
+                    "explanation": "The Funnel Chanterelle (Clitocybe geotropa) grows in oak woodlands of Mallorca, mainly in the Sóller area, during autumn between October and December.",
+                    "answers": {
+                        "answer_a": "Coastal dunes",
+                        "answer_b": "Oak woodland",
+                        "answer_c": "Pine forest",
+                        "answer_d": "Olive heather scrub"
+                    },
+                    "acceptedAnswer": "Oak woodland"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin bolet es recull principalment a les Dunes costaneres?",
+            "text": "Quin bolet es recull principalment a les Dunes costaneres?",
+            "image": "img/Agaricus_devoniensis.jpg",
+            "difficulty": "Hard",
+            "answers": {
+                "answer_a": "Agaricus sylvaticus",
+                "answer_b": "Agaricus bernardii",
+                "answer_c": "Agaricus devoniensis",
+                "answer_d": "Agaricus campestris"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Agaricus devoniensis (Xampinyó bord) creix exclusivament a les dunes costaneres, apareixent a finals d'estiu i tardor. Es troba principalment a Manacor.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Agaricus devoniensis"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Agaricus sylvaticus" },
+                { "@type": "Answer", "text": "Agaricus bernardii" },
+                { "@type": "Answer", "text": "Agaricus devoniensis" },
+                { "@type": "Answer", "text": "Agaricus campestris" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which mushroom grows mainly on coastal dunes?",
+                    "explanation": "Agaricus devoniensis (Wild Mushroom) grows exclusively on coastal dunes, appearing in late summer and autumn. It is mainly found in Manacor.",
+                    "answers": {
+                        "answer_a": "Agaricus sylvaticus",
+                        "answer_b": "Agaricus bernardii",
+                        "answer_c": "Agaricus devoniensis",
+                        "answer_d": "Agaricus campestris"
+                    },
+                    "acceptedAnswer": "Agaricus devoniensis"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "A quina temporada apareix el Xampinyó de bosc (Agaricus sylvaticus)?",
+            "text": "A quina temporada apareix el Xampinyó de bosc (Agaricus sylvaticus)?",
+            "image": "img/Agaricus_sylvaticus.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Hivern",
+                "answer_b": "Estiu",
+                "answer_c": "Tardor",
+                "answer_d": "Primavera"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "false",
+                "answer_d_correct": "true"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "El Xampinyó de bosc (Agaricus sylvaticus) apareix a la primavera als pinars i coníferes de Santanyí. Es caracteritza per tornar-se vermell quan el toquem.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Primavera"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Hivern" },
+                { "@type": "Answer", "text": "Estiu" },
+                { "@type": "Answer", "text": "Tardor" },
+                { "@type": "Answer", "text": "Primavera" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "In which season does the Forest Mushroom (Agaricus sylvaticus) appear?",
+                    "explanation": "The Forest Mushroom (Agaricus sylvaticus) appears in spring in the pine forests and conifers of Santanyí. It is characterized by turning red when touched.",
+                    "answers": {
+                        "answer_a": "Winter",
+                        "answer_b": "Summer",
+                        "answer_c": "Autumn",
+                        "answer_d": "Spring"
+                    },
+                    "acceptedAnswer": "Spring"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quina toxicitat té el Boletus lupinus?",
+            "text": "Quina toxicitat té el Boletus lupinus?",
+            "image": "img/Boletus_lupinus.jpg",
+            "difficulty": "Hard",
+            "answers": {
+                "answer_a": "0/5 (no tòxic)",
+                "answer_b": "2/5 (lleugerament tòxic)",
+                "answer_c": "4/5 (molt tòxic)",
+                "answer_d": "5/5 (mortal)"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "true",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "El Boletus lupinus té una toxicitat de 4/5, la qual cosa el fa molt perillós. Creix als alzinars i pinars d'Inca durant la tardor i els seus porus es tornen blaus en prémer-los.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "4/5 (molt tòxic)"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "0/5 (no tòxic)" },
+                { "@type": "Answer", "text": "2/5 (lleugerament tòxic)" },
+                { "@type": "Answer", "text": "4/5 (molt tòxic)" },
+                { "@type": "Answer", "text": "5/5 (mortal)" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "What is the toxicity level of Boletus lupinus?",
+                    "explanation": "Boletus lupinus has a toxicity of 4/5, making it very dangerous. It grows in the oak woodlands and pine forests of Inca during autumn and its pores turn blue when pressed.",
+                    "answers": {
+                        "answer_a": "0/5 (not toxic)",
+                        "answer_b": "2/5 (slightly toxic)",
+                        "answer_c": "4/5 (very toxic)",
+                        "answer_d": "5/5 (deadly)"
+                    },
+                    "acceptedAnswer": "4/5 (very toxic)"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quin bolet es troba a la Serra de Tramuntana i és comestible a la primavera?",
+            "text": "Quin bolet es troba a la Serra de Tramuntana i és comestible a la primavera?",
+            "image": "img/Hohenhuehelia_geogenia.jpg",
+            "difficulty": "Easy",
+            "answers": {
+                "answer_a": "Amanita proxima",
+                "answer_b": "Hohenhuehelia geogenia",
+                "answer_c": "Amanita phalloides",
+                "answer_d": "Boletus satanas"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "true",
+                "answer_c_correct": "false",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "La Gírgola (Hohenhuehelia geogenia) és un bolet comestible (culinari 4/5) que es troba a la Serra de Tramuntana a la primavera, als alzinars, pinars i coníferes.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hohenhuehelia geogenia"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Amanita proxima" },
+                { "@type": "Answer", "text": "Hohenhuehelia geogenia" },
+                { "@type": "Answer", "text": "Amanita phalloides" },
+                { "@type": "Answer", "text": "Boletus satanas" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "Which mushroom is found in the Tramuntana Range and is edible in spring?",
+                    "explanation": "The Oyster mushroom (Hohenhuehelia geogenia) is an edible mushroom (culinary 4/5) found in the Tramuntana Range in spring, in oak woodlands, pine forests and conifers.",
+                    "answers": {
+                        "answer_a": "Amanita proxima",
+                        "answer_b": "Hohenhuehelia geogenia",
+                        "answer_c": "Amanita phalloides",
+                        "answer_d": "Boletus satanas"
+                    },
+                    "acceptedAnswer": "Hohenhuehelia geogenia"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quina característica distintiva té l'Agaricus bitorquis?",
+            "text": "Quina característica distintiva té l'Agaricus bitorquis?",
+            "image": "img/Agaricus_bitorquis.jpg",
+            "difficulty": "Hard",
+            "answers": {
+                "answer_a": "El capell canvia de color a blau",
+                "answer_b": "Té dos anells a alçades diferents",
+                "answer_c": "Fa olor de gas",
+                "answer_d": "El peu és excèntric i lateral"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "true",
+                "answer_c_correct": "false",
+                "answer_d_correct": "false"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Agaricus bitorquis (Xampinyó Blanc) es distingeix per tenir l'anell xapat en dos o dos anells a alçades diferents, fet que el pot fer semblar que té volva, com certes espècies d'Amanita.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Té dos anells a alçades diferents"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "El capell canvia de color a blau" },
+                { "@type": "Answer", "text": "Té dos anells a alçades diferents" },
+                { "@type": "Answer", "text": "Fa olor de gas" },
+                { "@type": "Answer", "text": "El peu és excèntric i lateral" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "What distinctive feature does Agaricus bitorquis have?",
+                    "explanation": "Agaricus bitorquis (White Mushroom) is distinguished by having a ring split in two or two rings at different heights, which can make it look like it has a volva, similar to certain Amanita species.",
+                    "answers": {
+                        "answer_a": "The cap turns blue in color",
+                        "answer_b": "It has two rings at different heights",
+                        "answer_c": "It smells of gas",
+                        "answer_d": "The stem is eccentric and lateral"
+                    },
+                    "acceptedAnswer": "It has two rings at different heights"
+                }
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "A quina temporada apareix el Xampinyó (Agaricus xanthodermus)?",
+            "text": "A quina temporada apareix el Xampinyó (Agaricus xanthodermus)?",
+            "image": "img/Agaricus_xanthodermus.jpg",
+            "difficulty": "Medium",
+            "answers": {
+                "answer_a": "Primavera",
+                "answer_b": "Estiu",
+                "answer_c": "Tardor",
+                "answer_d": "Hivern"
+            },
+            "correct_answers": {
+                "answer_a_correct": "false",
+                "answer_b_correct": "false",
+                "answer_c_correct": "false",
+                "answer_d_correct": "true"
+            },
+            "multiple_correct_answers": "false",
+            "explanation": "L'Agaricus xanthodermus apareix a l'hivern als boscos d'Andratx. És un bolet tòxic (4/5) que es caracteritza per la seva reacció de color groc i l'olor a gas.",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hivern"
+            },
+            "suggestedAnswer": [
+                { "@type": "Answer", "text": "Primavera" },
+                { "@type": "Answer", "text": "Estiu" },
+                { "@type": "Answer", "text": "Tardor" },
+                { "@type": "Answer", "text": "Hivern" }
+            ],
+            "translations": {
+                "en": {
+                    "text": "In which season does the Yellow Staining Mushroom (Agaricus xanthodermus) appear?",
+                    "explanation": "Agaricus xanthodermus appears in winter in the forests of Andratx. It is a toxic mushroom (4/5) characterized by its yellow color reaction and gas smell.",
+                    "answers": {
+                        "answer_a": "Spring",
+                        "answer_b": "Summer",
+                        "answer_c": "Autumn",
+                        "answer_d": "Winter"
+                    },
+                    "acceptedAnswer": "Winter"
+                }
+            }
+        }
+    ]
+}

@@ -1,312 +1,604 @@
 <!DOCTYPE html>
 
-<html lang="ca"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bolets de Mallorca - Catàleg de bolets</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="./styles.css" rel="stylesheet"/>
+<html lang="ca">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bolets de Mallorca - Catàleg de bolets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts con display=swap para evitar bloqueig de rendering -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link href="./styles.css" rel="stylesheet" />
 </head>
-<body class="bg-background-light text-[#111812] min-h-screen flex flex-col"><section class="relative h-screen w-full flex items-center justify-center overflow-hidden" id="landing-hero">
-<!-- Background Image -->
-<div class="absolute inset-0 z-0">
-<img alt="Fons de bolets" class="w-full h-full object-cover" decoding="async" fetchpriority="high" height="1080" loading="eager" src="./img/boletFons.jpg" width="1920"/>
-<div class="absolute inset-0 bg-black/40"></div>
-</div>
-<!-- Content -->
-<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-<span class="inline-block px-4 py-1 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">Guia micològica balear</span>
-<h2 class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight">
-            Descobreix els <span class="text-primary">bolets</span> de Mallorca
-        </h2>
-<p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium">
-            Explora el fascinant món de la micologia balear. Aprèn a identificar, recollegir i cuinar les espècies més emblemàtiques de la nostra illa.
-        </p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<a class="px-8 py-4 bg-primary hover:bg-white hover:text-primary text-white font-bold rounded-xl transition-all shadow-xl shadow-primary/20" href="#catalogo">
-                Explorar catàleg
+
+<body class="bg-background-light text-[#111812] min-h-screen flex flex-col">
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden" id="landing-hero">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0" aria-hidden="true">
+            <div class="landing-hero-bg"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <span id="hero-eyebrow"
+                class="inline-block px-4 py-1 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">Guia
+                micològica balear</span>
+            <h2 id="hero-title" class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight">
+                Descobreix els <span class="text-primary">bolets</span> de Mallorca
+            </h2>
+            <p id="hero-description" class="text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium">
+                Explora el fascinant món de la micologia balear. Aprèn a identificar, recollegir i cuinar les espècies
+                més emblemàtiques de la nostra illa.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a id="hero-cta-catalog" class="px-8 py-4 bg-primary hover:bg-white hover:text-primary text-white font-bold rounded-xl transition-all shadow-xl shadow-primary/20"
+                    href="#catalogo">
+                    Explorar catàleg
+                </a>
+                <button id="open-map-btn" type="button"
+                    class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all backdrop-blur-md">
+                    Veure mapa
+                </button>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <a id="hero-scroll-link" class="text-white flex flex-col items-center gap-2 opacity-80 hover:opacity-100" href="#main-content">
+                <span class="text-[10px] font-bold uppercase tracking-widest">Desplaçar-se</span>
+                <span class="material-symbols-outlined text-3xl">expand_more</span>
             </a>
-<a class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all backdrop-blur-md" href="#">
-                Veure mapa
-            </a>
-</div>
-</div>
-<!-- Scroll Indicator -->
-<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-<a class="text-white flex flex-col items-center gap-2 opacity-80 hover:opacity-100" href="#main-content">
-<span class="text-[10px] font-bold uppercase tracking-widest">Desplaçar-se</span>
-<span class="material-symbols-outlined text-3xl">expand_more</span>
-</a>
-</div>
-</section>
-<!-- Top Navigation Bar -->
-<header class="top-0 z-50 bg-white/80 backdrop-blur-md border-b border-primary/10 px-4 md:px-10 py-2 flex items-center justify-between sticky">
-<div class="flex items-center gap-4">
-<div class="bg-primary text-white p-1.5 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined">forest</span>
-</div>
-<div>
-<h1 class="text-xl font-extrabold tracking-tight text-[#111812]">Bolets de Mallorca</h1>
-<p class="text-[10px] uppercase tracking-widest text-[#618968] font-bold">Guia micològica balear</p>
-</div>
-</div>
-<div class="hidden lg:flex items-center gap-8">
-<a class="text-sm font-semibold text-[#111812] hover:text-primary transition-colors" href="#">Catàleg</a>
-<a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="#">Mapa de descobertes</a>
-<a class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors" href="./joc.html">Joc</a>
-</div>
-<div class="flex items-center gap-3">
-<div class="hidden sm:block">
-<input class="pl-4 pr-4 py-2 bg-background-light border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-48 lg:w-64 transition-all" placeholder="Cercar bolet..." type="text"/>
-</div>
-</div>
-</header>
-<main class="flex-1 flex flex-col lg:flex-row max-w-7xl mx-auto w-full gap-6 p-4 md:p-6" id="main-content">
-<!-- Sidebar Filters -->
-<aside class="w-full lg:w-72 flex flex-col gap-6">
-<div class="bg-white p-6 rounded-xl border border-primary/5 shadow-sm">
-<h2 class="text-lg font-bold mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">filter_list</span>
+        </div>
+    </section>
+    <!-- Top Navigation Bar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-primary/10 px-4 md:px-10 py-2 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <div class="bg-primary text-white p-1.5 rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined">forest</span>
+            </div>
+            <div>
+                <h1 id="brand-title" class="text-xl font-extrabold tracking-tight text-[#111812]">Bolets de Mallorca</h1>
+                <p id="brand-subtitle" class="text-[10px] uppercase tracking-widest text-[#618968] font-bold">Guia micològica balear</p>
+            </div>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a id="nav-catalog" class="text-sm font-semibold text-[#111812] hover:text-primary transition-colors" href="#">Catàleg</a>
+            <button id="open-map-btn-header" type="button" class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors">Mapa de descobertes</button>
+            <button id="nav-game" type="button" class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors">Joc</button>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 rounded-full bg-background-light p-1">
+                <button id="btn-ca" type="button" class="px-3 py-1 rounded-full text-xs font-bold transition-all">CA</button>
+                <button id="btn-en" type="button" class="px-3 py-1 rounded-full text-xs font-bold transition-all">EN</button>
+            </div>
+            <div class="hidden sm:block">
+                <label for="search-input" id="search-label" class="sr-only">Cercar bolet per nom o descripció</label>
+                <input
+                    id="search-input"
+                    class="pl-4 pr-4 py-2 bg-background-light border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-48 lg:w-64 transition-all"
+                    placeholder="Cercar bolet..."
+                    type="search"
+                    aria-label="Cercar bolet per nom o descripció" />
+            </div>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col lg:flex-row max-w-7xl mx-auto w-full gap-6 p-4 md:p-6" id="main-content">
+        <!-- Sidebar Filters -->
+        <aside class="w-full lg:w-72 flex flex-col gap-6">
+            <div class="bg-white p-6 rounded-xl border border-primary/5 shadow-sm">
+                <h2 id="sidebar-title" class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">filter_list</span>
                     Filtres
                 </h2>
-<!-- Season Filter -->
-<div class="mb-6">
-<label class="text-xs font-bold uppercase text-[#618968] mb-3 block">Temporada</label>
-<div class="grid grid-cols-2 gap-2">
-<button class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors">
-<span class="material-symbols-outlined text-primary text-lg">eco</span> Primavera
+                <!-- Season Filter -->
+                <div class="mb-6">
+                    <p class="text-xs font-bold uppercase text-[#618968] mb-3" id="season-title">
+                        Temporada</p>
+                    <div class="grid grid-cols-2 gap-2" id="season-filter" role="group"
+                        aria-labelledby="season-title">
+                        <button
+                            id="season-spring"
+                            class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors"
+                            data-season="Primavera" type="button" aria-pressed="false">
+                            <span class="material-symbols-outlined text-primary text-lg">eco</span> Primavera
                         </button>
-<button class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors">
-<span class="material-symbols-outlined text-orange-400 text-lg">wb_sunny</span> Estiu
+                        <button
+                            id="season-summer"
+                            class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors"
+                            data-season="Estiu" type="button" aria-pressed="false">
+                            <span class="material-symbols-outlined text-orange-400 text-lg">wb_sunny</span> Estiu
                         </button>
-<button class="flex items-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm font-medium transition-colors">
-<span class="material-symbols-outlined text-white text-lg">water_drop</span> Tardor
+                        <button
+                            id="season-autumn"
+                            class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors"
+                            data-season="Tardor" type="button" aria-pressed="false">
+                            <span class="material-symbols-outlined text-[#618968] text-lg">water_drop</span> Tardor
                         </button>
-<button class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors">
-<span class="material-symbols-outlined text-blue-400 text-lg">ac_unit</span> Hivern
+                        <button
+                            id="season-winter"
+                            class="flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors"
+                            data-season="Hivern" type="button" aria-pressed="false">
+                            <span class="material-symbols-outlined text-blue-400 text-lg">ac_unit</span> Hivern
                         </button>
-</div>
-</div>
-<!-- Culinary Value -->
-<div class="mb-6">
-<label class="text-xs font-bold uppercase text-[#618968] mb-3 block">Valor culinari</label>
-<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg" id="culinary-filter">
-<button class="p-1 hover:text-primary text-[#111812]" data-score="1" type="button"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 hover:text-primary text-[#111812]" data-score="2" type="button"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 hover:text-primary text-[#111812]" data-score="3" type="button"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span class="material-symbols-outlined">restaurant</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span class="material-symbols-outlined">restaurant</span></button>
-</div>
-<p class="text-[10px] text-[#618968] mt-2" id="culinary-filter-label">Mínim 3 forquilles</p>
-</div>
-<!-- Toxicity -->
-<div class="mb-6">
-<label class="text-xs font-bold uppercase text-[#618968] mb-3 block">Nivell de toxicitat</label>
-<div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg" id="toxicity-filter">
-<button class="p-1 text-red-500" data-score="1" type="button"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">skull</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="2" type="button"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="3" type="button"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span class="material-symbols-outlined">skull</span></button>
-<button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span class="material-symbols-outlined">skull</span></button>
-</div>
-<p class="text-[10px] text-[#618968] mt-2" id="toxicity-filter-label">Mostrar només segures</p>
-</div>
-<button class="w-full py-3 bg-[#111812] text-white rounded-lg font-bold text-sm hover:bg-primary transition-all" id="apply-filters" type="button">
+                    </div>
+                    <p class="text-[10px] text-[#618968] mt-2" id="season-filter-label" aria-live="polite">Cap temporada
+                        seleccionada</p>
+                </div>
+                <!-- Culinary Value -->
+                <div class="mb-6">
+                    <label class="text-xs font-bold uppercase text-[#618968] mb-3 block" id="culinary-title">Valor culinari</label>
+                    <div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg"
+                        id="culinary-filter">
+                        <button class="p-1 hover:text-primary text-[#111812]" data-score="1" type="button"><span
+                                class="material-symbols-outlined">restaurant</span></button>
+                        <button class="p-1 hover:text-primary text-[#111812]" data-score="2" type="button"><span
+                                class="material-symbols-outlined">restaurant</span></button>
+                        <button class="p-1 hover:text-primary text-[#111812]" data-score="3" type="button"><span
+                                class="material-symbols-outlined">restaurant</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span
+                                class="material-symbols-outlined">restaurant</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span
+                                class="material-symbols-outlined">restaurant</span></button>
+                    </div>
+                    <p class="text-[10px] text-[#618968] mt-2" id="culinary-filter-label">Mínim 3 forquilles</p>
+                </div>
+                <!-- Toxicity -->
+                <div class="mb-6">
+                    <label class="text-xs font-bold uppercase text-[#618968] mb-3 block" id="toxicity-title">Nivell de toxicitat</label>
+                    <div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg"
+                        id="toxicity-filter">
+                        <button class="p-1 text-red-500" data-score="1" type="button"><span
+                                class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1">skull</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="2" type="button"><span
+                                class="material-symbols-outlined">skull</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="3" type="button"><span
+                                class="material-symbols-outlined">skull</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="4" type="button"><span
+                                class="material-symbols-outlined">skull</span></button>
+                        <button class="p-1 text-[#dbe6dd]" data-score="5" type="button"><span
+                                class="material-symbols-outlined">skull</span></button>
+                    </div>
+                    <p class="text-[10px] text-[#618968] mt-2" id="toxicity-filter-label">Mostrar només segures</p>
+                </div>
+                <button
+                    class="w-full py-3 bg-[#111812] text-white rounded-lg font-bold text-sm hover:bg-primary transition-all"
+                    id="apply-filters" type="button">
                     Aplicar filtres
                 </button>
-<button class="w-full mt-2 py-3 bg-background-light text-[#111812] rounded-lg font-bold text-sm hover:bg-primary/10 transition-all" id="clear-filters" type="button">
+                <button
+                    class="w-full mt-2 py-3 bg-background-light text-[#111812] rounded-lg font-bold text-sm hover:bg-primary/10 transition-all"
+                    id="clear-filters" type="button">
                     Neteja filtres
                 </button>
-</div>
-<!-- Ad/Info Card -->
-<div class="bg-primary/10 p-5 rounded-xl border border-primary/20">
-<h4 class="font-bold text-primary text-sm mb-2">Sabies que...?</h4>
-<p class="text-xs leading-relaxed text-[#111812]">L'<b>Esclata-sang</b> és el bolet més preat en la gastronomia mallorquina, recollit principalment en pinars durant la tardor.</p>
-</div>
-</aside>
-<!-- Main Content Grid -->
-<section class="flex-1">
-<div id="catalog-view">
-<div class="flex items-baseline justify-between mb-6">
-<h3 class="text-2xl font-black tracking-tight">Espècies de temporada</h3>
-<span class="text-sm font-medium text-[#618968]" id="species-count">0 espècies trobades</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="mushroom-grid"></div>
-</div>
+            </div>
+            <!-- Ad/Info Card -->
+            <div class="bg-primary/10 p-5 rounded-xl border border-primary/20">
+                <h4 id="info-card-title" class="font-bold text-primary text-sm mb-2">Sabies que...?</h4>
+                <p id="info-card-body" class="text-xs leading-relaxed text-[#111812]">L'<b>Esclata-sang</b> és el bolet més preat en la
+                    gastronomia mallorquina, recollit principalment en pinars durant la tardor.</p>
+            </div>
+        </aside>
+        <!-- Main Content Grid -->
+        <section class="flex-1">
+            <div id="catalog-view">
+                <div class="flex items-baseline justify-between mb-6">
+                    <h3 id="catalog-heading" class="text-2xl font-black tracking-tight">Espècies de temporada</h3>
+                    <span class="text-sm font-medium text-[#618968]" id="species-count">0 espècies trobades</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="mushroom-grid"></div>
+            </div>
 
-<div class="hidden" id="detail-view">
-<div class="mb-6">
-<button class="inline-flex items-center gap-2 text-primary font-semibold hover:underline" id="detail-back-btn" type="button">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-Tornar al catàleg
-</button>
-</div>
+            <div class="hidden" id="detail-view">
+                <div class="mb-6">
+                    <button id="detail-back-btn" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline" type="button">
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Tornar al catàleg
+                    </button>
+                </div>
 
-<div class="rounded-xl overflow-hidden bg-white shadow-sm ring-1 ring-[#dbe6dd] mb-8 max-w-4xl mx-auto w-full" id="detail-hero-card">
-<div class="bg-[#e8efe9]" data-alt="Imatge del bolet" id="detail-hero-image">
-<picture id="detail-hero-picture">
-<source id="detail-hero-source-avif" type="image/avif"/>
-<source id="detail-hero-source-webp" type="image/webp"/>
-<img alt="Imatge del bolet" decoding="async" fetchpriority="high" height="900" id="detail-hero-img" loading="eager" src="https://picsum.photos/1440/900?blur=1" width="1440"/>
-</picture>
-<div class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 detail-hero-overlay">
-<div>
-<p class="text-white/90 text-sm mb-2" id="detail-breadcrumb-name"></p>
-<h1 class="text-white text-4xl md:text-5xl font-black tracking-tight mb-2" id="detail-mushroom-name"></h1>
-<p class="text-white/90 text-xl italic font-medium" id="detail-mushroom-scientific"></p>
-</div>
-</div>
-</div>
-</div>
+                <div class="rounded-xl overflow-hidden bg-white shadow-sm ring-1 ring-[#dbe6dd] mb-8 max-w-4xl mx-auto w-full"
+                    id="detail-hero-card">
+                    <div class="bg-[#e8efe9]" data-alt="Imatge del bolet" id="detail-hero-image">
+                        <picture id="detail-hero-picture">
+                            <source id="detail-hero-source-avif" type="image/avif" />
+                            <source id="detail-hero-source-webp" type="image/webp" />
+                            <img alt="Imatge del bolet" decoding="async" fetchpriority="high" height="900"
+                                id="detail-hero-img" loading="eager" src="https://picsum.photos/1440/900?blur=1"
+                                width="1440" />
+                        </picture>
+                        <div
+                            class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 detail-hero-overlay">
+                            <div>
+                                <p class="text-white/90 text-sm mb-2" id="detail-breadcrumb-name"></p>
+                                <h1 class="text-white text-4xl md:text-5xl font-black tracking-tight mb-2"
+                                    id="detail-mushroom-name"></h1>
+                                <p class="text-white/90 text-xl italic font-medium" id="detail-mushroom-scientific"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-<div class="lg:col-span-2 space-y-6">
-<section>
-<h3 class="text-2xl font-bold text-[#111812] mb-3 border-l-4 border-primary pl-4">Característiques</h3>
-<p class="text-[#4a5f4d] leading-relaxed" id="detail-characteristics-text"></p>
-</section>
-<section>
-<h3 class="text-2xl font-bold text-[#111812] mb-3 border-l-4 border-primary pl-4">Hàbitat</h3>
-<p class="text-[#4a5f4d] leading-relaxed" id="detail-habitat-text"></p>
-</section>
-<div class="mt-6 p-4 bg-white rounded-xl border border-[#dbe6dd] shadow-sm flex flex-col gap-3">
-<div class="flex items-center gap-2 text-sm font-bold text-[#111812]">
-<span class="material-symbols-outlined text-primary text-xl">volume_up</span>
-<span>Escoltar audiodescripció</span>
-</div>
-<div class="flex items-center gap-3">
-<button aria-pressed="false" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition-all" id="btn-audio" type="button">
-<span class="material-symbols-outlined" id="btn-audio-icon">play_arrow</span>
-<span id="btn-audio-text">Escolta</span>
-</button>
-<p class="text-xs font-semibold text-[#618968]" id="audio-status">Preparat</p>
-</div>
-</div>
-</div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <section>
+                            <h3 id="detail-characteristics-title" class="text-2xl font-bold text-[#111812] mb-3 border-l-4 border-primary pl-4">
+                                Característiques</h3>
+                            <p class="text-[#4a5f4d] leading-relaxed" id="detail-characteristics-text"></p>
+                        </section>
+                        <section>
+                            <h3 id="detail-habitat-title" class="text-2xl font-bold text-[#111812] mb-3 border-l-4 border-primary pl-4">Hàbitat
+                            </h3>
+                            <p class="text-[#4a5f4d] leading-relaxed" id="detail-habitat-text"></p>
+                        </section>
+                        <section>
+                            <h3 id="detail-location-title" class="text-2xl font-bold text-[#111812] mb-3 border-l-4 border-primary pl-4">
+                                Ubicació geogràfica
+                            </h3>
+                            <p class="text-[#4a5f4d] mb-4" id="detail-location-name"></p>
+                            <div class="w-full h-[300px] rounded-xl overflow-hidden border border-[#dbe6dd] shadow-sm" 
+                                 id="detail-map" 
+                                 aria-label="Mapa de la ubicació del bolet"></div>
+                        </section>
+                        <div class="mt-6 p-4 bg-white rounded-xl border border-[#dbe6dd] shadow-sm flex flex-col gap-3">
+                            <div class="flex items-center gap-2 text-sm font-bold text-[#111812]">
+                                <span class="material-symbols-outlined text-primary text-xl">volume_up</span>
+                                <span id="audio-title">Escoltar audiodescripció</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button aria-pressed="false"
+                                    class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-white font-semibold hover:brightness-110 transition-all"
+                                    id="btn-audio" type="button">
+                                    <span class="material-symbols-outlined" id="btn-audio-icon">play_arrow</span>
+                                    <span id="btn-audio-text">Escolta</span>
+                                </button>
+                                <p class="text-xs font-semibold text-[#618968]" id="audio-status">Preparat</p>
+                                <p class="sr-only" id="tts-live-region" role="status" aria-live="polite" aria-atomic="true"></p>
+                            </div>
+                        </div>
+                    </div>
 
-<div class="space-y-6">
-<div class="bg-white p-6 rounded-xl border border-[#dbe6dd] shadow-sm">
-<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">analytics</span>
-Resum de l'espècie
-</h3>
-<div class="space-y-4">
-<div class="flex flex-col gap-2 p-4 rounded-lg bg-primary/5 border border-primary/10">
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">restaurant</span>
-<p class="text-[#111812] font-bold">Valor culinari</p>
-</div>
-<div class="flex gap-1" id="detail-culinary-stars"></div>
-</div>
-<p class="text-sm text-[#4a5f4d]" id="detail-culinary-text"></p>
-</div>
-<div class="flex flex-col gap-2 p-4 rounded-lg bg-red-50 border border-red-100">
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-red-600">skull</span>
-<p class="text-[#111812] font-bold">Nivell de toxicitat</p>
-</div>
-<div class="flex gap-1" id="detail-toxicity-stars"></div>
-</div>
-<p class="text-sm text-red-700/80 font-medium" id="detail-toxicity-text"></p>
-</div>
-</div>
-</div>
-<div class="bg-white p-6 rounded-xl border border-[#dbe6dd] shadow-sm">
-<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">calendar_month</span>
-Millor temporada de recol·lecció
-</h3>
-<p class="text-sm text-[#618968]" id="detail-season-text"></p>
-</div>
-</div>
-</div>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl border border-[#dbe6dd] shadow-sm">
+                            <h3 id="summary-title" class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">analytics</span>
+                                Resum de l'espècie
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex flex-col gap-2 p-4 rounded-lg bg-primary/5 border border-primary/10">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-primary">restaurant</span>
+                                            <p id="detail-culinary-label" class="text-[#111812] font-bold">Valor culinari</p>
+                                        </div>
+                                        <div class="flex gap-1" id="detail-culinary-stars"></div>
+                                    </div>
+                                    <p class="text-sm text-[#4a5f4d]" id="detail-culinary-text"></p>
+                                </div>
+                                <div class="flex flex-col gap-2 p-4 rounded-lg bg-red-50 border border-red-100">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-red-600">skull</span>
+                                            <p id="detail-toxicity-label" class="text-[#111812] font-bold">Nivell de toxicitat</p>
+                                        </div>
+                                        <div class="flex gap-1" id="detail-toxicity-stars"></div>
+                                    </div>
+                                    <p class="text-sm text-red-700/80 font-medium" id="detail-toxicity-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-[#dbe6dd] shadow-sm">
+                            <h3 id="detail-season-title" class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">calendar_month</span>
+                                Millor temporada de recol·lecció
+                            </h3>
+                            <p class="text-sm text-[#618968]" id="detail-season-text"></p>
+                        </div>
+                    </div>
+                </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-<div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
-<p class="text-[#618968] text-sm font-bold uppercase">Canvi de color</p>
-<p class="text-[#111812] text-xl font-bold" id="detail-extra-1"></p>
-<span class="material-symbols-outlined text-primary">palette</span>
-</div>
-<div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
-<p class="text-[#618968] text-sm font-bold uppercase">Preferència de sòl</p>
-<p class="text-[#111812] text-xl font-bold" id="detail-extra-2"></p>
-<span class="material-symbols-outlined text-primary">landscape</span>
-</div>
-<div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
-<p class="text-[#618968] text-sm font-bold uppercase">Preparació</p>
-<p class="text-[#111812] text-xl font-bold" id="detail-extra-3"></p>
-<span class="material-symbols-outlined text-primary">outdoor_grill</span>
-</div>
-</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
+                        <p id="detail-extra-label-1" class="text-[#618968] text-sm font-bold uppercase">Canvi de color</p>
+                        <p class="text-[#111812] text-xl font-bold" id="detail-extra-1"></p>
+                        <span class="material-symbols-outlined text-primary">palette</span>
+                    </div>
+                    <div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
+                        <p id="detail-extra-label-2" class="text-[#618968] text-sm font-bold uppercase">Preferència de sòl</p>
+                        <p class="text-[#111812] text-xl font-bold" id="detail-extra-2"></p>
+                        <span class="material-symbols-outlined text-primary">landscape</span>
+                    </div>
+                    <div class="flex flex-col gap-2 rounded-lg p-6 border border-[#dbe6dd] bg-white">
+                        <p id="detail-extra-label-3" class="text-[#618968] text-sm font-bold uppercase">Preparació</p>
+                        <p class="text-[#111812] text-xl font-bold" id="detail-extra-3"></p>
+                        <span class="material-symbols-outlined text-primary">outdoor_grill</span>
+                    </div>
+                </div>
 
-<div class="flex flex-col gap-4 rounded-lg p-6 border border-[#dbe6dd] bg-white">
-<div class="flex items-center justify-between">
-<p class="text-[#618968] text-sm font-bold uppercase">Recepta recomanada</p>
-<span class="material-symbols-outlined text-red-600 font-bold">play_circle</span>
-</div>
-<div>
-<p class="text-[#111812] text-xl font-bold" id="detail-recipe-title"></p>
-<p class="text-sm text-[#4a5f4d] mt-1" id="detail-recipe-description"></p>
-</div>
-<a class="flex items-center gap-2 text-red-600 font-bold text-sm hover:underline mt-2" href="#" id="detail-recipe-link" rel="noopener noreferrer" target="_blank">
-<span class="material-symbols-outlined fill-1">smart_display</span>
-Veure a YouTube
-</a>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-white border-t border-primary/10 mt-12 py-10">
-<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start justify-between gap-10">
-<div class="max-w-xs">
-<div class="flex items-center gap-3 mb-4">
-<div class="bg-primary/20 text-primary p-1.5 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-lg">forest</span>
-</div>
-<h5 class="text-lg font-bold text-[#111812]">Bolets de Mallorca</h5>
-</div>
-<p class="text-sm text-[#618968] leading-relaxed">Promovent el coneixement i la conservació de la biodiversitat micològica de les Illes Balears de forma segura i sostenible.</p>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-10">
-<div>
-<h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Recursos</h6>
-<ul class="space-y-2">
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Guia de camp</a></li>
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Toxicitat</a></li>
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Cuina balear</a></li>
-</ul>
-</div>
-<div>
-<h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Legal</h6>
-<ul class="space-y-2">
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Avís legal</a></li>
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Privacitat</a></li>
-<li><a class="text-sm text-[#618968] hover:text-primary" href="#">Normativa</a></li>
-</ul>
-</div>
-<div>
-<h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Segueix-nos</h6>
-<div class="flex gap-4">
-<a class="text-[#618968] hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
-<a class="text-[#618968] hover:text-primary" href="#"><span class="material-symbols-outlined">camera</span></a>
-<a class="text-[#618968] hover:text-primary" href="#"><span class="material-symbols-outlined">groups</span></a>
-</div>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-background-light flex flex-col sm:flex-row justify-between items-center gap-4">
-<p class="text-xs text-[#618968]">© 2024 Bolets de Mallorca S.L. Tots els drets reservats.</p>
-<div class="flex items-center gap-1 text-xs text-[#618968]">
-<span>Fet amb</span>
-<span class="material-symbols-outlined text-red-400 text-sm" style="font-variation-settings: 'FILL' 1">favorite</span>
-<span>a Mallorca</span>
-</div>
-</div>
-</footer>
-<script src="./app.js"></script>
-</body></html>
+                <div class="flex flex-col gap-4 rounded-lg p-6 border border-[#dbe6dd] bg-white">
+                    <div class="flex items-center justify-between">
+                        <p id="recipe-title-label" class="text-[#618968] text-sm font-bold uppercase">Recepta recomanada</p>
+                        <span class="material-symbols-outlined text-red-600 font-bold">play_circle</span>
+                    </div>
+                    <div>
+                        <p class="text-[#111812] text-xl font-bold" id="detail-recipe-title"></p>
+                        <p class="text-sm text-[#4a5f4d] mt-1" id="detail-recipe-description"></p>
+                    </div>
+                    <a id="detail-recipe-link" class="flex items-center gap-2 text-red-600 font-bold text-sm hover:underline mt-2" href="#" rel="noopener noreferrer" target="_blank">
+                        <span class="material-symbols-outlined fill-1">smart_display</span>
+                        Veure a YouTube
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             GAME VIEW
+             ============================ -->
+        <section class="flex-1 hidden" id="game-view" aria-label="Joc de bolets" aria-live="polite">
+
+            <!-- Intro Screen -->
+            <div id="game-intro" class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
+                <div class="bg-primary/10 rounded-full p-6 mb-6">
+                    <span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1">sports_esports</span>
+                </div>
+                <h2 id="game-intro-title" class="text-4xl font-extrabold text-[#111812] mb-3">Quiz de Bolets</h2>
+                <p id="game-intro-subtitle" class="text-lg text-[#618968] max-w-md mb-8">Posa a prova els teus coneixements sobre les espècies de bolets de les Illes Balears.</p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <div class="flex items-center gap-2 bg-white border border-primary/20 rounded-xl px-5 py-3 shadow-sm">
+                        <span class="material-symbols-outlined text-primary">quiz</span>
+                        <span id="game-total-q" class="font-bold text-[#111812]">16 preguntes</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white border border-primary/20 rounded-xl px-5 py-3 shadow-sm">
+                        <span class="material-symbols-outlined text-primary">timer</span>
+                        <span id="game-time-label" class="font-bold text-[#111812]">Sense límit de temps</span>
+                    </div>
+                </div>
+                <button id="game-start-btn" type="button"
+                    class="px-10 py-4 bg-primary hover:brightness-110 text-white font-extrabold text-lg rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-95">
+                    <span id="game-start-label">Començar el quiz</span>
+                </button>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="game-question" class="hidden w-full max-w-2xl mx-auto py-4 px-2">
+                <!-- Header: score + close -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-2 bg-primary/10 rounded-lg px-4 py-2">
+                        <span class="material-symbols-outlined text-primary text-sm">emoji_events</span>
+                        <span id="game-score-display" class="font-bold text-[#111812] text-sm">0 / 0</span>
+                    </div>
+                    <button id="game-exit-btn" type="button"
+                        class="flex items-center justify-center rounded-lg h-9 w-9 bg-neutral-100 hover:bg-red-50 text-[#618968] hover:text-red-500 transition-colors"
+                        aria-label="Sortir del joc">
+                        <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
+                </div>
+
+                <!-- Progress -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span id="game-question-counter" class="text-primary font-bold text-xs tracking-widest uppercase">Pregunta 1 de 16</span>
+                        <span id="game-progress-pct" class="text-xs font-medium text-[#618968]">0%</span>
+                    </div>
+                    <div class="w-full bg-[#dbe6dd] rounded-full h-2" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="game-progress-bar-wrap">
+                        <div id="game-progress-bar" class="bg-primary h-2 rounded-full transition-all duration-300" style="width:0%"></div>
+                    </div>
+                </div>
+
+                <!-- Question text -->
+                <h1 id="game-question-text" class="text-xl md:text-2xl font-extrabold text-[#111812] text-center mb-5 leading-snug"></h1>
+
+                <!-- Image -->
+                <div id="game-image-wrap" class="w-full bg-white border border-[#dbe6dd] rounded-xl overflow-hidden shadow-sm mb-6 hidden">
+                    <img id="game-question-img"
+                        src=""
+                        alt=""
+                        class="w-full object-cover"
+                        style="max-height: 280px;"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.parentElement.classList.add('hidden')" />
+                </div>
+
+                <!-- Options -->
+                <div id="game-options" class="grid grid-cols-1 gap-3" role="list"></div>
+
+                <!-- Feedback -->
+                <div id="game-feedback" class="hidden mt-6 p-5 rounded-xl border-2 transition-all">
+                    <div class="flex items-start gap-3">
+                        <span id="game-feedback-icon" class="material-symbols-outlined text-2xl flex-shrink-0" style="font-variation-settings: 'FILL' 1"></span>
+                        <div>
+                            <p id="game-feedback-title" class="font-extrabold text-base mb-1"></p>
+                            <p id="game-feedback-explanation" class="text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next button -->
+                <div class="mt-6 flex justify-end">
+                    <button id="game-next-btn" type="button"
+                        class="hidden px-7 py-3 bg-primary hover:brightness-110 text-white font-bold rounded-xl shadow-md transition-all active:scale-95">
+                        <span id="game-next-label">Següent pregunta</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="game-results" class="hidden flex-col items-center justify-center min-h-[70vh] text-center px-4 py-8">
+                <div id="game-results-icon" class="rounded-full p-6 mb-4"></div>
+                <h2 id="game-results-title" class="text-3xl font-extrabold text-[#111812] mb-2"></h2>
+                <p id="game-results-subtitle" class="text-[#618968] mb-6"></p>
+                <!-- Score ring -->
+                <div class="relative w-36 h-36 mb-8">
+                    <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle cx="60" cy="60" r="50" fill="none" stroke="#dbe6dd" stroke-width="10"/>
+                        <circle id="game-score-ring" cx="60" cy="60" r="50" fill="none" stroke="#11d432" stroke-width="10"
+                            stroke-linecap="round"
+                            stroke-dasharray="314.16"
+                            stroke-dashoffset="314.16"
+                            style="transition: stroke-dashoffset 1s ease-in-out;"/>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span id="game-final-score" class="text-4xl font-black text-[#111812]">0/0</span>
+                        <span id="game-final-pct" class="text-sm font-bold text-primary"></span>
+                    </div>
+                </div>
+                <!-- Stats row -->
+                <div class="flex gap-4 mb-8">
+                    <div class="bg-primary/10 rounded-xl p-4 min-w-[90px] text-center">
+                        <span id="game-correct-count" class="text-2xl font-black text-primary block"></span>
+                        <span id="game-correct-label" class="text-xs font-bold text-[#618968] uppercase tracking-wide">Correctes</span>
+                    </div>
+                    <div class="bg-red-50 rounded-xl p-4 min-w-[90px] text-center">
+                        <span id="game-wrong-count" class="text-2xl font-black text-red-500 block"></span>
+                        <span id="game-wrong-label" class="text-xs font-bold text-[#618968] uppercase tracking-wide">Incorrectes</span>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="game-replay-btn" type="button"
+                        class="px-8 py-3 bg-primary hover:brightness-110 text-white font-bold rounded-xl shadow-md transition-all active:scale-95">
+                        <span id="game-replay-label">Tornar a jugar</span>
+                    </button>
+                    <button id="game-catalog-btn" type="button"
+                        class="px-8 py-3 bg-[#111812] hover:bg-[#1c2e1e] text-white font-bold rounded-xl shadow-md transition-all active:scale-95">
+                        <span id="game-catalog-label">Veure catàleg</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <section class="max-w-7xl mx-auto w-full px-6 mt-12" id="about-us">
+        <div class="bg-white border border-primary/10 rounded-xl shadow-sm p-8">
+            <h3 id="about-us-title" class="text-2xl font-black tracking-tight text-[#111812] text-center mb-2">Sobre nosaltres</h3>
+            <p id="about-us-subtitle" class="text-sm text-[#618968] text-center mb-8">Equip creador d'aquest projecte</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <article class="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
+                    <img src="img/creador_JoanMatemalas.jpeg" alt="Foto de perfil del creador 1" class="rounded-full object-cover border-2 border-primary/20 shadow-md mx-auto" style="width: 110px; height: 110px;" loading="lazy" decoding="async" />
+                    <p id="creator-name-1" class="mt-4 text-lg font-bold text-[#111812]">Joan Matemalas Rosselló</p>
+                </article>
+                <article class="text-center p-4 rounded-xl bg-primary/5 border border-primary/10">
+                    <img src="img/creador_Merty.jpeg" alt="Foto de perfil del creador 2" class="rounded-full object-cover border-2 border-primary/20 shadow-md mx-auto" style="width: 110px; height: 110px;" loading="lazy" decoding="async" />
+                    <p id="creator-name-2" class="mt-4 text-lg font-bold text-[#111812]">Martí Garau Conde</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-primary/10 mt-12 py-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start justify-between gap-10">
+            <div class="max-w-xs">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-primary/20 text-primary p-1.5 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-lg">forest</span>
+                    </div>
+                    <h5 class="text-lg font-bold text-[#111812]">Bolets de Mallorca</h5>
+                </div>
+                <p class="text-sm text-[#618968] leading-relaxed">Promovent el coneixement i la conservació de la
+                    biodiversitat micològica de les Illes Balears de forma segura i sostenible.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-10">
+                <div>
+                    <h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Recursos</h6>
+                    <ul class="space-y-2">
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Guia de camp</a></li>
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Toxicitat</a></li>
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Cuina balear</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Legal</h6>
+                    <ul class="space-y-2">
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Avís legal</a></li>
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Privacitat</a></li>
+                        <li><a class="text-sm text-[#618968] hover:text-primary" href="#">Normativa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-xs font-bold uppercase tracking-widest text-[#111812] mb-4">Segueix-nos</h6>
+                    <div class="flex gap-4">
+                        <a class="text-[#618968] hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">public</span></a>
+                        <a class="text-[#618968] hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">camera</span></a>
+                        <a class="text-[#618968] hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">groups</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-background-light flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-[#618968]">© 2024 Bolets de Mallorca S.L. Tots els drets reservats.</p>
+            <div class="flex items-center gap-1 text-xs text-[#618968]">
+                <span>Fet amb</span>
+                <span class="material-symbols-outlined text-red-400 text-sm"
+                    style="font-variation-settings: 'FILL' 1">favorite</span>
+                <span>a Mallorca</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal del Mapa -->
+    <div id="map-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="map-modal-title">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-5xl mx-4 max-h-[90vh] flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <div>
+                    <h2 id="map-modal-title" class="text-2xl font-bold text-[#111812] flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-3xl">map</span>
+                        Mapa de descobertes
+                    </h2>
+                    <p id="map-modal-subtitle" class="text-sm text-[#618968] mt-1">Visualitza tots els bolets de Mallorca i la teva ubicació</p>
+                </div>
+                <button id="close-map-btn" type="button" class="text-[#618968] hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-100" aria-label="Tancar mapa">
+                    <span class="material-symbols-outlined text-3xl">close</span>
+                </button>
+            </div>
+            
+            <!-- Map Container -->
+            <div class="flex-1 relative">
+                <div id="map" class="w-full h-[500px]"></div>
+                
+                <!-- Control Button -->
+                <button id="get-location-btn" type="button"
+                    class="absolute top-4 left-4 z-[1000] flex items-center gap-2 px-4 py-3 bg-primary text-white font-bold rounded-lg shadow-lg hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined">my_location</span>
+                    <span>La meva ubicació</span>
+                </button>
+            </div>
+            
+            <!-- Footer Info -->
+            <div class="p-6 border-t border-gray-200 bg-gray-50">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary">info</span>
+                    <div class="flex-1">
+                        <p id="map-footer-title" class="text-sm text-[#111812] font-semibold mb-1">Sobre la geolocalització</p>
+                        <p id="map-footer-text" class="text-xs text-[#618968] leading-relaxed">
+                            El mapa utilitza la teva ubicació per mostrar zones properes on es poden trobar bolets. 
+                            L'aplicació mai emmagatzema ni comparteix les teves dades de localització. 
+                            Pots denegar el permís en qualsevol moment des de la configuració del navegador.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="./app.js"></script>
+</body>
+</html>
