@@ -60,21 +60,21 @@
         </div>
     </section>
     <!-- Top Navigation Bar -->
-    <header
-        class="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-primary/10 px-4 md:px-10 py-2 flex items-center justify-between">
+    <header id="headerBar"
+        class="fixed top-0 left-0 right-0 z-50 w-full bg-transparent backdrop-blur-md border-none px-4 md:px-10 py-2 flex items-center justify-between transition-all duration-300">
         <div class="flex items-center gap-4">
             <div class="bg-primary text-white p-1.5 rounded-lg flex items-center justify-center">
                 <span class="material-symbols-outlined">forest</span>
             </div>
             <div>
-                <h1 id="brand-title" class="text-xl font-extrabold tracking-tight text-[#111812]">Bolets de Mallorca</h1>
-                <p id="brand-subtitle" class="text-[10px] uppercase tracking-widest text-[#618968] font-bold">Guia micològica balear</p>
+                <h1 id="brand-title" class="text-xl font-extrabold tracking-tight text-white/90 header-text-light">Bolets de Mallorca</h1>
+                <p id="brand-subtitle" class="text-[10px] uppercase tracking-widest text-white/60 font-bold header-text-light">Guia micològica balear</p>
             </div>
         </div>
         <div class="hidden lg:flex items-center gap-8">
-            <a id="nav-catalog" class="text-sm font-semibold text-[#111812] hover:text-primary transition-colors" href="#">Catàleg</a>
-            <button id="open-map-btn-header" type="button" class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors">Mapa de descobertes</button>
-            <button id="nav-game" type="button" class="text-sm font-semibold text-[#618968] hover:text-primary transition-colors">Joc</button>
+            <a id="nav-catalog" class="text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light" href="#">Catàleg</a>
+            <button id="open-map-btn-header" type="button" class="bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light">Mapa de descobertes</button>
+            <button id="nav-game" type="button" class="bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light">Joc</button>
         </div>
         <div class="flex items-center gap-3">
             <div class="flex items-center gap-1 rounded-full bg-background-light p-1">
@@ -136,7 +136,10 @@
                 </div>
                 <!-- Culinary Value -->
                 <div class="mb-6">
-                    <label class="text-xs font-bold uppercase text-[#618968] mb-3 block" id="culinary-title">Valor culinari</label>
+                    <div class="flex items-center justify-between mb-3">
+                        <label class="text-xs font-bold uppercase text-[#618968]" id="culinary-title">Valor culinari</label>
+                        <button type="button" id="culinary-sort-btn" class="p-1 text-[#618968] hover:text-primary transition-colors" aria-label="Ordenar per valor culinari" title="Ordenar: major a menor"><span class="material-symbols-outlined text-sm">sort</span></button>
+                    </div>
                     <div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg"
                         id="culinary-filter">
                         <button class="p-1 hover:text-primary text-[#111812]" data-score="1" type="button"><span
@@ -154,7 +157,10 @@
                 </div>
                 <!-- Toxicity -->
                 <div class="mb-6">
-                    <label class="text-xs font-bold uppercase text-[#618968] mb-3 block" id="toxicity-title">Nivell de toxicitat</label>
+                    <div class="flex items-center justify-between mb-3">
+                        <label class="text-xs font-bold uppercase text-[#618968]" id="toxicity-title">Nivell de toxicitat</label>
+                        <button type="button" id="toxicity-sort-btn" class="p-1 text-[#618968] hover:text-primary transition-colors" aria-label="Ordenar per toxicitat" title="Ordenar: major a menor"><span class="material-symbols-outlined text-sm">sort</span></button>
+                    </div>
                     <div class="flex items-center justify-between gap-1 bg-background-light p-2 rounded-lg"
                         id="toxicity-filter">
                         <button class="p-1 text-red-500" data-score="1" type="button"><span
@@ -201,7 +207,7 @@
 
             <div class="hidden" id="detail-view">
                 <div class="mb-6">
-                    <button id="detail-back-btn" class="inline-flex items-center gap-2 text-primary font-semibold hover:underline" type="button">
+                    <button id="detail-back-btn" class="bg-transparent border-0 p-0 appearance-none inline-flex items-center gap-2 text-sm font-semibold text-[#111812] hover:text-primary transition-colors" type="button">
                         <span class="material-symbols-outlined text-sm">arrow_back</span>
                         Tornar al catàleg
                     </button>
@@ -209,18 +215,27 @@
 
                 <div class="rounded-xl overflow-hidden bg-white shadow-sm ring-1 ring-[#dbe6dd] mb-8 max-w-4xl mx-auto w-full"
                     id="detail-hero-card">
-                    <div class="bg-[#e8efe9]" data-alt="Imatge del bolet" id="detail-hero-image">
-                        <picture id="detail-hero-picture">
-                            <source id="detail-hero-source-avif" type="image/avif" />
-                            <source id="detail-hero-source-webp" type="image/webp" />
-                            <img alt="Imatge del bolet" decoding="async" fetchpriority="high" height="900"
-                                id="detail-hero-img" loading="eager" src="https://picsum.photos/1440/900?blur=1"
-                                width="1440" />
-                        </picture>
+                    <div class="bg-[#e8efe9] relative" data-alt="Imatge del bolet" id="detail-hero-image">
+                        <img alt="Imatge del bolet" decoding="async" fetchpriority="high" height="900"
+                            id="detail-hero-img" loading="eager" src="https://picsum.photos/1440/900?blur=1"
+                            width="1440" class="w-full h-auto block" />
+                        
+                        <!-- Gallery navigation (hidden if only one image) -->
+                            <div id="gallery-controls" class="hidden absolute inset-0 z-10">
+                                <button id="gallery-prev-btn" type="button" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full p-3 bg-transparent border-0 shadow-none transition-all hover:bg-white/10 text-white hover:text-white" aria-label="Imatge anterior">
+                                    <span class="material-symbols-outlined text-4xl">arrow_back</span>
+                                </button>
+                                <button id="gallery-next-btn" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-3 bg-transparent border-0 shadow-none transition-all hover:bg-white/10 text-white hover:text-white" aria-label="Imatge següent">
+                                    <span class="material-symbols-outlined text-4xl">arrow_forward</span>
+                                </button>
+                                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full text-xs font-bold text-[#111812]">
+                                    <span id="gallery-current">1</span> / <span id="gallery-total">1</span>
+                                </div>
+                            </div>
+                        
                         <div
-                            class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 detail-hero-overlay">
+                            class="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 detail-hero-overlay absolute inset-0">
                             <div>
-                                <p class="text-white/90 text-sm mb-2" id="detail-breadcrumb-name"></p>
                                 <h1 class="text-white text-4xl md:text-5xl font-black tracking-tight mb-2"
                                     id="detail-mushroom-name"></h1>
                                 <p class="text-white/90 text-xl italic font-medium" id="detail-mushroom-scientific"></p>
@@ -365,8 +380,8 @@
                     </div>
                 </div>
                 <button id="game-start-btn" type="button"
-                    class="px-10 py-4 bg-primary hover:brightness-110 text-white font-extrabold text-lg rounded-xl shadow-lg shadow-primary/30 transition-all active:scale-95">
-                    <span id="game-start-label">Començar el quiz</span>
+                    class="font-bold text-lg text-white hover:text-white/80 transition-colors">
+                    <span id="game-start-label">Comenzar el quiz</span>
                 </button>
             </div>
 

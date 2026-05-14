@@ -35,6 +35,8 @@
         seasonWinter: document.getElementById("season-winter"),
         culinaryTitle: document.getElementById("culinary-title"),
         toxicityTitle: document.getElementById("toxicity-title"),
+        culinarySortBtn: document.getElementById("culinary-sort-btn"),
+        toxicitySortBtn: document.getElementById("toxicity-sort-btn"),
         infoCardTitle: document.getElementById("info-card-title"),
         infoCardBody: document.getElementById("info-card-body"),
         catalogHeading: document.getElementById("catalog-heading"),
@@ -46,7 +48,11 @@
         detailHeroImg: document.getElementById("detail-hero-img"),
         detailHeroSourceAvif: document.getElementById("detail-hero-source-avif"),
         detailHeroSourceWebp: document.getElementById("detail-hero-source-webp"),
-        detailBreadcrumbName: document.getElementById("detail-breadcrumb-name"),
+        galleryControls: document.getElementById("gallery-controls"),
+        galleryPrevBtn: document.getElementById("gallery-prev-btn"),
+        galleryNextBtn: document.getElementById("gallery-next-btn"),
+        galleryCurrent: document.getElementById("gallery-current"),
+        galleryTotal: document.getElementById("gallery-total"),
         detailMushroomName: document.getElementById("detail-mushroom-name"),
         detailMushroomScientific: document.getElementById("detail-mushroom-scientific"),
         detailCulinaryStars: document.getElementById("detail-culinary-stars"),
@@ -130,6 +136,7 @@
         aboutUsSubtitle: document.getElementById("about-us-subtitle"),
         creatorName1: document.getElementById("creator-name-1"),
         creatorName2: document.getElementById("creator-name-2"),
+        aboutUs: document.getElementById("about-us"),
         main: document.getElementById("main-content"),
         sidebar: document.querySelector("#main-content > aside"),
         landingHero: document.getElementById("landing-hero")
@@ -349,13 +356,17 @@
     const state = {
         entries: [],
         filteredEntries: [],
-        imageManifest: {},
         lang: localStorage.getItem(LANG_STORAGE_KEY) === "en" ? "en" : "ca",
         searchQuery: "",
         selectedSeason: null,
         minCulinary: null,
         maxToxicity: null,
+        culinarySortOrder: "desc",
+        toxicitySortOrder: "desc",
         selectedEntry: null,
+        currentImageIndex: 0,
+        currentMushroomImages: [],
+        currentMushroomForJSON: null,
         speechText: "",
         utterance: null,
         speechState: "stopped",
@@ -502,9 +513,6 @@
         return seasonMap[season] || season || "";
     };
 
-    const normalizeImagePath = (src) => String(src || "").replace(/^\.\//, "");
-    const isRemote = (src) => /^https?:\/\//i.test(String(src || ""));
-
     const getPropertyValue = (item, propName) => {
         const props = Array.isArray(item?.additionalProperty) ? item.additionalProperty : [];
         const found = props.find((prop) => String(prop?.name || "").toLowerCase() === String(propName).toLowerCase());
@@ -526,43 +534,10 @@
         return html;
     };
 
-    const buildSrcSet = (variants) => (Array.isArray(variants)
-        ? variants.map((variant) => `${variant.src} ${variant.width}w`).join(", ")
-        : "");
-
-    const getImageMeta = (src) => {
-        if (!src || isRemote(src)) return null;
-        const key = normalizeImagePath(src);
-        return state.imageManifest[key] || null;
-    };
-
-    const getLargestVariant = (variants) => {
-        if (!Array.isArray(variants) || variants.length === 0) return "";
-        return variants[variants.length - 1].src;
-    };
-
     const buildCardImageMarkup = (src, alt, extraClass) => {
         const safeAlt = escapeHtml(alt);
         const safeSrc = escapeHtml(src || CARD_FALLBACK);
-        const meta = getImageMeta(src);
-
-        if (!meta) {
-            return `<img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"640\" height=\"426\" src=\"${safeSrc}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}';this.srcset=''\"/>`;
-        }
-
-        const avifSrcSet = buildSrcSet(meta.variants?.avif);
-        const webpSrcSet = buildSrcSet(meta.variants?.webp);
-        const jpgSrcSet = buildSrcSet(meta.variants?.jpg);
-        const fallback = getLargestVariant(meta.variants?.jpg) || safeSrc;
-        const sizes = "(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw";
-
-        return `
-            <picture>
-                ${avifSrcSet ? `<source type=\"image/avif\" srcset=\"${avifSrcSet}\" sizes=\"${sizes}\"/>` : ""}
-                ${webpSrcSet ? `<source type=\"image/webp\" srcset=\"${webpSrcSet}\" sizes=\"${sizes}\"/>` : ""}
-                <img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" width=\"${meta.width}\" height=\"${meta.height}\" src=\"${fallback}\" srcset=\"${jpgSrcSet}\" sizes=\"${sizes}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}';this.srcset=''\"/>
-            </picture>
-        `;
+        return `<img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" src=\"${safeSrc}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}'\"/>`;
     };
 
     const setDetailHeroImage = (src, alt) => {
@@ -570,45 +545,90 @@
 
         const safeAlt = alt || "Imatge del bolet";
         const safeSrc = src || HERO_FALLBACK;
-        const meta = getImageMeta(src);
 
         dom.detailHeroImg.alt = safeAlt;
         dom.detailHeroImg.decoding = "async";
         dom.detailHeroImg.loading = "eager";
         dom.detailHeroImg.fetchPriority = "high";
+        dom.detailHeroImg.src = safeSrc;
 
-        if (!meta) {
-            const localCandidate = !isRemote(safeSrc) ? safeSrc : HERO_FALLBACK;
-            if (dom.detailHeroSourceAvif) dom.detailHeroSourceAvif.srcset = "";
-            if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
-            dom.detailHeroImg.srcset = "";
-            dom.detailHeroImg.sizes = "100vw";
-            dom.detailHeroImg.width = 1440;
-            dom.detailHeroImg.height = 900;
-            dom.detailHeroImg.src = localCandidate;
-            return;
+        if (dom.detailHeroSourceAvif) dom.detailHeroSourceAvif.srcset = "";
+        if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
+    };
+
+    const updateGalleryDisplay = () => {
+        if (!dom.detailHeroImg || state.currentMushroomImages.length === 0) return;
+
+        const currentImg = state.currentMushroomImages[state.currentImageIndex];
+        const imgSrc = currentImg?.contentUrl || HERO_FALLBACK;
+        
+        // Use localized name if available, otherwise use image name or fallback
+        let imgAlt = "Imatge del bolet";
+        if (state.currentMushroomForJSON) {
+            imgAlt = getItemLocalizedName(state.currentMushroomForJSON);
+        } else if (currentImg?.name) {
+            imgAlt = currentImg.name;
         }
 
-        const avifSrcSet = buildSrcSet(meta.variants?.avif);
-        const webpSrcSet = buildSrcSet(meta.variants?.webp);
-        const jpgSrcSet = buildSrcSet(meta.variants?.jpg);
-        const fallback = getLargestVariant(meta.variants?.jpg) || safeSrc;
-        const sizes = "(min-width: 1024px) 960px, 100vw";
+        dom.detailHeroImg.src = imgSrc;
+        dom.detailHeroImg.alt = imgAlt;
 
-        if (dom.detailHeroSourceAvif) {
-            dom.detailHeroSourceAvif.srcset = avifSrcSet;
-            dom.detailHeroSourceAvif.sizes = sizes;
-        }
-        if (dom.detailHeroSourceWebp) {
-            dom.detailHeroSourceWebp.srcset = webpSrcSet;
-            dom.detailHeroSourceWebp.sizes = sizes;
-        }
+        if (dom.galleryCurrent) dom.galleryCurrent.textContent = String(state.currentImageIndex + 1);
+        if (dom.galleryTotal) dom.galleryTotal.textContent = String(state.currentMushroomImages.length);
 
-        dom.detailHeroImg.srcset = jpgSrcSet;
-        dom.detailHeroImg.sizes = sizes;
-        dom.detailHeroImg.width = meta.width;
-        dom.detailHeroImg.height = meta.height;
-        dom.detailHeroImg.src = fallback;
+        if (dom.galleryControls) {
+            const shouldShowControls = state.currentMushroomImages.length > 1;
+            dom.galleryControls.classList.toggle("hidden", !shouldShowControls);
+        }
+    };
+
+    const nextImage = () => {
+        if (state.currentMushroomImages.length <= 1) return;
+        state.currentImageIndex = (state.currentImageIndex + 1) % state.currentMushroomImages.length;
+        updateGalleryDisplay();
+    };
+
+    const previousImage = () => {
+        if (state.currentMushroomImages.length <= 1) return;
+        state.currentImageIndex = (state.currentImageIndex - 1 + state.currentMushroomImages.length) % state.currentMushroomImages.length;
+        updateGalleryDisplay();
+    };
+
+    const injectJSONLD = (item) => {
+        // Eliminar JSON-LD anterior si existeix
+        const oldScript = document.getElementById("mushroom-jsonld");
+        if (oldScript) oldScript.remove();
+
+        const commonName = getItemLocalizedName(item);
+        const scientific = item.name || "Unknown";
+        const description = getItemLocalizedDescription(item);
+        const images = Array.isArray(item.image)
+            ? item.image.map(img => typeof img === "string" ? img : img?.contentUrl || "")
+            : (item.image ? [item.image] : []);
+
+        // Construir l'objecte JSON-LD segons Schema.org
+        const jsonLD = {
+            "@context": "https://schema.org",
+            "@type": "Taxon",
+            "name": commonName,
+            "scientificName": scientific,
+            "description": description,
+            "image": images.map(src => ({
+                "@type": "ImageObject",
+                "url": src,
+                "name": commonName
+            })),
+            "identifier": scientific.replace(/\s+/g, "_"),
+            "url": window.location.href
+        };
+
+        const script = document.createElement("script");
+        script.id = "mushroom-jsonld";
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(jsonLD, null, 2);
+        document.head.appendChild(script);
+
+        state.currentMushroomForJSON = item;
     };
 
     const setFilterButtonsUI = () => {
@@ -677,6 +697,50 @@
             dom.seasonFilterLabel.textContent = state.selectedSeason === null
                 ? t("seasonNone")
                 : t("seasonSelected", getLocalizedSeasonLabel(state.selectedSeason));
+        }
+
+        updateSortButtonsUI();
+    };
+
+    const updateSortButtonsUI = () => {
+        if (dom.culinarySortBtn) {
+            const icon = dom.culinarySortBtn.querySelector(".material-symbols-outlined");
+            if (state.culinarySortOrder === "desc") {
+                icon.textContent = "arrow_downward";
+                dom.culinarySortBtn.title = "Ordenar: menor a major";
+                dom.culinarySortBtn.classList.add("text-primary");
+                dom.culinarySortBtn.classList.remove("text-[#618968]");
+            } else if (state.culinarySortOrder === "asc") {
+                icon.textContent = "arrow_upward";
+                dom.culinarySortBtn.title = "Ordenar: major a menor";
+                dom.culinarySortBtn.classList.add("text-primary");
+                dom.culinarySortBtn.classList.remove("text-[#618968]");
+            } else {
+                icon.textContent = "sort";
+                dom.culinarySortBtn.title = "Ordenar per valor culinari";
+                dom.culinarySortBtn.classList.remove("text-primary");
+                dom.culinarySortBtn.classList.add("text-[#618968]");
+            }
+        }
+
+        if (dom.toxicitySortBtn) {
+            const icon = dom.toxicitySortBtn.querySelector(".material-symbols-outlined");
+            if (state.toxicitySortOrder === "desc") {
+                icon.textContent = "arrow_downward";
+                dom.toxicitySortBtn.title = "Ordenar: menor a major";
+                dom.toxicitySortBtn.classList.add("text-primary");
+                dom.toxicitySortBtn.classList.remove("text-[#618968]");
+            } else if (state.toxicitySortOrder === "asc") {
+                icon.textContent = "arrow_upward";
+                dom.toxicitySortBtn.title = "Ordenar: major a menor";
+                dom.toxicitySortBtn.classList.add("text-primary");
+                dom.toxicitySortBtn.classList.remove("text-[#618968]");
+            } else {
+                icon.textContent = "sort";
+                dom.toxicitySortBtn.title = "Ordenar per toxicitat";
+                dom.toxicitySortBtn.classList.remove("text-primary");
+                dom.toxicitySortBtn.classList.add("text-[#618968]");
+            }
         }
     };
 
@@ -798,7 +862,16 @@
         const position = Number(entry?.position) || 1;
         const commonName = getItemLocalizedName(item);
         const scientificName = item.name || "Taxon desconegut";
-        const image = item.image || CARD_FALLBACK;
+        
+        // Handle both string (legacy) and array (new ImageObject format)
+        let image = CARD_FALLBACK;
+        if (item.image) {
+            if (Array.isArray(item.image) && item.image.length > 0) {
+                image = item.image[0]?.contentUrl || CARD_FALLBACK;
+            } else if (typeof item.image === 'string') {
+                image = item.image;
+            }
+        }
 
         const scores = getScores(item);
         const isToxic = scores.toxicity >= 3;
@@ -869,6 +942,21 @@
 
             return searchOk && seasonOk && culinaryOk && toxicityOk;
         });
+
+        // Apply sorting
+        if (state.culinarySortOrder) {
+            state.filteredEntries.sort((a, b) => {
+                const scoreA = getScores(a?.item || {}).culinary;
+                const scoreB = getScores(b?.item || {}).culinary;
+                return state.culinarySortOrder === "asc" ? scoreA - scoreB : scoreB - scoreA;
+            });
+        } else if (state.toxicitySortOrder) {
+            state.filteredEntries.sort((a, b) => {
+                const scoreA = getScores(a?.item || {}).toxicity;
+                const scoreB = getScores(b?.item || {}).toxicity;
+                return state.toxicitySortOrder === "asc" ? scoreA - scoreB : scoreB - scoreA;
+            });
+        }
 
         if (dom.count) dom.count.textContent = t("speciesCount", state.filteredEntries.length);
         dom.grid.innerHTML = state.filteredEntries.map((entry) => renderCard(entry)).join("");
@@ -1053,6 +1141,7 @@
         dom.sidebar?.classList.remove("hidden");
         dom.landingHero?.classList.remove("hidden");
         dom.gameView?.classList.add("hidden");
+        dom.aboutUs?.classList.remove("hidden");
         if (scrollToCatalog) {
             dom.main?.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -1078,10 +1167,21 @@
             ? `Mushrooms of Mallorca - ${commonName}`
             : `Bolets de Mallorca - ${commonName}`;
 
-        if (dom.detailBreadcrumbName) dom.detailBreadcrumbName.textContent = commonName;
         if (dom.detailMushroomName) dom.detailMushroomName.textContent = commonName;
         if (dom.detailMushroomScientific) dom.detailMushroomScientific.textContent = scientific;
-        setDetailHeroImage(image, commonName);
+        
+        // Initialize carousel
+        if (typeof image === "string") {
+            state.currentMushroomImages = [{ contentUrl: image, name: commonName }];
+        } else if (Array.isArray(image)) {
+            state.currentMushroomImages = image;
+        } else {
+            state.currentMushroomImages = [{ contentUrl: HERO_FALLBACK, name: commonName }];
+        }
+        state.currentImageIndex = 0;
+        state.currentMushroomForJSON = item;
+        updateGalleryDisplay();
+        injectJSONLD(item);
 
         if (dom.detailCharacteristics) dom.detailCharacteristics.textContent = description;
         if (dom.detailHabitat) dom.detailHabitat.textContent = `${t("mushroomTreePrefix")}: ${tree}.`;
@@ -1160,6 +1260,7 @@
         dom.sidebar?.classList.add("hidden");
         dom.catalogView?.classList.add("hidden");
         dom.detailView?.classList.remove("hidden");
+        dom.aboutUs?.classList.add("hidden");
         dom.main?.scrollIntoView({ behavior: "smooth", block: "start" });
 
         if (pushHistory) {
@@ -1193,6 +1294,50 @@
         url.searchParams.delete("pos");
         window.history.pushState({}, "", url);
         showCatalogView();
+    });
+
+    // Gallery carousel controls
+    dom.galleryPrevBtn?.addEventListener("click", previousImage);
+    dom.galleryNextBtn?.addEventListener("click", nextImage);
+
+    // Keyboard navigation for gallery
+    window.addEventListener("keydown", (event) => {
+        const isDetailViewOpen = dom.detailView && !dom.detailView.classList.contains("hidden");
+        if (!isDetailViewOpen) return;
+
+        if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            previousImage();
+        } else if (event.key === "ArrowRight") {
+            event.preventDefault();
+            nextImage();
+        }
+    });
+
+    // Header transparency on scroll — transparent at top, solid on scroll
+    const headerBar = document.getElementById("headerBar");
+    const headerTextElements = document.querySelectorAll(".header-text-light");
+    window.addEventListener("scroll", () => {
+        if (!headerBar) return;
+        if (window.scrollY > 50) {
+            headerBar.className = "fixed top-0 left-0 right-0 z-50 w-full bg-white backdrop-blur-md border-b border-primary/10 px-4 md:px-10 py-2 flex items-center justify-between transition-all duration-300";
+            headerTextElements.forEach(el => {
+                if (el.id === "brand-title") el.className = "text-xl font-extrabold tracking-tight text-[#111812]";
+                else if (el.id === "brand-subtitle") el.className = "text-[10px] uppercase tracking-widest text-[#618968] font-bold";
+                else if (el.id === "nav-catalog") el.className = "text-sm font-semibold text-[#111812] hover:text-primary transition-colors";
+                else if (el.id === "open-map-btn-header") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-[#618968] hover:text-primary transition-colors";
+                else if (el.id === "nav-game") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-[#618968] hover:text-primary transition-colors";
+            });
+        } else {
+            headerBar.className = "fixed top-0 left-0 right-0 z-50 w-full bg-transparent backdrop-blur-md border-none px-4 md:px-10 py-2 flex items-center justify-between transition-all duration-300";
+            headerTextElements.forEach(el => {
+                if (el.id === "brand-title") el.className = "text-xl font-extrabold tracking-tight text-white/90 header-text-light";
+                else if (el.id === "brand-subtitle") el.className = "text-[10px] uppercase tracking-widest text-white/60 font-bold header-text-light";
+                else if (el.id === "nav-catalog") el.className = "text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
+                else if (el.id === "open-map-btn-header") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
+                else if (el.id === "nav-game") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
+            });
+        }
     });
 
     dom.audioButton?.addEventListener("click", toggleSpeech);
@@ -1231,6 +1376,8 @@
         if (!button) return;
         const selectedScore = clampScore(button.dataset.score);
         state.minCulinary = state.minCulinary === selectedScore ? null : selectedScore;
+        // Exclusive filter: reset toxicity when setting culinary
+        if (state.minCulinary !== null) state.maxToxicity = null;
         setFilterButtonsUI();
         applyFilters();
     });
@@ -1242,6 +1389,8 @@
         if (!button) return;
         const selectedScore = clampScore(button.dataset.score);
         state.maxToxicity = state.maxToxicity === selectedScore ? null : selectedScore;
+        // Exclusive filter: reset culinary when setting toxicity
+        if (state.maxToxicity !== null) state.minCulinary = null;
         setFilterButtonsUI();
         applyFilters();
     });
@@ -1254,7 +1403,44 @@
         state.selectedSeason = null;
         state.minCulinary = null;
         state.maxToxicity = null;
+        state.culinarySortOrder = null;
+        state.toxicitySortOrder = null;
         setFilterButtonsUI();
+        updateSortButtonsUI();
+        applyFilters();
+    });
+
+    dom.culinarySortBtn?.addEventListener("click", () => {
+        // Cycle: null -> desc -> asc -> null
+        if (state.culinarySortOrder === null) {
+            state.culinarySortOrder = "desc";
+        } else if (state.culinarySortOrder === "desc") {
+            state.culinarySortOrder = "asc";
+        } else {
+            state.culinarySortOrder = null;
+        }
+        // Reset toxicity sort when enabling culinary sort
+        if (state.culinarySortOrder !== null) {
+            state.toxicitySortOrder = null;
+        }
+        updateSortButtonsUI();
+        applyFilters();
+    });
+
+    dom.toxicitySortBtn?.addEventListener("click", () => {
+        // Cycle: null -> desc -> asc -> null
+        if (state.toxicitySortOrder === null) {
+            state.toxicitySortOrder = "desc";
+        } else if (state.toxicitySortOrder === "desc") {
+            state.toxicitySortOrder = "asc";
+        } else {
+            state.toxicitySortOrder = null;
+        }
+        // Reset culinary sort when enabling toxicity sort
+        if (state.toxicitySortOrder !== null) {
+            state.culinarySortOrder = null;
+        }
+        updateSortButtonsUI();
         applyFilters();
     });
 
@@ -1283,14 +1469,9 @@
         .then((response) => (response.ok ? response.json() : fallbackValue))
         .catch(() => fallbackValue);
 
-    Promise.all([
-        fetchJson("./bolets.json", null),
-        fetchJson("./img/image-manifest.json", {})
-    ])
-        .then(([boletsData, imageManifest]) => {
+    fetchJson("./bolets.json", null)
+        .then((boletsData) => {
             if (!boletsData) throw new Error("No s'ha pogut carregar bolets.json");
-
-            state.imageManifest = imageManifest && typeof imageManifest === "object" ? imageManifest : {};
 
             const graph = Array.isArray(boletsData?.["@graph"]) ? boletsData["@graph"] : [];
             const list = graph.find((node) => node?.["@type"] === "ItemList");
@@ -1309,7 +1490,8 @@
             window.scrollTo(0, 0);
             showCatalogView(false);
         })
-        .catch(() => {
+        .catch((err) => {
+            console.error("Error carregant dades:", err);
             dom.grid.innerHTML = "";
             if (dom.count) dom.count.textContent = "0 espècies trobades";
         });

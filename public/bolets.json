@@ -5,10 +5,9 @@
             "@type": "ItemList",
             "name": "Catàleg de Bolets",
             "description": "Llistat de bolets amb dades de recollida, hàbitat i cuina",
-            "numberOfItems": 8,
+            "numberOfItems": 10,
             "itemListElement": [
                 {
-                    
                     "@type": "ListItem",
                     "position": 1,
                     "item": {
@@ -20,7 +19,20 @@
                             "Cuagra"
                         ],
                         "description": "Barret de colors variables entre lila, blau i verdós, sovint barrejat. El tret més distintiu és que les seves làmines són grasses i no s'esquerden en passar-hi el dit, a diferència de la majoria de russules.",
-                        "image": "img/Agaricus_sylvaticus.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
+                                "name": "Russula cyanoxantha"
+                            },
+                            {
+                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
+                                "name": "Russula cyanoxantha"
+                            },
+                            {
+                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
+                                "name": "Russula cyanoxantha"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -55,20 +67,29 @@
                         "translations": {
                             "en": {
                                 "displayName": "Charcoal Burner",
-                                "alternateName": ["Blue Russula", "Charcoal burner", "Cuagra"],
+                                "alternateName": [
+                                    "Blue Russula",
+                                    "Charcoal burner",
+                                    "Cuagra"
+                                ],
                                 "description": "Cap with variable colors between lilac, blue, and greenish tones, often mixed. Its most distinctive feature is its flexible gills, which do not crack when rubbed with a finger, unlike most russulas.",
                                 "tree": "Broadleaf forests (holm oak, oak, beech) and also pines",
                                 "season": "Summer and Autumn",
                                 "locationName": "Binissalem",
                                 "recipe": {
                                     "name": "Sauteed Charcoal Burner",
-                                    "recipeIngredient": ["Russula cyanoxantha", "Garlic", "Parsley", "Olive oil"]
+                                    "recipeIngredient": [
+                                        "Russula cyanoxantha",
+                                        "Garlic",
+                                        "Parsley",
+                                        "Olive oil"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Agaricus_sylvaticus.jpg",
+                            "image": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
                             "name": "Recepta de Blava saltejada",
                             "recipeIngredient": [
                                 "Blava",
@@ -98,7 +119,20 @@
                             "Camagroc"
                         ],
                         "description": "De color groc viu, amb forma de trompeta i plecs decurrents en lloc de làmines. Té una aroma afruitada molt característica que recorda l'albercoc.",
-                        "image": "img/Clitocybe_geotropa.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Cantharellus_cibarius/Cantharellus_cibarius.jpg",
+                                "name": "Cantharellus cibarius"
+                            },
+                            {
+                                "contentUrl": "img/Cantharellus_cibarius/Cantharellus_cibarius.jpg",
+                                "name": "Cantharellus cibarius"
+                            },
+                            {
+                                "contentUrl": "img/Cantharellus_cibarius/Cantharellus_cibarius.jpg",
+                                "name": "Cantharellus cibarius"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -133,20 +167,29 @@
                         "translations": {
                             "en": {
                                 "displayName": "Golden Chanterelle",
-                                "alternateName": ["Chanterelle", "Golden chanterelle", "Egg yolk mushroom"],
+                                "alternateName": [
+                                    "Chanterelle",
+                                    "Golden chanterelle",
+                                    "Egg yolk mushroom"
+                                ],
                                 "description": "Bright yellow mushroom with a trumpet-like shape and decurrent ridges instead of true gills. It has a fruity aroma reminiscent of apricot.",
                                 "tree": "Coniferous and broadleaf forests",
                                 "season": "Spring (if rainy), Summer and Autumn",
                                 "locationName": "Esporles",
                                 "recipe": {
                                     "name": "Chanterelle with garlic",
-                                    "recipeIngredient": ["Cantharellus cibarius", "Garlic", "Parsley", "Olive oil"]
+                                    "recipeIngredient": [
+                                        "Cantharellus cibarius",
+                                        "Garlic",
+                                        "Parsley",
+                                        "Olive oil"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Clitocybe_geotropa.jpg",
+                            "image": "img/Cantharellus_cibarius/Cantharellus_cibarius.jpg",
                             "name": "Recepta de Picornells amb all",
                             "recipeIngredient": [
                                 "Picornells",
@@ -174,7 +217,20 @@
                             "Ou de colom"
                         ],
                         "description": "Bolet gran i totalment blanc. El barret té el marge farinós i sovint presenta restes de vel. Peu gruixut amb una volva gran a la base.",
-                        "image": "img/Amanita_proxima.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Amanita_ovoidea/Amanita_ovoidea.jpg",
+                                "name": "Amanita ovoidea"
+                            },
+                            {
+                                "contentUrl": "img/Amanita_ovoidea/Amanita_ovoidea.jpg",
+                                "name": "Amanita ovoidea"
+                            },
+                            {
+                                "contentUrl": "img/Amanita_ovoidea/Amanita_ovoidea.jpg",
+                                "name": "Amanita ovoidea"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -209,20 +265,28 @@
                         "translations": {
                             "en": {
                                 "displayName": "European Egg Amanita",
-                                "alternateName": ["Egg amanita", "Dove egg"],
+                                "alternateName": [
+                                    "Egg amanita",
+                                    "Dove egg"
+                                ],
                                 "description": "Large all-white mushroom. The cap has a floury margin and usually keeps veil remnants. Thick stem with a large volva at the base.",
                                 "tree": "Pines and holm oaks, preferably in calcareous soils",
                                 "season": "Autumn",
                                 "locationName": "Alaró",
                                 "recipe": {
                                     "name": "Amanita ovoidea stew",
-                                    "recipeIngredient": ["Amanita ovoidea", "Onion", "Garlic", "Olive oil"]
+                                    "recipeIngredient": [
+                                        "Amanita ovoidea",
+                                        "Onion",
+                                        "Garlic",
+                                        "Olive oil"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Amanita_proxima.jpg",
+                            "image": "img/Amanita_ovoidea/Amanita_ovoidea.jpg",
                             "name": "Recepta de Farinera estofada",
                             "recipeIngredient": [
                                 "Farinera",
@@ -251,7 +315,20 @@
                             "Cicuta verda"
                         ],
                         "description": "Barret de color verd oliva o groguenc amb fibres radials fines. Làmines blanques, anell i volva blanca en forma de sac a la base del peu.",
-                        "image": "img/Amanita_phalloides.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Amanita_phalloides/Amanita_phalloides.jpg",
+                                "name": "Amanita phalloides"
+                            },
+                            {
+                                "contentUrl": "img/Amanita_phalloides/Amanita_phalloides.jpg",
+                                "name": "Amanita phalloides"
+                            },
+                            {
+                                "contentUrl": "img/Amanita_phalloides/Amanita_phalloides.jpg",
+                                "name": "Amanita phalloides"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -286,7 +363,11 @@
                         "translations": {
                             "en": {
                                 "displayName": "Death Cap",
-                                "alternateName": ["Death cap", "Green death cap", "Deadly amanita"],
+                                "alternateName": [
+                                    "Death cap",
+                                    "Green death cap",
+                                    "Deadly amanita"
+                                ],
                                 "description": "Olive-green to yellowish cap with fine radial fibers. White gills, ring, and a sack-like white volva at the base of the stem.",
                                 "tree": "Holm oaks, oaks, beeches, and occasionally pines",
                                 "season": "Autumn",
@@ -307,7 +388,20 @@
                             "Rovelló vinos"
                         ],
                         "description": "Barret amb cercles concèntrics ataronjats que tendeixen al lila. En tallar-lo desprèn un làtex vermell vinós que amb el temps es torna verdós.",
-                        "image": "img/Hohenhuehelia_geogenia.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Lactarius_sanguifluus/Lactarius_sanguifluus.jpg",
+                                "name": "Lactarius sanguifluus"
+                            },
+                            {
+                                "contentUrl": "img/Lactarius_sanguifluus/Lactarius_sanguifluus.jpg",
+                                "name": "Lactarius sanguifluus"
+                            },
+                            {
+                                "contentUrl": "img/Lactarius_sanguifluus/Lactarius_sanguifluus.jpg",
+                                "name": "Lactarius sanguifluus"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -342,20 +436,28 @@
                         "translations": {
                             "en": {
                                 "displayName": "Bloody Milkcap",
-                                "alternateName": ["Bloody milkcap", "Wine milkcap"],
+                                "alternateName": [
+                                    "Bloody milkcap",
+                                    "Wine milkcap"
+                                ],
                                 "description": "Cap with concentric orange rings tending to lilac shades. When cut, it exudes a wine-red latex that gradually turns greenish.",
                                 "tree": "Exclusively under pines, especially Pinus halepensis",
                                 "season": "Autumn",
                                 "locationName": "Lloseta",
                                 "recipe": {
                                     "name": "Grilled Bloody Milkcap",
-                                    "recipeIngredient": ["Lactarius sanguifluus", "Garlic", "Olive oil", "Salt"]
+                                    "recipeIngredient": [
+                                        "Lactarius sanguifluus",
+                                        "Garlic",
+                                        "Olive oil",
+                                        "Salt"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Hohenhuehelia_geogenia.jpg",
+                            "image": "img/Lactarius_sanguifluus/Lactarius_sanguifluus.jpg",
                             "name": "Recepta d'Esclata-sang a la planxa",
                             "recipeIngredient": [
                                 "Esclata-sang",
@@ -383,7 +485,20 @@
                             "Maneta"
                         ],
                         "description": "Té forma de corall, amb moltes ramificacions que acaben en puntes grogues o ataronjades. El tronc principal és gruixut i blanc.",
-                        "image": "img/Boletus_lupinus.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Ramaria_aurea/Ramaria_aurea.jpg",
+                                "name": "Ramaria aurea"
+                            },
+                            {
+                                "contentUrl": "img/Ramaria_aurea/Ramaria_aurea.jpg",
+                                "name": "Ramaria aurea"
+                            },
+                            {
+                                "contentUrl": "img/Ramaria_aurea/Ramaria_aurea.jpg",
+                                "name": "Ramaria aurea"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -418,20 +533,28 @@
                         "translations": {
                             "en": {
                                 "displayName": "Golden Coral Fungus",
-                                "alternateName": ["Rat's foot", "Coral hand"],
+                                "alternateName": [
+                                    "Rat's foot",
+                                    "Coral hand"
+                                ],
                                 "description": "Coral-shaped mushroom with many branches ending in yellow to orange tips. The main trunk is thick and white.",
                                 "tree": "Broadleaf and coniferous forests",
                                 "season": "Autumn",
                                 "locationName": "Campanet",
                                 "recipe": {
                                     "name": "Young coral mushroom saute",
-                                    "recipeIngredient": ["Young Ramaria", "Garlic", "Olive oil", "Parsley"]
+                                    "recipeIngredient": [
+                                        "Young Ramaria",
+                                        "Garlic",
+                                        "Olive oil",
+                                        "Parsley"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Boletus_lupinus.jpg",
+                            "image": "img/Ramaria_aurea/Ramaria_aurea.jpg",
                             "name": "Recepta de Peu de rata jove",
                             "recipeIngredient": [
                                 "Peu de rata jove",
@@ -460,7 +583,20 @@
                             "Moixí"
                         ],
                         "description": "Barret marró-ataronjat molt viscós quan plou. No té làmines sinó porus grocs que poden exsudar gotetes blanques quan el bolet és jove.",
-                        "image": "img/Agaricus_bernardii.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Suillus_granulatus/Suillus_granulatus.jpg",
+                                "name": "Suillus granulatus"
+                            },
+                            {
+                                "contentUrl": "img/Suillus_granulatus/Suillus_granulatus.jpg",
+                                "name": "Suillus granulatus"
+                            },
+                            {
+                                "contentUrl": "img/Suillus_granulatus/Suillus_granulatus.jpg",
+                                "name": "Suillus granulatus"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -495,20 +631,29 @@
                         "translations": {
                             "en": {
                                 "displayName": "Granulated Bolete",
-                                "alternateName": ["Weeping bolete", "Granulated suillus", "Moixi"],
+                                "alternateName": [
+                                    "Weeping bolete",
+                                    "Granulated suillus",
+                                    "Moixi"
+                                ],
                                 "description": "Brown-orange cap, very slimy in wet weather. It has pores instead of gills, and young specimens may exude milky droplets.",
                                 "tree": "Pines",
                                 "season": "Autumn",
                                 "locationName": "Capdepera",
                                 "recipe": {
                                     "name": "Peeled Suillus pan-fry",
-                                    "recipeIngredient": ["Suillus granulatus", "Garlic", "Olive oil", "Salt"]
+                                    "recipeIngredient": [
+                                        "Suillus granulatus",
+                                        "Garlic",
+                                        "Olive oil",
+                                        "Salt"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Agaricus_bernardii.jpg",
+                            "image": "img/Suillus_granulatus/Suillus_granulatus.jpg",
                             "name": "Recepta de Pixacà pelat",
                             "recipeIngredient": [
                                 "Pixacà pelat",
@@ -536,7 +681,20 @@
                             "Bolet d'ostra"
                         ],
                         "description": "Barret en forma de ventall o d'ostra, de color gris variable. El peu és lateral i curt, i sovint creix en grups superposats damunt fusta morta.",
-                        "image": "img/Hohenhuehelia_geogenia.jpg",
+                        "image": [
+                            {
+                                "contentUrl": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.jpg",
+                                "name": "Pleurotus ostreatus"
+                            },
+                            {
+                                "contentUrl": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.jpg",
+                                "name": "Pleurotus ostreatus"
+                            },
+                            {
+                                "contentUrl": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.jpg",
+                                "name": "Pleurotus ostreatus"
+                            }
+                        ],
                         "additionalProperty": [
                             {
                                 "@type": "PropertyValue",
@@ -571,20 +729,28 @@
                         "translations": {
                             "en": {
                                 "displayName": "Oyster Mushroom",
-                                "alternateName": ["Oyster mushroom", "Tree oyster"],
+                                "alternateName": [
+                                    "Oyster mushroom",
+                                    "Tree oyster"
+                                ],
                                 "description": "Fan-shaped oyster-like cap, with variable gray shades. The stem is lateral and short, and it usually grows in overlapping clusters on dead wood.",
                                 "tree": "On trunks or stumps of poplar, beech, and elm",
                                 "season": "Autumn and Winter",
                                 "locationName": "Valldemossa",
                                 "recipe": {
                                     "name": "Oyster mushroom stir-fry",
-                                    "recipeIngredient": ["Pleurotus ostreatus", "Garlic", "Parsley", "Olive oil"]
+                                    "recipeIngredient": [
+                                        "Pleurotus ostreatus",
+                                        "Garlic",
+                                        "Parsley",
+                                        "Olive oil"
+                                    ]
                                 }
                             }
                         },
                         "subjectOf": {
                             "@type": "Recipe",
-                            "image": "img/Hohenhuehelia_geogenia.jpg",
+                            "image": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.jpg",
                             "name": "Recepta de Gírgoles saltejades",
                             "recipeIngredient": [
                                 "Gírgoles",
@@ -597,6 +763,195 @@
                                 "name": "Vídeo recepta de Gírgola",
                                 "contentUrl": "https://lamevaweb.com/videos/24_recepta.mp4",
                                 "uploadDate": "2026-05-05"
+                            }
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "item": {
+                        "@type": "Taxon",
+                        "name": "Clathrus ruber",
+                        "alternateName": [
+                            "Gita de bruixa",
+                            "Reixa del diable",
+                            "Cranc",
+                            "Cresta de gallina",
+                            "Randes",
+                            "Tremelitges de terra",
+                            "Reixat"
+                        ],
+                        "description": "Bolet espectacular que neix d'un ou blanc i es desplega en una estructura de reixa de color vermell intens. Desprèn una pudor fètida de carn en descomposició per atreure insectes dispersors.",
+                        "image": [
+                            {
+                                "contentUrl": "img/Clathrus_ruber/Clathrus_ruber.jpg",
+                                "name": "Clathrus ruber"
+                            },
+                            {
+                                "contentUrl": "img/Clathrus_ruber/Clathrus_ruber.jpg",
+                                "name": "Clathrus ruber"
+                            },
+                            {
+                                "contentUrl": "img/Clathrus_ruber/Clathrus_ruber.jpg",
+                                "name": "Clathrus ruber"
+                            }
+                        ],
+                        "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 0
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 0
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Arbre associat",
+                                "value": "Alzinar, Pinar i jardins (restes orgàniques)"
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Època",
+                                "value": "Primavera a Tardor (Juny-Novembre)"
+                            }
+                        ],
+                        "contentLocation": {
+                            "@type": "Place",
+                            "name": "Serra de Collserola",
+                            "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": 41.4225,
+                                "longitude": 2.1189
+                            }
+                        },
+                        "translations": {
+                            "en": {
+                                "displayName": "Red Cage",
+                                "alternateName": [
+                                    "Lattice Fungus",
+                                    "Latticed Stinkhorn"
+                                ],
+                                "description": "A striking fungus that emerges from a white egg-like ball into a bright red lattice structure. It emits a foul odor of rotting meat to attract flies for spore dispersal.",
+                                "tree": "Woodlands, gardens and leaf litter",
+                                "season": "Late Spring to Autumn",
+                                "locationName": "Collserola Range",
+                                "recipe": {
+                                    "name": "Inedible Species",
+                                    "recipeIngredient": [
+                                        "None"
+                                    ]
+                                }
+                            }
+                        },
+                        "subjectOf": {
+                            "@type": "Recipe",
+                            "image": "img/Clathrus_ruber/Clathrus_ruber.jpg",
+                            "name": "Espècie no comestible",
+                            "recipeIngredient": [
+                                "No apte per al consum"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 10,
+                    "item": {
+                        "@type": "Taxon",
+                        "name": "Craterellus lutescens",
+                        "alternateName": [
+                            "Camagroc",
+                            "Rossinyol de pi",
+                            "Vaqueta de pi",
+                            "Camagroc de pi"
+                        ],
+                        "description": "Bolet petit de peu groc viu i buit, amb barret marró ondulat. No té làmines sinó plecs gairebé llisos. Destaca per la seva intensa i agradable aroma afruitada.",
+                        "image": [
+                            {
+                                "contentUrl": "img/Craterellus_lutescens/Craterellus_lutescens.jpg",
+                                "name": "Craterellus lutescens"
+                            },
+                            {
+                                "contentUrl": "img/Craterellus_lutescens/Craterellus_lutescens.jpg",
+                                "name": "Craterellus lutescens"
+                            },
+                            {
+                                "contentUrl": "img/Craterellus_lutescens/Craterellus_lutescens.jpg",
+                                "name": "Craterellus lutescens"
+                            }
+                        ],
+                        "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 5
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 0
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Arbre associat",
+                                "value": "Pinedes (especialment Pinus halepensis i sylvestris)"
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Època",
+                                "value": "Tardor tardana i hivern (Setembre-Gener)"
+                            }
+                        ],
+                        "contentLocation": {
+                            "@type": "Place",
+                            "name": "Pirineus i Prepirineu",
+                            "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": 42.2611,
+                                "longitude": 1.7019
+                            }
+                        },
+                        "translations": {
+                            "en": {
+                                "displayName": "Yellow Foot",
+                                "alternateName": [
+                                    "Winter Chanterelle",
+                                    "Yellow-leg"
+                                ],
+                                "description": "A small edible mushroom with a bright yellow, hollow stem and a wavy brown cap. Highly aromatic with a fruity scent similar to apricots.",
+                                "tree": "Pine forests and mossy areas",
+                                "season": "Late Autumn to early Winter",
+                                "locationName": "Pyrenees Range",
+                                "recipe": {
+                                    "name": "Camagroc Omelette",
+                                    "recipeIngredient": [
+                                        "Camagrocs",
+                                        "Eggs",
+                                        "Garlic",
+                                        "Parsley"
+                                    ]
+                                }
+                            }
+                        },
+                        "subjectOf": {
+                            "@type": "Recipe",
+                            "image": "img/Craterellus_lutescens/Craterellus_lutescens.jpg",
+                            "name": "Truita de Camagrocs",
+                            "recipeIngredient": [
+                                "Camagrocs frescos",
+                                "Ous de pagès",
+                                "All i julivert",
+                                "Oli d'oliva verge"
+                            ],
+                            "video": {
+                                "@type": "VideoObject",
+                                "name": "Com cuinar camagrocs",
+                                "contentUrl": "https://lamevaweb.com/videos/camagroc_recepta.mp4",
+                                "uploadDate": "2026-05-06"
                             }
                         }
                     }

@@ -542,6 +542,31 @@ input {
     background-color: #fff;
 }
 
+/* Utility aliases and missing small utilities used in markup */
+.bg-transparent {
+    background-color: transparent;
+}
+.border-0 {
+    border: 0;
+}
+.p-0 {
+    padding: 0;
+}
+.appearance-none {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.text-white\/80 {
+    color: rgba(255, 255, 255, 0.8);
+}
+.text-white\/60 {
+    color: rgba(255, 255, 255, 0.6);
+}
+.hover\:text-white:hover {
+    color: #fff;
+}
+
 .bg-white\/10 {
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -1244,7 +1269,7 @@ input {
 .landing-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBChZnFtwY1OfNDZjVBTDLV9gjY6Jftf700nJ7nVBwuXGapBkQklUZoBWaEzbD3V8nO-5MygldhUPuc8ZTDWhV9RSex8a1M6cDd_vmAXGG2VcX0Qx0WDIyV91iHHj4Y1uXxynNnY2r2_fmQHGKsP6uPo7NKVtWHSmk_0m1CDRIm08yxMSxGT6_R-_4UdT-teSE4HaJZTQJM64rVoJepC45IuEnMCE0AI7wrzZfiNgMhDcchsC4v5Oqx5TlG3UQq1y74IF8xchgt7mrH');
+    background-image: url("img/Lactarius_sanguifluus/Lactarius_sanguifluus.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
