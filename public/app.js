@@ -851,6 +851,7 @@
         if (dom.detailView && !dom.detailView.classList.contains("hidden") && currentPos) {
             const entry = state.entries.find((current) => Number(current?.position) === currentPos);
             if (entry) showDetailView(entry, false);
+            applyFilters();
             return;
         }
 
