@@ -5,7 +5,7 @@
             "@type": "ItemList",
             "name": "Catàleg de Bolets",
             "description": "Llistat de bolets amb dades de recollida, hàbitat i cuina",
-            "numberOfItems": 10,
+            "numberOfItems": 11,
             "itemListElement": [
                 {
                     "@type": "ListItem",
@@ -25,11 +25,11 @@
                                 "name": "Russula cyanoxantha"
                             },
                             {
-                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
+                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha2.jpg",
                                 "name": "Russula cyanoxantha2"
                             },
                             {
-                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
+                                "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha3.jpg",
                                 "name": "Russula cyanoxantha3"
                             }
                         ],
@@ -64,6 +64,11 @@
                                 "longitude": 2.8432
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Russula_cyanoxantha/Russula_cyanoxantha.mp3",
+                            "name": "Audiodescripció de Russula cyanoxantha"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Charcoal Burner",
@@ -80,9 +85,11 @@
                                     "name": "Sauteed Charcoal Burner",
                                     "recipeIngredient": [
                                         "Russula cyanoxantha",
-                                        "Garlic",
-                                        "Parsley",
-                                        "Olive oil"
+                                        "Brocolini (bimi)",
+                                        "Olive oil",
+                                        "Black pepper",
+                                        "Garlic and herb seasoning (or garlic powder and herbes de Provence)",
+                                        "Fresh thyme"
                                     ]
                                 }
                             }
@@ -90,17 +97,19 @@
                         "subjectOf": {
                             "@type": "Recipe",
                             "image": "img/Russula_cyanoxantha/Russula_cyanoxantha.jpg",
-                            "name": "Recepta de Blava saltejada",
+                            "name": "Blava saltejada",
                             "recipeIngredient": [
                                 "Blava",
-                                "All",
-                                "Julivert",
-                                "Oli d'oliva"
+                                "Brocolini (bimi)",
+                                "Oli d'oliva",
+                                "Pebre negre",
+                                "Condiment d'all rostit i herbes (o all en pols i herbes provenzals)",
+                                "Farigola fresca"
                             ],
                             "video": {
                                 "@type": "VideoObject",
                                 "name": "Vídeo recepta de Blava",
-                                "contentUrl": "https://lamevaweb.com/videos/17_recepta.mp4",
+                                "contentUrl": "https://www.youtube.com/shorts/IeUZv9U3Nws",
                                 "uploadDate": "2026-05-05"
                             }
                         }
@@ -164,6 +173,11 @@
                                 "longitude": 2.5796
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Cantharellus_cibarius/Cantharellus_cibarius.mp3",
+                            "name": "Audiodescripció de Cantharellus cibarius"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Golden Chanterelle",
@@ -177,12 +191,20 @@
                                 "season": "Spring (if rainy), Summer and Autumn",
                                 "locationName": "Esporles",
                                 "recipe": {
-                                    "name": "Chanterelle with garlic",
+                                    "name": "Pasta with Chanterelles",
                                     "recipeIngredient": [
                                         "Cantharellus cibarius",
-                                        "Garlic",
-                                        "Parsley",
-                                        "Olive oil"
+                                        "Pasta",
+                                        "Pork rib",
+                                        "Chicken",
+                                        "Rabbit",
+                                        "Onion",
+                                        "Ramellet tomato",
+                                        "Green bean",
+                                        "Water",
+                                        "Salt",
+                                        "Olive oil",
+                                        "Black pepper and paprika"
                                     ]
                                 }
                             }
@@ -190,17 +212,25 @@
                         "subjectOf": {
                             "@type": "Recipe",
                             "image": "img/Cantharellus_cibarius/Cantharellus_cibarius.jpg",
-                            "name": "Recepta de Picornells amb all",
+                            "name": "Burballes amb picornells",
                             "recipeIngredient": [
                                 "Picornells",
-                                "All",
-                                "Julivert",
-                                "Oli d'oliva"
+                                "Burballes",
+                                "Costella baixa de porc",
+                                "Pollastre",
+                                "Conill",
+                                "Ceba",
+                                "Tomàtiga de ramellet",
+                                "Mongeta tendra",
+                                "Aigua",
+                                "Sal",
+                                "Oli d'oliva",
+                                "Prebe bo i prebe vermell"
                             ],
                             "video": {
                                 "@type": "VideoObject",
                                 "name": "Vídeo recepta de Picornell",
-                                "contentUrl": "https://lamevaweb.com/videos/18_recepta.mp4",
+                                "contentUrl": "https://www.youtube.com/watch?v=qFoBh5yoo4Y",
                                 "uploadDate": "2026-05-05"
                             }
                         }
@@ -261,6 +291,11 @@
                                 "latitude": 39.6957,
                                 "longitude": 2.7904
                             }
+                        },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Amanita_ovoidea/Amanita_ovoidea.mp3",
+                            "name": "Audiodescripció de Amanita ovoidea"
                         },
                         "translations": {
                             "en": {
@@ -360,6 +395,11 @@
                                 "longitude": 2.6994
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Amanita_phalloides/Amanita_phalloides.mp3",
+                            "name": "Audiodescripció de Amanita phalloides"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Death Cap",
@@ -433,6 +473,11 @@
                                 "longitude": 2.8661
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Lactarius_sanguifluus/Lactarius_sanguifluus.mp3",
+                            "name": "Audiodescripció de Lactarius sanguifluus"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Bloody Milkcap",
@@ -447,8 +492,13 @@
                                 "recipe": {
                                     "name": "Grilled Bloody Milkcap",
                                     "recipeIngredient": [
-                                        "Lactarius sanguifluus",
+                                        "Bloody Milkcap",
                                         "Garlic",
+                                        "Chili pepper",
+                                        "Breadcrumbs",
+                                        "Chicken broth",
+                                        "White wine",
+                                        "Parsley",
                                         "Olive oil",
                                         "Salt"
                                     ]
@@ -462,13 +512,18 @@
                             "recipeIngredient": [
                                 "Esclata-sang",
                                 "All",
+                                "Guindilla",
+                                "Pa rallat",
+                                "Brou de pollastre",
+                                "Vi blanc",
+                                "Julivert",
                                 "Oli d'oliva",
                                 "Sal"
                             ],
                             "video": {
                                 "@type": "VideoObject",
                                 "name": "Vídeo recepta d'Esclata-sang",
-                                "contentUrl": "https://lamevaweb.com/videos/21_recepta.mp4",
+                                "contentUrl": "https://youtu.be/z8GDFzIcQp4",
                                 "uploadDate": "2026-05-05"
                             }
                         }
@@ -508,7 +563,7 @@
                             {
                                 "@type": "PropertyValue",
                                 "name": "Toxicitat (1-5)",
-                                "value": 1
+                                "value": 0
                             },
                             {
                                 "@type": "PropertyValue",
@@ -529,6 +584,11 @@
                                 "latitude": 39.774,
                                 "longitude": 2.9667
                             }
+                        },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Ramaria_aurea/Ramaria_aurea.mp3",
+                            "name": "Audiodescripció de Ramaria aurea"
                         },
                         "translations": {
                             "en": {
@@ -601,7 +661,7 @@
                             {
                                 "@type": "PropertyValue",
                                 "name": "Valor culinari (1-5)",
-                                "value": 1
+                                "value": 2
                             },
                             {
                                 "@type": "PropertyValue",
@@ -627,6 +687,11 @@
                                 "latitude": 39.7024,
                                 "longitude": 3.4334
                             }
+                        },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Suillus_granulatus/Suillus_granulatus.mp3",
+                            "name": "Audiodescripció de Suillus granulatus"
                         },
                         "translations": {
                             "en": {
@@ -726,6 +791,11 @@
                                 "longitude": 2.6222
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.mp3",
+                            "name": "Audiodescripció de Pleurotus ostreatus"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Oyster Mushroom",
@@ -738,12 +808,16 @@
                                 "season": "Autumn and Winter",
                                 "locationName": "Valldemossa",
                                 "recipe": {
-                                    "name": "Oyster mushroom stir-fry",
+                                    "name": "Oyster mushroom Empanada",
                                     "recipeIngredient": [
-                                        "Pleurotus ostreatus",
-                                        "Garlic",
-                                        "Parsley",
-                                        "Olive oil"
+                                        "Oyster mushroom",
+                                        "Pastry dough",
+                                        "Onion",
+                                        "Grated cheese",
+                                        "Boiled egg",
+                                        "Salt",
+                                        "Olive oil",
+                                        "Black pepper and paprika"
                                     ]
                                 }
                             }
@@ -751,17 +825,21 @@
                         "subjectOf": {
                             "@type": "Recipe",
                             "image": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.jpg",
-                            "name": "Recepta de Gírgoles saltejades",
+                            "name": "Empanada de gírgola",
                             "recipeIngredient": [
                                 "Gírgoles",
-                                "All",
-                                "Julivert",
-                                "Oli d'oliva"
+                                "Massa d'empanada",
+                                "Ceba",
+                                "Formatge ratllat",
+                                "Ou dur",
+                                "Sal",
+                                "Oli d'oliva",
+                                "Prebe bo i prebe vermell"
                             ],
                             "video": {
                                 "@type": "VideoObject",
                                 "name": "Vídeo recepta de Gírgola",
-                                "contentUrl": "https://lamevaweb.com/videos/24_recepta.mp4",
+                                "contentUrl": "img/Pleurotus_ostreatus/Pleurotus_ostreatus.mp4",
                                 "uploadDate": "2026-05-05"
                             }
                         }
@@ -801,7 +879,7 @@
                             {
                                 "@type": "PropertyValue",
                                 "name": "Valor culinari (1-5)",
-                                "value": 0
+                                "value": 1
                             },
                             {
                                 "@type": "PropertyValue",
@@ -827,6 +905,11 @@
                                 "latitude": 41.4225,
                                 "longitude": 2.1189
                             }
+                        },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Clathrus_ruber/Clathrus_ruber.mp3",
+                            "name": "Audiodescripció de Clathrus ruber"
                         },
                         "translations": {
                             "en": {
@@ -915,6 +998,11 @@
                                 "longitude": 1.7019
                             }
                         },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Craterellus_lutescens/Craterellus_lutescens.mp3",
+                            "name": "Audiodescripció de Craterellus lutescens"
+                        },
                         "translations": {
                             "en": {
                                 "displayName": "Yellow Foot",
@@ -950,8 +1038,117 @@
                             "video": {
                                 "@type": "VideoObject",
                                 "name": "Com cuinar camagrocs",
-                                "contentUrl": "https://lamevaweb.com/videos/camagroc_recepta.mp4",
+                                "contentUrl": "https://youtube.com/shorts/9QmY-bDLkn0",
                                 "uploadDate": "2026-05-06"
+                            }
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 11,
+                    "item": {
+                        "@type": "Taxon",
+                        "name": "Agaricus campestris",
+                        "alternateName": [
+                            "Xampinyó de prat",
+                            "Camperol",
+                            "Rubiol de camp"
+                        ],
+                        "description": "Xampinyó blanc, blanc brut, rosat o terrós, amb un capell al principi esfèric, que després s’estén tornant convex i finalment pla de 4 a 12 cm de diàmetre. La superfície és llisa al principi, però pot presentar algunes esquames amb el temps. Les làmines estan lliures, atapeïdes, rosades al principi per passar a color xocolata, pel color de les espores. El peu és curt, cilíndric i gruixat de 3 a 5 x 1 a 2 cm, de color blanc i un poc grogós a la base i provist d’un anell membranós blanc que es perd fàcilment. Les espores són de color terrós porpra, ovoïdals, de 7-8 x 4-5,5 micres.",
+                        "image": [
+                            {
+                                "contentUrl": "img/Agaricus_campestris/Agaricus_campestris.jpg",
+                                "name": "Agaricus campestris"
+                            },
+                            {
+                                "contentUrl": "img/Agaricus_campestris/Agaricus_campestris2.jpg",
+                                "name": "Agaricus campestris"
+                            },
+                            {
+                                "contentUrl": "img/Agaricus_campestris/Agaricus_campestris3.jpg",
+                                "name": "Agaricus campestris"
+                            }
+                        ],
+                        "additionalProperty": [
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Valor culinari (1-5)",
+                                "value": 4
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Toxicitat (1-5)",
+                                "value": 0
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Arbre associat",
+                                "value": "Prats, pastures i camps oberts (és una espècie sapròfita, no s'associa a arbres)"
+                            },
+                            {
+                                "@type": "PropertyValue",
+                                "name": "Època",
+                                "value": "Primavera i tardor (especialment després de pluges abundants)"
+                            }
+                        ],
+                        "contentLocation": {
+                            "@type": "Place",
+                            "name": "Prats i zones de pastura (Pla de Mallorca)",
+                            "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": 39.6500,
+                                "longitude": 2.9800
+                            }
+                        },
+                        "audio": {
+                            "@type": "AudioObject",
+                            "contentUrl": "img/Agaricus_campestris/Agaricus_campestris.mp3",
+                            "name": "Audiodescripció de Agaricus campestris"
+                        },
+                        "translations": {
+                            "en": {
+                                "displayName": "Field Mushroom",
+                                "alternateName": [
+                                    "Meadow Mushroom",
+                                    "Camp Mushroom"
+                                ],
+                                "description": "A white to brownish mushroom with a cap that starts spherical and flattens out (4 to 12 cm). The free, crowded gills begin pink and mature to a deep chocolate brown. It has a short, cylindrical white stem with a fragile membranous ring.",
+                                "tree": "Meadows, pastures, and open fields (does not associate with trees)",
+                                "season": "Spring and Autumn (especially after heavy rain)",
+                                "locationName": "Pasture lands and meadows",
+                                "recipe": {
+                                    "name": "Chicken and Mushroom Puff Pastry",
+                                    "recipeIngredient": [
+                                        "Field mushrooms",
+                                        "Chicken",
+                                        "Puff pastry",
+                                        "Milk",
+                                        "Flour",
+                                        "Nutmeg",
+                                        "Salt, oil and black pepper"
+                                    ]
+                                }
+                            }
+                        },
+                        "subjectOf": {
+                            "@type": "Recipe",
+                            "image": "img/Agaricus_campestris/Agaricus_campestris.jpg",
+                            "name": "Fullat de pollastre i xampinyons",
+                            "recipeIngredient": [
+                                "Xampinyons",
+                                "Pollastre",
+                                "Pasta de full",
+                                "Llet",
+                                "Farina",
+                                "Nou moscada",
+                                "Sal, oli i pebre"
+                            ],
+                            "video": {
+                                "@type": "VideoObject",
+                                "name": "Fullat de pollastre i xampinyons",
+                                "contentUrl": "img/Agaricus_campestris/FullatPollastreXampinyons.mp4",
+                                "uploadDate": "2026-05-24"
                             }
                         }
                     }

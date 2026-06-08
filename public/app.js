@@ -44,6 +44,7 @@
         getLocationBtn: document.getElementById("get-location-btn"),
         catalogView: document.getElementById("catalog-view"),
         detailView: document.getElementById("detail-view"),
+        detailHeroImage: document.getElementById("detail-hero-image"),
         detailBackButton: document.getElementById("detail-back-btn"),
         detailHeroImg: document.getElementById("detail-hero-img"),
         detailHeroSourceAvif: document.getElementById("detail-hero-source-avif"),
@@ -60,14 +61,17 @@
         detailToxicityStars: document.getElementById("detail-toxicity-stars"),
         detailToxicityText: document.getElementById("detail-toxicity-text"),
         detailSeasonText: document.getElementById("detail-season-text"),
+        detailSeasonInlineText: document.getElementById("detail-season-inline-text"),
         detailCharacteristics: document.getElementById("detail-characteristics-text"),
         detailHabitat: document.getElementById("detail-habitat-text"),
-        detailExtra1: document.getElementById("detail-extra-1"),
-        detailExtra2: document.getElementById("detail-extra-2"),
-        detailExtra3: document.getElementById("detail-extra-3"),
         detailRecipeTitle: document.getElementById("detail-recipe-title"),
         detailRecipeDescription: document.getElementById("detail-recipe-description"),
         detailRecipeLink: document.getElementById("detail-recipe-link"),
+        detailRecipeVideo: document.getElementById("detail-recipe-video"),
+        detailRecipeIframe: document.getElementById("detail-recipe-iframe"),
+        detailRecipePlayer: document.getElementById("detail-recipe-player"),
+        detailRecipeNoVideo: document.getElementById("detail-recipe-no-video"),
+        detailDescriptionAudio: document.getElementById("detail-description-audio"),
         audioButton: document.getElementById("btn-audio"),
         audioButtonIcon: document.getElementById("btn-audio-icon"),
         audioButtonText: document.getElementById("btn-audio-text"),
@@ -89,8 +93,12 @@
         gameResults: document.getElementById("game-results"),
         gameIntroTitle: document.getElementById("game-intro-title"),
         gameIntroSubtitle: document.getElementById("game-intro-subtitle"),
-        gameTotalQ: document.getElementById("game-total-q"),
-        gameTimeLabel: document.getElementById("game-time-label"),
+        gameQ10Btn: document.getElementById("game-q-10-btn"),
+        gameQ20Btn: document.getElementById("game-q-20-btn"),
+        gameTimeOffBtn: document.getElementById("game-time-off-btn"),
+        gameTimeOnBtn: document.getElementById("game-time-on-btn"),
+        gameTimerDisplay: document.getElementById("game-timer-display"),
+        gameTimerSeconds: document.getElementById("game-timer-seconds"),
         gameStartBtn: document.getElementById("game-start-btn"),
         gameStartLabel: document.getElementById("game-start-label"),
         gameExitBtn: document.getElementById("game-exit-btn"),
@@ -137,6 +145,7 @@
         creatorName1: document.getElementById("creator-name-1"),
         creatorName2: document.getElementById("creator-name-2"),
         aboutUs: document.getElementById("about-us"),
+        pageFooter: document.querySelector("footer"),
         main: document.getElementById("main-content"),
         sidebar: document.querySelector("#main-content > aside"),
         landingHero: document.getElementById("landing-hero")
@@ -144,230 +153,32 @@
 
     if (!dom.grid) return;
 
-    const CARD_FALLBACK = "img/Agaricus_bernardii.jpg";
-    const HERO_FALLBACK = "img/Agaricus_bernardii.jpg";
-    const LANG_STORAGE_KEY = "bolets-lang";
-
-    const translations = {
-        ca: {
-            pageTitle: "Bolets de Mallorca - Catàleg de bolets",
-            heroEyebrow: "Guia micològica balear",
-            heroTitle: "Descobreix els bolets de Mallorca",
-            heroDescription: "Explora el fascinant món de la micologia balear. Aprèn a identificar, recol·legir i cuinar les espècies més emblemàtiques de la nostra illa.",
-            heroCatalog: "Explorar catàleg",
-            heroMap: "Veure mapa",
-            heroScroll: "Desplaçar-se",
-            brandSubtitle: "Guia micològica balear",
-            navCatalog: "Catàleg",
-            navMap: "Mapa de descobertes",
-            navGame: "Joc",
-            searchPlaceholder: "Cercar bolet...",
-            searchLabel: "Cercar bolet per nom o descripció",
-            sidebarTitle: "Filtres",
-            seasonTitle: "Temporada",
-            seasonSpring: "Primavera",
-            seasonSummer: "Estiu",
-            seasonAutumn: "Tardor",
-            seasonWinter: "Hivern",
-            seasonNone: "Cap temporada seleccionada",
-            seasonSelected: (value) => `Temporada: ${value}`,
-            culinaryTitle: "Valor culinari",
-            culinaryNone: "Mínim 3 forquilles",
-            culinaryAll: "Sense mínim de forquilles",
-            toxicityTitle: "Nivell de toxicitat",
-            toxicityNone: "Mostrar només segures",
-            toxicityAll: "Sense límit de toxicitat",
-            applyFilters: "Aplicar filtres",
-            clearFilters: "Neteja filtres",
-            infoCardTitle: "Sabies que...?",
-            infoCardBody: "L'<b>Esclata-sang</b> és el bolet més preat en la gastronomia mallorquina, recollit principalment en pinars durant la tardor.",
-            catalogHeading: "Espècies de temporada",
-            speciesCount: (count) => `${count} espècies trobades`,
-            backToCatalog: "Tornar al catàleg",
-            detailCharacteristics: "Característiques",
-            detailHabitat: "Hàbitat",
-            detailLocation: "Ubicació geogràfica",
-            audioTitle: "Escoltar audiodescripció",
-            audioPlay: "Escolta",
-            audioPause: "Pausa",
-            audioResume: "Reprendre",
-            audioStop: "Atura",
-            audioLoading: "Carregant veus...",
-            audioReady: "Preparat",
-            audioPlaying: "Reproduint",
-            audioPaused: "En pausa",
-            summaryTitle: "Resum de l'espècie",
-            culinaryLabel: "Valor culinari",
-            toxicityLabel: "Nivell de toxicitat",
-            seasonDetailTitle: "Millor temporada de recol·lecció",
-            extraLabel1: "Canvi de color",
-            extraLabel2: "Preferència de sòl",
-            extraLabel3: "Preparació",
-            recipeLabel: "Recepta recomanada",
-            recipeVideo: (title) => `Vídeo: ${title}`,
-            recipeVideoDefault: "Vídeo: preparació recomanada",
-            recipeLink: "Veure a YouTube",
-            mapTitle: "Mapa de descobertes",
-            mapSubtitle: "Visualitza tots els bolets de Mallorca i la teva ubicació",
-            mapLocationButton: "La meva ubicació",
-            mapFooterTitle: "Sobre la geolocalització",
-            mapFooterText: "El mapa utilitza la teva ubicació per mostrar zones properes on es poden trobar bolets. L'aplicació mai emmagatzema ni comparteix les teves dades de localització. Pots denegar el permís en qualsevol moment des de la configuració del navegador.",
-            mushroomSeasonPrefix: "Època habitual de recol·lecció",
-            mushroomTreePrefix: "Arbre associat principal",
-            mushroomCulinaryHigh: "Bolet molt valorat gastronòmicament en receptes tradicionals i modernes.",
-            mushroomCulinaryMid: "Bolet amb valor culinari moderat; convé una identificació correcta abans de cuinar-lo.",
-            mushroomToxicHigh: "Cal extremar la precaució: possible toxicitat segons preparació i identificació.",
-            mushroomToxicLow: "Generalment considerat segur quan està ben identificat.",
-            mushroomLocationPrefix: "Aquesta espècie es pot trobar a",
-            mushroomNoCoords: "No hi ha coordenades disponibles per aquest bolet.",
-            mushroomNoRecipe: "No hi ha recepta associada per aquest bolet.",
-            mushroomResponsible: "Consum responsable",
-            recipeIngredientsPrefix: "Ingredients destacats",
-            placeholderMapButton: "Veure mapa",
-            aboutUsTitle: "Sobre nosaltres",
-            aboutUsSubtitle: "Equip creador d'aquest projecte",
-            creatorName1: "Joan Matemalas Rosselló",
-            creatorName2: "Martí Garau Conde",
-            gameIntroTitle: "Quiz de Bolets",
-            gameIntroSubtitle: "Posa a prova els teus coneixements sobre les espècies de bolets de les Illes Balears.",
-            gameTotalQ: (n) => `${n} preguntes`,
-            gameTimeLabel: "Sense límit de temps",
-            gameStartLabel: "Començar el quiz",
-            gameQuestionCounter: (current, total) => `Pregunta ${current} de ${total}`,
-            gameNextLabel: "Següent pregunta",
-            gameLastLabel: "Veure resultats",
-            gameFeedbackCorrect: "Correcte!",
-            gameFeedbackWrong: "Incorrecte",
-            gameScoreDisplay: (score, total) => `${score} / ${total}`,
-            gameResultsTitlePerfect: "Perfecte! Ets un expert!",
-            gameResultsTitleGreat: "Excel·lent! Molt bé!",
-            gameResultsTitleGood: "Bé! Segueix aprenent!",
-            gameResultsTitleFail: "Continua practicant!",
-            gameResultsSubtitle: (score, total) => `Has encertat ${score} de ${total} preguntes.`,
-            gameCorrectLabel: "Correctes",
-            gameWrongLabel: "Incorrectes",
-            gameReplayLabel: "Tornar a jugar",
-            gameCatalogLabel: "Veure catàleg",
-            gameLoadError: "No s'ha pogut carregar el quiz. Torna-ho a intentar."
-        },
-        en: {
-            pageTitle: "Mushrooms of Mallorca - Mushroom catalog",
-            heroEyebrow: "Balearic mycology guide",
-            heroTitle: "Discover the mushrooms of Mallorca",
-            heroDescription: "Explore the fascinating world of Balearic mycology. Learn to identify, forage, and cook the most emblematic species of our island.",
-            heroCatalog: "Browse catalog",
-            heroMap: "View map",
-            heroScroll: "Scroll",
-            brandSubtitle: "Balearic mycology guide",
-            navCatalog: "Catalog",
-            navMap: "Discovery map",
-            navGame: "Game",
-            searchPlaceholder: "Search mushroom...",
-            searchLabel: "Search mushroom by name or description",
-            sidebarTitle: "Filters",
-            seasonTitle: "Season",
-            seasonSpring: "Spring",
-            seasonSummer: "Summer",
-            seasonAutumn: "Autumn",
-            seasonWinter: "Winter",
-            seasonNone: "No season selected",
-            seasonSelected: (value) => `Season: ${value}`,
-            culinaryTitle: "Culinary value",
-            culinaryNone: "Minimum 3 forks",
-            culinaryAll: "No minimum forks",
-            toxicityTitle: "Toxicity level",
-            toxicityNone: "Show only safe ones",
-            toxicityAll: "No toxicity limit",
-            applyFilters: "Apply filters",
-            clearFilters: "Clear filters",
-            infoCardTitle: "Did you know...?",
-            infoCardBody: "<b>Esclata-sang</b> is the most prized mushroom in Mallorcan cuisine, mostly harvested in pine woods during autumn.",
-            catalogHeading: "Seasonal species",
-            speciesCount: (count) => `${count} species found`,
-            backToCatalog: "Back to catalog",
-            detailCharacteristics: "Characteristics",
-            detailHabitat: "Habitat",
-            detailLocation: "Geographic location",
-            audioTitle: "Listen to audio description",
-            audioPlay: "Listen",
-            audioPause: "Pause",
-            audioResume: "Resume",
-            audioStop: "Stop",
-            audioLoading: "Loading voices...",
-            audioReady: "Ready",
-            audioPlaying: "Playing",
-            audioPaused: "Paused",
-            summaryTitle: "Species summary",
-            culinaryLabel: "Culinary value",
-            toxicityLabel: "Toxicity level",
-            seasonDetailTitle: "Best harvesting season",
-            extraLabel1: "Color change",
-            extraLabel2: "Soil preference",
-            extraLabel3: "Preparation",
-            recipeLabel: "Recommended recipe",
-            recipeVideo: (title) => `Video: ${title}`,
-            recipeVideoDefault: "Video: recommended preparation",
-            recipeLink: "Watch on YouTube",
-            mapTitle: "Discovery map",
-            mapSubtitle: "View all the mushrooms of Mallorca and your location",
-            mapLocationButton: "My location",
-            mapFooterTitle: "About geolocation",
-            mapFooterText: "The map uses your location to show nearby areas where mushrooms can be found. The application never stores or shares your location data. You can deny permission at any time from your browser settings.",
-            mushroomSeasonPrefix: "Typical harvesting season",
-            mushroomTreePrefix: "Main associated tree",
-            mushroomCulinaryHigh: "A highly valued mushroom in traditional and modern recipes.",
-            mushroomCulinaryMid: "A mushroom with moderate culinary value; correct identification is important before cooking.",
-            mushroomToxicHigh: "Use extreme caution: possible toxicity depending on preparation and identification.",
-            mushroomToxicLow: "Generally considered safe when correctly identified.",
-            mushroomLocationPrefix: "This species can be found in",
-            mushroomNoCoords: "No coordinates available for this mushroom.",
-            mushroomNoRecipe: "No recipe associated with this mushroom.",
-            mushroomResponsible: "Responsible consumption",
-            recipeIngredientsPrefix: "Highlighted ingredients",
-            placeholderMapButton: "View map",
-            aboutUsTitle: "About us",
-            aboutUsSubtitle: "Team behind this project",
-            creatorName1: "Joan Matemalas Rosselló",
-            creatorName2: "Martí Garau Conde",
-            gameIntroTitle: "Mushroom Quiz",
-            gameIntroSubtitle: "Test your knowledge of the mushroom species of the Balearic Islands.",
-            gameTotalQ: (n) => `${n} questions`,
-            gameTimeLabel: "No time limit",
-            gameStartLabel: "Start quiz",
-            gameQuestionCounter: (current, total) => `Question ${current} of ${total}`,
-            gameNextLabel: "Next question",
-            gameLastLabel: "See results",
-            gameFeedbackCorrect: "Correct!",
-            gameFeedbackWrong: "Incorrect",
-            gameScoreDisplay: (score, total) => `${score} / ${total}`,
-            gameResultsTitlePerfect: "Perfect! You're an expert!",
-            gameResultsTitleGreat: "Excellent! Well done!",
-            gameResultsTitleGood: "Good! Keep learning!",
-            gameResultsTitleFail: "Keep practising!",
-            gameResultsSubtitle: (score, total) => `You got ${score} out of ${total} questions right.`,
-            gameCorrectLabel: "Correct",
-            gameWrongLabel: "Incorrect",
-            gameReplayLabel: "Play again",
-            gameCatalogLabel: "View catalog",
-            gameLoadError: "Failed to load the quiz. Please try again."
-        }
-    };
+    const CARD_FALLBACK = "img/Lactarius_sanguifluus/Lactarius_sanguifluus-mitja.jpg";
+    const HERO_FALLBACK = "img/Lactarius_sanguifluus/Lactarius_sanguifluus-mitja.jpg";
+    const CATALOG_IMAGE_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='480' viewBox='0 0 640 480'%3E%3Crect width='640' height='480' fill='%23e8efe9'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='%23618968' font-family='sans-serif' font-size='28'%3ECarrega la imatge%3C/text%3E%3C/svg%3E";
+    const DETAIL_HERO_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='900' viewBox='0 0 1440 900'%3E%3Crect width='1440' height='900' fill='%23e8efe9'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='%23618968' font-family='sans-serif' font-size='44'%3EImatge del bolet%3C/text%3E%3C/svg%3E";
 
     const state = {
         entries: [],
         filteredEntries: [],
-        lang: localStorage.getItem(LANG_STORAGE_KEY) === "en" ? "en" : "ca",
+        lang: window.I18nManager?.getCurrentLanguage?.() || "ca",
         searchQuery: "",
-        selectedSeason: null,
+        selectedSeasons: new Set(),
         minCulinary: null,
         maxToxicity: null,
+        hoverCulinary: null,
+        hoverToxicity: null,
         culinarySortOrder: "desc",
         toxicitySortOrder: "desc",
         selectedEntry: null,
         currentImageIndex: 0,
         currentMushroomImages: [],
         currentMushroomForJSON: null,
+        detailHeroImageReady: false,
+        detailGalleryPreloaded: new Set(),
+        catalogImagesReady: false,
         speechText: "",
+        detailAudioUrl: "",
         utterance: null,
         speechState: "stopped",
         speechJobId: 0,
@@ -379,10 +190,16 @@
         detailMap: null,
         detailMapMarker: null,
         allMarkers: [],
+        plantMarkers: [],
         gameQuestions: [],
+        allQuizQuestions: [],
         gameCurrentIndex: 0,
         gameScore: 0,
-        gameAnswered: false
+        gameAnswered: false,
+        gameQuestionCount: 10,
+        gameTimeLimitEnabled: false,
+        gameTimerInterval: null,
+        gameTimeRemaining: 0
     };
 
     const escapeHtml = (value) => String(value ?? "")
@@ -394,7 +211,7 @@
 
     const clampScore = (value) => {
         const parsed = Number(value);
-        if (!Number.isFinite(parsed)) return 1;
+        if (!Number.isFinite(parsed)) return 0;
         return Math.min(5, Math.max(0, Math.round(parsed)));
     };
 
@@ -486,10 +303,16 @@
         return state.voiceLoadPromise;
     };
 
-    const t = (key, ...args) => {
-        const value = translations[state.lang]?.[key] ?? translations.ca[key] ?? key;
-        return typeof value === "function" ? value(...args) : value;
-    };
+    const i18n = (key, fallback = key) => window.I18nManager?.t?.(key, fallback) ?? fallback;
+    const byLang = (caText, enText) => (state.lang === "en" ? enText : caText);
+
+    const formatSpeciesCount = (count) => byLang(`${count} espècies trobades`, `${count} species found`);
+    const formatGameQuestionCounter = (current, total) => byLang(`Pregunta ${current} de ${total}`, `Question ${current} of ${total}`);
+    const formatGameScoreDisplay = (score, total) => `${score} / ${total}`;
+    const formatGameResultsSubtitle = (score, total) => byLang(
+        `Has encertat ${score} de ${total} preguntes.`,
+        `You got ${score} out of ${total} questions right.`
+    );
 
     const getLocalizedItemValue = (item, key, fallback = "") => {
         const localized = item?.translations?.[state.lang]?.[key];
@@ -505,10 +328,10 @@
 
     const getLocalizedSeasonLabel = (season) => {
         const seasonMap = {
-            Primavera: t("seasonSpring"),
-            Estiu: t("seasonSummer"),
-            Tardor: t("seasonAutumn"),
-            Hivern: t("seasonWinter")
+            Primavera: i18n("filter_season_spring", "Primavera"),
+            Estiu: i18n("filter_season_summer", "Estiu"),
+            Tardor: i18n("filter_season_autumn", "Tardor"),
+            Hivern: i18n("filter_season_winter", "Hivern")
         };
         return seasonMap[season] || season || "";
     };
@@ -516,7 +339,7 @@
     const getPropertyValue = (item, propName) => {
         const props = Array.isArray(item?.additionalProperty) ? item.additionalProperty : [];
         const found = props.find((prop) => String(prop?.name || "").toLowerCase() === String(propName).toLowerCase());
-        return found?.value || "";
+        return found?.value ?? "";
     };
 
     const getScores = (item) => ({
@@ -524,44 +347,161 @@
         toxicity: clampScore(getPropertyValue(item, "Toxicitat (1-5)"))
     });
 
+    const ICON_GLYPHS = {
+        forest: "🌲",
+        filter_list: "☰",
+        eco: "🌿",
+        wb_sunny: "☀",
+        water_drop: "💧",
+        ac_unit: "❄",
+        sort: "⇅",
+        arrow_upward: "↑",
+        arrow_downward: "↓",
+        restaurant: "🍴",
+        skull: "☠",
+        arrow_back: "←",
+        arrow_forward: "→",
+        arrow_forward_ios: "›",
+        volume_up: "🔊",
+        play_arrow: "▶",
+        analytics: "📊",
+        calendar_month: "🗓",
+        palette: "🎨",
+        landscape: "⛰",
+        outdoor_grill: "🍳",
+        play_circle: "▶",
+        smart_display: "▶",
+        sports_esports: "🎮",
+        quiz: "❓",
+        timer: "⏱",
+        emoji_events: "🏆",
+        close: "×",
+        progress_activity: "⏳",
+        favorite: "♥",
+        public: "🌐",
+        camera: "📷",
+        groups: "👥",
+        map: "🗺",
+        my_location: "📍",
+        info: "ℹ",
+        check_circle: "✓",
+        cancel: "✕",
+        workspace_premium: "⭐",
+        star_outline: "☆",
+        mushroom: "🍄",
+        thumb_up: "👍",
+        sentiment_dissatisfied: "☹",
+        sentiment_satisfied: "☺",
+        sentiment_very_satisfied: "😄",
+        star: "★"
+    };
+
+    const getIconGlyph = (iconName) => ICON_GLYPHS[iconName] || "•";
+
+    const iconClassForSeason = (season, active) => {
+        if (active) return "ui-icon text-white text-lg";
+        if (season === "Primavera") return "ui-icon text-primary text-lg";
+        if (season === "Estiu") return "ui-icon text-orange-400 text-lg";
+        if (season === "Tardor") return "ui-icon text-[#618968] text-lg";
+        if (season === "Hivern") return "ui-icon text-blue-400 text-lg";
+        return "ui-icon text-[#618968] text-lg";
+    };
+
+    const upgradeMaterialIcons = (root = document) => {
+        if (!root?.querySelectorAll) return;
+        root.querySelectorAll(".material-symbols-outlined").forEach((element) => {
+            const iconName = String(element.textContent || "").trim();
+            element.textContent = getIconGlyph(iconName);
+            element.classList.remove("material-symbols-outlined");
+            element.classList.add("ui-icon");
+            element.removeAttribute("style");
+            element.setAttribute("aria-hidden", "true");
+        });
+    };
+
     const renderRatingIcons = (iconName, active, activeClass, mutedClass) => {
         let html = "";
+        const glyph = getIconGlyph(iconName);
         for (let i = 0; i < 5; i += 1) {
             const isActive = i < active;
-            const fillStyle = isActive ? " style=\"font-variation-settings: 'FILL' 1\"" : "";
-            html += `<span class=\"material-symbols-outlined text-sm ${isActive ? activeClass : mutedClass}\"${fillStyle}>${iconName}</span>`;
+            html += `<span class=\"ui-icon text-sm ${isActive ? activeClass : mutedClass}\" aria-hidden=\"true\">${glyph}</span>`;
         }
         return html;
     };
 
-    const buildCardImageMarkup = (src, alt, extraClass) => {
-        const safeAlt = escapeHtml(alt);
-        const safeSrc = escapeHtml(src || CARD_FALLBACK);
-        return `<img class=\"w-full h-full object-cover ${extraClass}\" alt=\"${safeAlt}\" loading=\"lazy\" decoding=\"async\" fetchpriority=\"low\" src=\"${safeSrc}\" onerror=\"this.onerror=null;this.src='${CARD_FALLBACK}'\"/>`;
+    const generarPictureHTML = (contentUrl, altText, lazy = true, options = {}) => {
+        const deferLoading = Boolean(options.deferLoading);
+        const safeAlt = escapeHtml(altText || "Imatge del bolet");
+        const originalUrl = String(contentUrl || HERO_FALLBACK);
+        const baseUrl = originalUrl.replace(/\.[^.\/]+$/, "");
+        const sizes = "(max-width: 600px) 320px, (max-width: 1024px) 640px, 1280px";
+        const loading = lazy ? "lazy" : "eager";
+        const fetchPriority = lazy ? "low" : "high";
+
+        if (deferLoading) {
+            return `
+            <picture class="absolute inset-0 block w-full h-full overflow-hidden">
+                <img
+                    class="absolute inset-0 w-full h-full object-cover object-center"
+                    alt="${safeAlt}"
+                    width="640"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                    src="${CATALOG_IMAGE_PLACEHOLDER}" />
+            </picture>
+        `;
+        }
+
+        return `
+            <picture class="absolute inset-0 block w-full h-full overflow-hidden">
+                <source
+                    type="image/avif"
+                    srcset="${baseUrl}-petit.avif 320w, ${baseUrl}-mitja.avif 640w, ${baseUrl}-gran.avif 1280w"
+                    sizes="${sizes}" />
+                <source
+                    type="image/webp"
+                    srcset="${baseUrl}-petit.webp 320w, ${baseUrl}-mitja.webp 640w, ${baseUrl}-gran.webp 1280w"
+                    sizes="${sizes}" />
+                <img
+                    class="absolute inset-0 w-full h-full object-cover object-center"
+                    alt="${safeAlt}"
+                    width="640"
+                    height="480"
+                    loading="${loading}"
+                    decoding="async"
+                    fetchpriority="${fetchPriority}"
+                    src="${baseUrl}-mitja.jpg"
+                    onerror="this.onerror=null;this.src='${escapeHtml(HERO_FALLBACK)}'" />
+            </picture>
+        `;
     };
 
-    const setDetailHeroImage = (src, alt) => {
+    const setDetailHeroImage = (src, alt, lazy = false) => {
+        if (!dom.detailHeroImage || !dom.detailHeroImg) return;
+
+        dom.detailHeroImg.outerHTML = generarPictureHTML(src, alt, lazy);
+        dom.detailHeroImg = dom.detailHeroImage.querySelector("picture img");
+    };
+
+    const showDetailHeroPlaceholder = (alt = "Imatge del bolet") => {
         if (!dom.detailHeroImg) return;
 
-        const safeAlt = alt || "Imatge del bolet";
-        const safeSrc = src || HERO_FALLBACK;
-
-        dom.detailHeroImg.alt = safeAlt;
-        dom.detailHeroImg.decoding = "async";
-        dom.detailHeroImg.loading = "eager";
-        dom.detailHeroImg.fetchPriority = "high";
-        dom.detailHeroImg.src = safeSrc;
-
-        if (dom.detailHeroSourceAvif) dom.detailHeroSourceAvif.srcset = "";
-        if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
+        dom.detailHeroImg.removeAttribute("srcset");
+        dom.detailHeroImg.removeAttribute("sizes");
+        dom.detailHeroImg.removeAttribute("fetchpriority");
+        dom.detailHeroImg.setAttribute("loading", "lazy");
+        dom.detailHeroImg.setAttribute("decoding", "async");
+        dom.detailHeroImg.alt = alt;
+        dom.detailHeroImg.src = DETAIL_HERO_PLACEHOLDER;
     };
 
     const updateGalleryDisplay = () => {
-        if (!dom.detailHeroImg || state.currentMushroomImages.length === 0) return;
+        if (!dom.detailHeroImg || !dom.detailHeroImage || state.currentMushroomImages.length === 0) return;
 
         const currentImg = state.currentMushroomImages[state.currentImageIndex];
         const imgSrc = currentImg?.contentUrl || HERO_FALLBACK;
-        
+
         // Use localized name if available, otherwise use image name or fallback
         let imgAlt = "Imatge del bolet";
         if (state.currentMushroomForJSON) {
@@ -570,8 +510,11 @@
             imgAlt = currentImg.name;
         }
 
-        dom.detailHeroImg.src = imgSrc;
-        dom.detailHeroImg.alt = imgAlt;
+        if (state.detailHeroImageReady) {
+            setDetailHeroImage(imgSrc, imgAlt, false);
+        } else {
+            showDetailHeroPlaceholder(imgAlt);
+        }
 
         if (dom.galleryCurrent) dom.galleryCurrent.textContent = String(state.currentImageIndex + 1);
         if (dom.galleryTotal) dom.galleryTotal.textContent = String(state.currentMushroomImages.length);
@@ -580,6 +523,56 @@
             const shouldShowControls = state.currentMushroomImages.length > 1;
             dom.galleryControls.classList.toggle("hidden", !shouldShowControls);
         }
+    };
+
+    const unlockDetailHeroImages = () => {
+        if (state.detailHeroImageReady) return;
+        state.detailHeroImageReady = true;
+
+        if (dom.detailView && !dom.detailView.classList.contains("hidden")) {
+            updateGalleryDisplay();
+        }
+    };
+
+    const unlockCatalogImages = () => {
+        if (state.catalogImagesReady) return;
+        state.catalogImagesReady = true;
+
+        if (dom.grid && state.filteredEntries.length > 0) {
+            applyFilters();
+        }
+    };
+
+    const preloadDetailGalleryImages = (images) => {
+        if (!Array.isArray(images) || images.length === 0) return;
+
+        images.forEach((image) => {
+            const contentUrl = String(image?.contentUrl || "").trim();
+            if (!contentUrl) return;
+
+            const baseUrl = contentUrl.replace(/\.[^.\/]+$/, "");
+            const candidates = [
+                `${baseUrl}-petit.avif`,
+                `${baseUrl}-mitja.avif`,
+                `${baseUrl}-gran.avif`,
+                `${baseUrl}-petit.webp`,
+                `${baseUrl}-mitja.webp`,
+                `${baseUrl}-gran.webp`,
+                `${baseUrl}-petit.jpg`,
+                `${baseUrl}-mitja.jpg`,
+                `${baseUrl}-gran.jpg`
+            ];
+
+            candidates.forEach((src) => {
+                if (state.detailGalleryPreloaded.has(src)) return;
+                state.detailGalleryPreloaded.add(src);
+
+                const preloadedImage = new Image();
+                preloadedImage.decoding = "async";
+                preloadedImage.loading = "eager";
+                preloadedImage.src = src;
+            });
+        });
     };
 
     const nextImage = () => {
@@ -599,25 +592,32 @@
         const oldScript = document.getElementById("mushroom-jsonld");
         if (oldScript) oldScript.remove();
 
-        const commonName = getItemLocalizedName(item);
         const scientific = item.name || "Unknown";
+        const localizedAlternateNames = getLocalizedArrayValue(
+            item,
+            "alternateName",
+            Array.isArray(item?.alternateName) ? item.alternateName : []
+        );
+        const alternateNames = localizedAlternateNames.length > 0
+            ? localizedAlternateNames
+            : [getItemLocalizedName(item)];
         const description = getItemLocalizedDescription(item);
-        const images = Array.isArray(item.image)
-            ? item.image.map(img => typeof img === "string" ? img : img?.contentUrl || "")
-            : (item.image ? [item.image] : []);
+        const firstImage = Array.isArray(item.image)
+            ? (typeof item.image[0] === "string" ? item.image[0] : item.image[0]?.contentUrl || "")
+            : (typeof item.image === "string" ? item.image : item.image?.contentUrl || "");
 
         // Construir l'objecte JSON-LD segons Schema.org
         const jsonLD = {
             "@context": "https://schema.org",
             "@type": "Taxon",
-            "name": commonName,
-            "scientificName": scientific,
+            "name": scientific,
+            "alternateName": alternateNames,
             "description": description,
-            "image": images.map(src => ({
+            "image": firstImage ? {
                 "@type": "ImageObject",
-                "url": src,
-                "name": commonName
-            })),
+                "url": firstImage,
+                "name": scientific
+            } : undefined,
             "identifier": scientific.replace(/\s+/g, "_"),
             "url": window.location.href
         };
@@ -632,29 +632,25 @@
     };
 
     const setFilterButtonsUI = () => {
+        const culinaryPreview = state.hoverCulinary ?? state.minCulinary;
+        const toxicityPreview = state.hoverToxicity ?? state.maxToxicity;
+
         // Season filter UI
         if (dom.seasonFilter) {
             const buttons = dom.seasonFilter.querySelectorAll("button[data-season]");
             buttons.forEach((button) => {
                 const season = button.dataset.season;
-                const active = state.selectedSeason === season;
+                const active = state.selectedSeasons.has(season);
                 button.setAttribute("aria-pressed", active ? "true" : "false");
 
                 if (active) {
                     button.className = "flex items-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm font-medium transition-colors shadow-md";
-                    const icon = button.querySelector(".material-symbols-outlined");
-                    if (icon) icon.classList.add("text-white");
+                    const icon = button.querySelector("span");
+                    if (icon) icon.className = iconClassForSeason(season, true);
                 } else {
                     button.className = "flex items-center gap-2 px-3 py-2 bg-background-light hover:bg-primary/10 rounded-lg text-sm font-medium transition-colors";
-                    const icon = button.querySelector(".material-symbols-outlined");
-                    if (icon) {
-                        icon.classList.remove("text-white");
-                        // Restaurar color original según temporada
-                        if (season === "Primavera") icon.className = "material-symbols-outlined text-primary text-lg";
-                        else if (season === "Estiu") icon.className = "material-symbols-outlined text-orange-400 text-lg";
-                        else if (season === "Tardor") icon.className = "material-symbols-outlined text-[#618968] text-lg";
-                        else if (season === "Hivern") icon.className = "material-symbols-outlined text-blue-400 text-lg";
-                    }
+                    const icon = button.querySelector("span");
+                    if (icon) icon.className = iconClassForSeason(season, false);
                 }
             });
         }
@@ -663,10 +659,18 @@
             const buttons = dom.culinaryFilter.querySelectorAll("button[data-score]");
             buttons.forEach((button) => {
                 const score = Number(button.dataset.score || "1");
-                const active = state.minCulinary !== null && score <= state.minCulinary;
+                const active = culinaryPreview !== null && score <= culinaryPreview;
                 button.className = active
                     ? "p-1 text-[#111812] hover:text-primary"
                     : "p-1 text-[#dbe6dd] hover:text-primary";
+                button.setAttribute(
+                    "aria-label",
+                    byLang(
+                        `Filtrar valor culinari mínim ${score} de 5`,
+                        `Filter minimum culinary value ${score} out of 5`
+                    )
+                );
+                button.setAttribute("aria-pressed", state.minCulinary !== null && score <= state.minCulinary ? "true" : "false");
             });
         }
 
@@ -674,29 +678,39 @@
             const buttons = dom.toxicityFilter.querySelectorAll("button[data-score]");
             buttons.forEach((button) => {
                 const score = Number(button.dataset.score || "1");
-                const active = state.maxToxicity !== null && score <= state.maxToxicity;
-                const icon = button.querySelector(".material-symbols-outlined");
+                const active = toxicityPreview !== null && score <= toxicityPreview;
                 button.className = active ? "p-1 text-red-500" : "p-1 text-[#dbe6dd]";
-                if (icon) icon.style.fontVariationSettings = active ? "'FILL' 1" : "'FILL' 0";
+                button.setAttribute(
+                    "aria-label",
+                    byLang(
+                        `Filtrar toxicitat des de ${score} de 5`,
+                        `Filter toxicity from ${score} out of 5`
+                    )
+                );
+                button.setAttribute("aria-pressed", state.maxToxicity !== null && score <= state.maxToxicity ? "true" : "false");
             });
         }
 
         if (dom.culinaryFilterLabel) {
             dom.culinaryFilterLabel.textContent = state.minCulinary === null
-                ? "Sense mínim de forquilles"
-                : `Mínim ${state.minCulinary} forquilles`;
+                ? i18n("filter_culinary_label", "Mínim 3 forquilles")
+                : byLang(`Mínim ${state.minCulinary} forquilles`, `Minimum ${state.minCulinary} forks`);
         }
 
         if (dom.toxicityFilterLabel) {
             dom.toxicityFilterLabel.textContent = state.maxToxicity === null
-                ? "Sense límit de toxicitat"
-                : `Toxicitat màxima ${state.maxToxicity}/5`;
+                ? i18n("filter_toxicity_label", "Mostrar només segures")
+                : byLang(`Toxicitat màxima ${state.maxToxicity}/5`, `Maximum toxicity ${state.maxToxicity}/5`);
         }
 
         if (dom.seasonFilterLabel) {
-            dom.seasonFilterLabel.textContent = state.selectedSeason === null
-                ? t("seasonNone")
-                : t("seasonSelected", getLocalizedSeasonLabel(state.selectedSeason));
+            if (state.selectedSeasons.size === 0) {
+                dom.seasonFilterLabel.textContent = i18n("filter_season_none", "Cap temporada seleccionada");
+            } else {
+                dom.seasonFilterLabel.textContent = [...state.selectedSeasons]
+                    .map(s => getLocalizedSeasonLabel(s))
+                    .join(", ");
+            }
         }
 
         updateSortButtonsUI();
@@ -704,158 +718,55 @@
 
     const updateSortButtonsUI = () => {
         if (dom.culinarySortBtn) {
-            const icon = dom.culinarySortBtn.querySelector(".material-symbols-outlined");
+            const icon = dom.culinarySortBtn.querySelector("span");
             if (state.culinarySortOrder === "desc") {
-                icon.textContent = "arrow_downward";
-                dom.culinarySortBtn.title = "Ordenar: menor a major";
+                if (icon) icon.textContent = getIconGlyph("arrow_downward");
+                dom.culinarySortBtn.title = byLang("Ordenar: menor a major", "Sort: low to high");
                 dom.culinarySortBtn.classList.add("text-primary");
                 dom.culinarySortBtn.classList.remove("text-[#618968]");
             } else if (state.culinarySortOrder === "asc") {
-                icon.textContent = "arrow_upward";
-                dom.culinarySortBtn.title = "Ordenar: major a menor";
+                if (icon) icon.textContent = getIconGlyph("arrow_upward");
+                dom.culinarySortBtn.title = byLang("Ordenar: major a menor", "Sort: high to low");
                 dom.culinarySortBtn.classList.add("text-primary");
                 dom.culinarySortBtn.classList.remove("text-[#618968]");
             } else {
-                icon.textContent = "sort";
-                dom.culinarySortBtn.title = "Ordenar per valor culinari";
+                if (icon) icon.textContent = getIconGlyph("sort");
+                dom.culinarySortBtn.title = i18n("filter_culinary_sort_aria", "Ordenar per valor culinari");
                 dom.culinarySortBtn.classList.remove("text-primary");
                 dom.culinarySortBtn.classList.add("text-[#618968]");
             }
         }
 
         if (dom.toxicitySortBtn) {
-            const icon = dom.toxicitySortBtn.querySelector(".material-symbols-outlined");
+            const icon = dom.toxicitySortBtn.querySelector("span");
             if (state.toxicitySortOrder === "desc") {
-                icon.textContent = "arrow_downward";
-                dom.toxicitySortBtn.title = "Ordenar: menor a major";
+                if (icon) icon.textContent = getIconGlyph("arrow_downward");
+                dom.toxicitySortBtn.title = byLang("Ordenar: menor a major", "Sort: low to high");
                 dom.toxicitySortBtn.classList.add("text-primary");
                 dom.toxicitySortBtn.classList.remove("text-[#618968]");
             } else if (state.toxicitySortOrder === "asc") {
-                icon.textContent = "arrow_upward";
-                dom.toxicitySortBtn.title = "Ordenar: major a menor";
+                if (icon) icon.textContent = getIconGlyph("arrow_upward");
+                dom.toxicitySortBtn.title = byLang("Ordenar: major a menor", "Sort: high to low");
                 dom.toxicitySortBtn.classList.add("text-primary");
                 dom.toxicitySortBtn.classList.remove("text-[#618968]");
             } else {
-                icon.textContent = "sort";
-                dom.toxicitySortBtn.title = "Ordenar per toxicitat";
+                if (icon) icon.textContent = getIconGlyph("sort");
+                dom.toxicitySortBtn.title = i18n("filter_toxicity_sort_aria", "Ordenar per toxicitat");
                 dom.toxicitySortBtn.classList.remove("text-primary");
                 dom.toxicitySortBtn.classList.add("text-[#618968]");
             }
         }
     };
 
-    const applyLanguage = () => {
-        document.documentElement.lang = state.lang;
-        document.title = t("pageTitle");
+    const resetCatalogFilters = () => {
+        state.searchQuery = "";
+        state.selectedSeasons = new Set();
+        state.minCulinary = null;
+        state.maxToxicity = null;
+        state.culinarySortOrder = null;
+        state.toxicitySortOrder = null;
 
-        if (dom.heroEyebrow) dom.heroEyebrow.textContent = t("heroEyebrow");
-        if (dom.heroTitle) {
-            const heroText = state.lang === "en"
-                ? "Discover the <span class=\"text-primary\">mushrooms</span> of Mallorca"
-                : "Descobreix els <span class=\"text-primary\">bolets</span> de Mallorca";
-            dom.heroTitle.innerHTML = heroText;
-        }
-        if (dom.heroDescription) dom.heroDescription.textContent = t("heroDescription");
-        if (dom.heroCatalog) dom.heroCatalog.textContent = t("heroCatalog");
-        if (dom.openMapBtn) dom.openMapBtn.textContent = t("heroMap");
-        if (dom.heroScrollLink) {
-            const heroScrollLabel = dom.heroScrollLink.querySelector("span");
-            if (heroScrollLabel) heroScrollLabel.textContent = t("heroScroll");
-        }
-
-        if (dom.brandTitle) dom.brandTitle.textContent = state.lang === "en" ? "Mushrooms of Mallorca" : "Bolets de Mallorca";
-        if (dom.brandSubtitle) dom.brandSubtitle.textContent = t("brandSubtitle");
-        if (dom.navCatalog) dom.navCatalog.textContent = t("navCatalog");
-        if (dom.openMapBtnHeader) dom.openMapBtnHeader.textContent = t("navMap");
-        if (dom.navGame) dom.navGame.textContent = t("navGame");
-        if (dom.searchInput) dom.searchInput.placeholder = t("searchPlaceholder");
-        if (dom.searchLabel) dom.searchLabel.textContent = t("searchLabel");
-
-        if (dom.sidebarTitle) dom.sidebarTitle.innerHTML = `<span class="material-symbols-outlined text-primary">filter_list</span> ${t("sidebarTitle")}`;
-        if (dom.seasonTitle) dom.seasonTitle.textContent = t("seasonTitle");
-        if (dom.seasonSpring) dom.seasonSpring.lastChild.textContent = ` ${t("seasonSpring")}`;
-        if (dom.seasonSummer) dom.seasonSummer.lastChild.textContent = ` ${t("seasonSummer")}`;
-        if (dom.seasonAutumn) dom.seasonAutumn.lastChild.textContent = ` ${t("seasonAutumn")}`;
-        if (dom.seasonWinter) dom.seasonWinter.lastChild.textContent = ` ${t("seasonWinter")}`;
-        if (dom.culinaryTitle) dom.culinaryTitle.textContent = t("culinaryTitle");
-        if (dom.toxicityTitle) dom.toxicityTitle.textContent = t("toxicityTitle");
-        if (dom.applyFiltersButton) dom.applyFiltersButton.textContent = t("applyFilters");
-        if (dom.clearFiltersButton) dom.clearFiltersButton.textContent = t("clearFilters");
-        if (dom.infoCardTitle) dom.infoCardTitle.textContent = t("infoCardTitle");
-        if (dom.infoCardBody) dom.infoCardBody.innerHTML = t("infoCardBody");
-        if (dom.catalogHeading) dom.catalogHeading.textContent = t("catalogHeading");
-
-        if (dom.detailBackButton) dom.detailBackButton.innerHTML = `<span class="material-symbols-outlined text-sm">arrow_back</span> ${t("backToCatalog")}`;
-        if (dom.detailCharacteristicsTitle) dom.detailCharacteristicsTitle.textContent = t("detailCharacteristics");
-        if (dom.detailHabitatTitle) dom.detailHabitatTitle.textContent = t("detailHabitat");
-        if (dom.detailLocationTitle) dom.detailLocationTitle.textContent = t("detailLocation");
-        if (dom.audioTitle) dom.audioTitle.textContent = t("audioTitle");
-        if (dom.audioStatus && state.speechState === "stopped") dom.audioStatus.textContent = t("audioReady");
-        if (dom.ttsLiveRegion && state.speechState === "stopped") dom.ttsLiveRegion.textContent = t("audioReady");
-        if (dom.summaryTitle) dom.summaryTitle.innerHTML = `<span class="material-symbols-outlined text-primary">analytics</span> ${t("summaryTitle")}`;
-        if (dom.detailCulinaryLabel) dom.detailCulinaryLabel.textContent = t("culinaryLabel");
-        if (dom.detailToxicityLabel) dom.detailToxicityLabel.textContent = t("toxicityLabel");
-        if (dom.detailSeasonTitle) dom.detailSeasonTitle.innerHTML = `<span class="material-symbols-outlined text-primary">calendar_month</span> ${t("seasonDetailTitle")}`;
-        if (dom.detailExtraLabel1) dom.detailExtraLabel1.textContent = t("extraLabel1");
-        if (dom.detailExtraLabel2) dom.detailExtraLabel2.textContent = t("extraLabel2");
-        if (dom.detailExtraLabel3) dom.detailExtraLabel3.textContent = t("extraLabel3");
-        if (dom.recipeTitleLabel) dom.recipeTitleLabel.textContent = t("recipeLabel");
-        if (dom.recipeLinkLabel) {
-            const recipeLinkText = dom.recipeLinkLabel.querySelectorAll("span")[1];
-            if (recipeLinkText) recipeLinkText.textContent = t("recipeLink");
-        }
-
-        if (dom.mapModalTitle) dom.mapModalTitle.innerHTML = `<span class="material-symbols-outlined text-primary text-3xl">map</span> ${t("mapTitle")}`;
-        if (dom.mapModalSubtitle) dom.mapModalSubtitle.textContent = t("mapSubtitle");
-        if (dom.getLocationBtn) {
-            const locationButtonText = dom.getLocationBtn.querySelectorAll("span")[1];
-            if (locationButtonText) locationButtonText.textContent = t("mapLocationButton");
-        }
-        if (dom.mapFooterTitle) dom.mapFooterTitle.textContent = t("mapFooterTitle");
-        if (dom.mapFooterText) dom.mapFooterText.textContent = t("mapFooterText");
-        if (dom.aboutUsTitle) dom.aboutUsTitle.textContent = t("aboutUsTitle");
-        if (dom.aboutUsSubtitle) dom.aboutUsSubtitle.textContent = t("aboutUsSubtitle");
-        if (dom.creatorName1) dom.creatorName1.textContent = t("creatorName1");
-        if (dom.creatorName2) dom.creatorName2.textContent = t("creatorName2");
-
-        // Game intro text (only when on intro screen)
-        if (dom.gameIntroTitle) dom.gameIntroTitle.textContent = t("gameIntroTitle");
-        if (dom.gameIntroSubtitle) dom.gameIntroSubtitle.textContent = t("gameIntroSubtitle");
-        if (dom.gameTotalQ) dom.gameTotalQ.textContent = t("gameTotalQ", state.gameQuestions.length || 16);
-        if (dom.gameTimeLabel) dom.gameTimeLabel.textContent = t("gameTimeLabel");
-        if (dom.gameStartLabel) dom.gameStartLabel.textContent = t("gameStartLabel");
-        if (dom.gameCorrectLabel) dom.gameCorrectLabel.textContent = t("gameCorrectLabel");
-        if (dom.gameWrongLabel) dom.gameWrongLabel.textContent = t("gameWrongLabel");
-        if (dom.gameReplayLabel) dom.gameReplayLabel.textContent = t("gameReplayLabel");
-        if (dom.gameCatalogLabel) dom.gameCatalogLabel.textContent = t("gameCatalogLabel");
-
-        if (dom.languageCaButton && dom.languageEnButton) {
-            const activeButtonClass = "px-3 py-1 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-sm";
-            const inactiveButtonClass = "px-3 py-1 rounded-full text-xs font-bold transition-all text-[#618968]";
-            dom.languageCaButton.className = state.lang === "ca" ? activeButtonClass : inactiveButtonClass;
-            dom.languageEnButton.className = state.lang === "en" ? activeButtonClass : inactiveButtonClass;
-            dom.languageCaButton.setAttribute("aria-pressed", state.lang === "ca" ? "true" : "false");
-            dom.languageEnButton.setAttribute("aria-pressed", state.lang === "en" ? "true" : "false");
-        }
-    };
-
-    const setLanguage = (lang) => {
-        const nextLang = lang === "en" ? "en" : "ca";
-        if (state.lang === nextLang) return;
-        state.lang = nextLang;
-        localStorage.setItem(LANG_STORAGE_KEY, nextLang);
-        applyLanguage();
-        setFilterButtonsUI();
-
-        const currentPos = Number(new URLSearchParams(window.location.search).get("pos"));
-        if (dom.detailView && !dom.detailView.classList.contains("hidden") && currentPos) {
-            const entry = state.entries.find((current) => Number(current?.position) === currentPos);
-            if (entry) showDetailView(entry, false);
-            applyFilters();
-            return;
-        }
-
-        applyFilters();
+        if (dom.searchInput) dom.searchInput.value = "";
     };
 
     const renderCard = (entry) => {
@@ -863,7 +774,7 @@
         const position = Number(entry?.position) || 1;
         const commonName = getItemLocalizedName(item);
         const scientificName = item.name || "Taxon desconegut";
-        
+
         // Handle both string (legacy) and array (new ImageObject format)
         let image = CARD_FALLBACK;
         if (item.image) {
@@ -873,23 +784,28 @@
                 image = item.image;
             }
         }
+        const imageAlt = Array.isArray(item.image) && item.image.length > 0 && item.image[0]?.name
+            ? item.image[0].name
+            : commonName;
 
         const scores = getScores(item);
         const isToxic = scores.toxicity >= 3;
         const isLethal = scores.toxicity >= 5;
 
         const cardBorder = isToxic ? "border border-red-200 ring-1 ring-red-100" : "border border-primary/5";
-        const imageStyle = isToxic ? "grayscale" : "";
-        const nameClass = isToxic ? "text-lg font-bold text-red-700" : "text-lg font-bold text-[#111812] group-hover:text-primary transition-colors";
+        const imageWrapperClass = isToxic ? "h-48 overflow-hidden relative grayscale" : "h-48 overflow-hidden relative";
+        const nameClass = isToxic ? "text-lg font-bold text-[#111812]" : "text-lg font-bold text-[#111812] group-hover:text-primary transition-colors";
         const badge = isToxic
             ? `<span class=\"absolute top-3 right-3 ${isLethal ? "bg-red-600" : "bg-red-500"} px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-white shadow-sm\">${isLethal ? "Molt tòxic" : "Tòxic"}</span>`
             : "<span class=\"absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm\">Comestible</span>";
 
-        const imageMarkup = buildCardImageMarkup(image, commonName, `group-hover:scale-105 transition-transform duration-500 ${imageStyle}`);
+        const imageMarkup = generarPictureHTML(image, imageAlt, true, {
+            deferLoading: !state.catalogImagesReady
+        });
 
         return `
             <button type=\"button\" data-pos=\"${position}\" class=\"open-detail text-left block w-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow ${cardBorder} group\">
-                <div class=\"h-48 overflow-hidden relative\">
+                <div class=\"${imageWrapperClass}\">
                     ${imageMarkup}
                     ${isToxic ? "<div class=\"absolute inset-0 bg-red-900/10 group-hover:bg-transparent transition-colors\"></div>" : ""}
                     ${badge}
@@ -932,8 +848,8 @@
 
             // Season filter
             const season = getPropertyValue(item, "Època") || "";
-            const seasonOk = state.selectedSeason === null ||
-                season.toLowerCase().includes(state.selectedSeason.toLowerCase());
+            const seasonOk = state.selectedSeasons.size === 0 ||
+                [...state.selectedSeasons].some(s => season.toLowerCase().includes(s.toLowerCase()));
 
             // Culinary filter
             const culinaryOk = state.minCulinary === null || scores.culinary >= state.minCulinary;
@@ -959,46 +875,60 @@
             });
         }
 
-        if (dom.count) dom.count.textContent = t("speciesCount", state.filteredEntries.length);
+        if (dom.count) dom.count.textContent = formatSpeciesCount(state.filteredEntries.length);
         dom.grid.innerHTML = state.filteredEntries.map((entry) => renderCard(entry)).join("");
     };
 
     const setAudioButtonState = (mode) => {
         if (!dom.audioButton || !dom.audioButtonIcon || !dom.audioButtonText) return;
 
+        const audioLoading = byLang("Carregant àudio...", "Loading audio...");
+        const audioStop = byLang("Atura", "Stop");
+        const audioPlaying = byLang("Reproduint", "Playing");
+        const audioResume = byLang("Reprendre", "Resume");
+        const audioPaused = byLang("En pausa", "Paused");
+        const audioPlay = i18n("audio_play_button", byLang("Escolta", "Listen"));
+        const audioReady = i18n("audio_ready_status", byLang("Preparat", "Ready"));
+
         if (mode === "loading") {
             dom.audioButton.setAttribute("aria-pressed", "false");
-            dom.audioButtonIcon.textContent = "progress_activity";
-            dom.audioButtonText.textContent = t("audioLoading");
-            announceSpeechStatus(t("audioLoading"));
+            dom.audioButtonIcon.textContent = getIconGlyph("progress_activity");
+            dom.audioButtonText.textContent = audioLoading;
+            announceSpeechStatus(audioLoading);
             return;
         }
 
         if (mode === "playing") {
             dom.audioButton.setAttribute("aria-pressed", "true");
-            dom.audioButtonIcon.textContent = "stop";
-            dom.audioButtonText.textContent = t("audioStop");
-            announceSpeechStatus(t("audioPlaying"));
+            dom.audioButtonIcon.textContent = getIconGlyph("stop");
+            dom.audioButtonText.textContent = audioStop;
+            announceSpeechStatus(audioPlaying);
             return;
         }
 
         if (mode === "paused") {
             dom.audioButton.setAttribute("aria-pressed", "true");
-            dom.audioButtonIcon.textContent = "play_arrow";
-            dom.audioButtonText.textContent = t("audioResume");
-            announceSpeechStatus(t("audioPaused"));
+            dom.audioButtonIcon.textContent = getIconGlyph("play_arrow");
+            dom.audioButtonText.textContent = audioResume;
+            announceSpeechStatus(audioPaused);
             return;
         }
 
         dom.audioButton.setAttribute("aria-pressed", "false");
-        dom.audioButtonIcon.textContent = "play_arrow";
-        dom.audioButtonText.textContent = t("audioPlay");
-        announceSpeechStatus(t("audioReady"));
+        dom.audioButtonIcon.textContent = getIconGlyph("play_arrow");
+        dom.audioButtonText.textContent = audioPlay;
+        announceSpeechStatus(audioReady);
     };
 
     const stopSpeech = () => {
         const synth = getSpeechSynthesis();
         if (synth) synth.cancel();
+        if (dom.detailDescriptionAudio) {
+            dom.detailDescriptionAudio.pause();
+            dom.detailDescriptionAudio.currentTime = 0;
+            dom.detailDescriptionAudio.removeAttribute("src");
+            dom.detailDescriptionAudio.load?.();
+        }
         state.speechJobId += 1;
         state.utterance = null;
         state.speechState = "stopped";
@@ -1080,9 +1010,83 @@
         }
     };
 
+    const playLocalAudio = async () => {
+        const audio = dom.detailDescriptionAudio;
+        if (!audio || !state.detailAudioUrl) return;
+
+        state.speechState = "loading";
+        setAudioButtonState("loading");
+
+        audio.pause();
+        audio.currentTime = 0;
+        audio.src = state.detailAudioUrl;
+        audio.load();
+
+        try {
+            await audio.play();
+            state.speechState = "playing";
+            setAudioButtonState("playing");
+        } catch (error) {
+            state.speechState = "stopped";
+            setAudioButtonState("stopped");
+            console.error("Local audio playback error:", error);
+        }
+    };
+
+    const pauseLocalAudio = () => {
+        const audio = dom.detailDescriptionAudio;
+        if (!audio || audio.paused) return;
+
+        audio.pause();
+        state.speechState = "paused";
+        setAudioButtonState("paused");
+    };
+
+    const resumeLocalAudio = async () => {
+        const audio = dom.detailDescriptionAudio;
+        if (!audio || !audio.paused) return;
+
+        try {
+            await audio.play();
+            state.speechState = "playing";
+            setAudioButtonState("playing");
+        } catch (error) {
+            state.speechState = "stopped";
+            setAudioButtonState("stopped");
+            console.error("Local audio resume error:", error);
+        }
+    };
+
     const toggleSpeech = async () => {
         const synth = getSpeechSynthesis();
-        if (!synth || !state.speechText) return;
+        const localAudioAvailable = state.lang === "ca" && Boolean(state.detailAudioUrl) && Boolean(dom.detailDescriptionAudio);
+
+        if (!synth && !localAudioAvailable) return;
+
+        if (localAudioAvailable) {
+            const audio = dom.detailDescriptionAudio;
+            if (!audio) return;
+
+            if (state.speechState === "playing" && !audio.paused) {
+                stopSpeech();
+                return;
+            }
+
+            if (state.speechState === "paused" && audio.paused) {
+                await resumeLocalAudio();
+                return;
+            }
+
+            if (state.speechState === "loading") {
+                stopSpeech();
+                return;
+            }
+
+            await playLocalAudio();
+            return;
+        }
+
+        if (!state.speechText) return;
 
         if (state.speechState === "playing" && synth.speaking) {
             stopSpeech();
@@ -1102,21 +1106,23 @@
         await playSpeech();
     };
 
-    const renderStars = (node, active, activeClass, mutedClass) => {
+    const renderStars = (node, active, activeClass, mutedClass, inactiveGlyph = "star") => {
         if (!node) return;
         let html = "";
         for (let i = 0; i < 5; i += 1) {
             const isActive = i < active;
-            const fill = isActive ? " style=\"font-variation-settings: 'FILL' 1\"" : "";
-            html += `<span class=\"material-symbols-outlined ${isActive ? activeClass : mutedClass} text-[20px]\"${fill}>star</span>`;
+            html += `<span class=\"ui-icon ${isActive ? activeClass : mutedClass} text-[20px]\" aria-hidden=\"true\">${getIconGlyph(isActive ? "star" : inactiveGlyph)}</span>`;
         }
         node.innerHTML = html;
     };
 
     const getItemLocalizedName = (item) => {
-        const fallbackCommonName = Array.isArray(item?.alternateName) && item.alternateName.length > 0
-            ? item.alternateName[0]
-            : item?.name || "Bolet";
+        const alternateName = item?.alternateName;
+        const fallbackCommonName = Array.isArray(alternateName) && alternateName.length > 0
+            ? alternateName[0]
+            : (typeof alternateName === "string" && alternateName.trim() !== ""
+                ? alternateName.trim()
+                : item?.name || "Bolet");
 
         return getLocalizedItemValue(item, "displayName", fallbackCommonName);
     };
@@ -1130,19 +1136,50 @@
     const getItemLocalizedLocation = (item) => getLocalizedItemValue(item, "locationName", item?.contentLocation?.name || "Ubicació no especificada");
 
     const getItemLocalizedRecipe = (item) => {
-        const localizedRecipe = item?.translations?.[state.lang]?.recipe;
-        if (localizedRecipe && typeof localizedRecipe === "object") return localizedRecipe;
-        return item?.subjectOf && item.subjectOf["@type"] === "Recipe" ? item.subjectOf : null;
+        const langFull = String(state.lang || "");
+        const langBase = langFull.split("-")[0];
+        const localizedRecipe = item?.translations?.[langFull]?.recipe || item?.translations?.[langBase]?.recipe;
+        const subjectRecipe = item?.subjectOf && item.subjectOf["@type"] === "Recipe" ? item.subjectOf : null;
+
+        if (localizedRecipe && typeof localizedRecipe === "object") {
+            // Merge localized recipe with subjectOf as fallback for missing fields (e.g., video)
+            if (subjectRecipe) {
+                return Object.assign({}, subjectRecipe, localizedRecipe);
+            }
+            return localizedRecipe;
+        }
+
+        return subjectRecipe;
+    };
+
+    const clearDetailRecipeMedia = () => {
+        if (dom.detailRecipeIframe) {
+            dom.detailRecipeIframe.src = "";
+        }
+
+        if (dom.detailRecipePlayer) {
+            dom.detailRecipePlayer.pause?.();
+            dom.detailRecipePlayer.removeAttribute("src");
+            dom.detailRecipePlayer.load?.();
+            dom.detailRecipePlayer.classList.add("hidden");
+        }
+
+        dom.detailRecipeVideo?.classList.add("hidden");
+        dom.detailRecipeLink?.classList.add("hidden");
+        dom.detailRecipeNoVideo?.classList.add("hidden");
     };
 
     const showCatalogView = (scrollToCatalog = true) => {
         stopSpeech();
+        clearDetailRecipeMedia();
         dom.catalogView?.classList.remove("hidden");
         dom.detailView?.classList.add("hidden");
         dom.sidebar?.classList.remove("hidden");
         dom.landingHero?.classList.remove("hidden");
         dom.gameView?.classList.add("hidden");
         dom.aboutUs?.classList.remove("hidden");
+        dom.pageFooter?.classList.remove("hidden");
+        dom.main?.classList.remove("game-mode");
         if (scrollToCatalog) {
             dom.main?.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -1170,7 +1207,7 @@
 
         if (dom.detailMushroomName) dom.detailMushroomName.textContent = commonName;
         if (dom.detailMushroomScientific) dom.detailMushroomScientific.textContent = scientific;
-        
+
         // Initialize carousel
         if (typeof image === "string") {
             state.currentMushroomImages = [{ contentUrl: image, name: commonName }];
@@ -1181,57 +1218,99 @@
         }
         state.currentImageIndex = 0;
         state.currentMushroomForJSON = item;
+        state.detailHeroImageReady = true;
+        preloadDetailGalleryImages(state.currentMushroomImages);
         updateGalleryDisplay();
         injectJSONLD(item);
 
         if (dom.detailCharacteristics) dom.detailCharacteristics.textContent = description;
-        if (dom.detailHabitat) dom.detailHabitat.textContent = `${t("mushroomTreePrefix")}: ${tree}.`;
-        if (dom.detailSeasonText) dom.detailSeasonText.textContent = `${t("mushroomSeasonPrefix")}: ${season}.`;
+        if (dom.detailHabitat) dom.detailHabitat.textContent = `${i18n("mushroom_tree_prefix", byLang("Arbre associat principal", "Main associated tree"))}: ${tree}.`;
+        if (dom.detailSeasonInlineText) {
+            dom.detailSeasonInlineText.textContent = `${i18n("mushroom_season_prefix", byLang("Època", "Season"))}: ${season}.`;
+        }
+        if (dom.detailSeasonText) dom.detailSeasonText.textContent = `${i18n("mushroom_season_prefix", byLang("Època habitual de recol·lecció", "Typical harvesting season"))}: ${season}.`;
 
         if (dom.detailCulinaryText) {
             dom.detailCulinaryText.textContent = culinaryScore >= 4
-                ? t("mushroomCulinaryHigh")
-                : t("mushroomCulinaryMid");
+                ? i18n("mushroom_culinary_high", byLang("Bolet molt valorat gastronòmicament en receptes tradicionals i modernes.", "A highly valued mushroom in traditional and modern recipes."))
+                : i18n("mushroom_culinary_mid", byLang("Bolet amb valor culinari moderat; convé una identificació correcta abans de cuinar-lo.", "A mushroom with moderate culinary value; correct identification is important before cooking."));
         }
 
         if (dom.detailToxicityText) {
             dom.detailToxicityText.textContent = isToxic
-                ? t("mushroomToxicHigh")
-                : t("mushroomToxicLow");
+                ? i18n("mushroom_toxic_high", byLang("Cal extremar la precaució: possible toxicitat segons preparació i identificació.", "Use extreme caution: possible toxicity depending on preparation and identification."))
+                : i18n("mushroom_toxic_low", byLang("Generalment considerat segur quan està ben identificat.", "Generally considered safe when correctly identified."));
         }
 
         renderStars(dom.detailCulinaryStars, culinaryScore, "text-primary", "text-[#dbe6dd]");
-        renderStars(dom.detailToxicityStars, toxicityScore, isToxic ? "text-red-500" : "text-red-200", "text-red-200");
-
-        if (dom.detailExtra1) dom.detailExtra1.textContent = season;
-        if (dom.detailExtra2) dom.detailExtra2.textContent = tree;
+        renderStars(dom.detailToxicityStars, toxicityScore, isToxic ? "text-red-500" : "text-red-200", "text-red-200", "star_outline");
 
         const recipe = getItemLocalizedRecipe(item);
         const ingredients = Array.isArray(recipe?.recipeIngredient) ? recipe.recipeIngredient : [];
         const videoUrl = recipe?.video?.contentUrl || "#";
 
-        if (dom.detailExtra3) {
-            dom.detailExtra3.textContent = ingredients.length > 0
-                ? ingredients.slice(0, 3).join(" + ")
-                : t("mushroomResponsible");
-        }
+        state.detailAudioUrl = state.lang === "ca"
+            ? (item?.audio?.contentUrl || item?.translations?.ca?.audio?.contentUrl || "")
+            : "";
 
         if (dom.detailRecipeTitle) {
             dom.detailRecipeTitle.textContent = recipe?.name
-                ? t("recipeVideo", recipe.name)
-                : t("recipeVideoDefault");
+                ? byLang(`Vídeo: ${recipe.name}`, `Video: ${recipe.name}`)
+                : byLang("Vídeo: preparació recomanada", "Video: recommended preparation");
         }
 
         if (dom.detailRecipeDescription) {
             dom.detailRecipeDescription.textContent = ingredients.length > 0
-                ? `${t("recipeIngredientsPrefix")}: ${ingredients.join(", ")}.`
-                : t("mushroomNoRecipe");
+                ? `${i18n("recipe_ingredients_prefix", byLang("Ingredients destacats", "Highlighted ingredients"))}: ${ingredients.join(", ")}.`
+                : i18n("mushroom_no_recipe", byLang("No hi ha recepta associada per aquest bolet.", "No recipe associated with this mushroom."));
         }
 
         if (dom.detailRecipeLink) {
-            dom.detailRecipeLink.href = videoUrl;
-            dom.detailRecipeLink.classList.toggle("pointer-events-none", videoUrl === "#");
-            dom.detailRecipeLink.classList.toggle("opacity-50", videoUrl === "#");
+            const ytMatch = videoUrl.match(/(?:youtube\.com\/(?:shorts\/|embed\/|watch\?v=)|youtu\.be\/)([^&?\s]+)/);
+            const ytId = ytMatch ? ytMatch[1] : null;
+            const isLocalVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(videoUrl);
+            const hasValidVideo = ytId !== null || isLocalVideo;
+
+            if (ytId !== null) {
+                if (dom.detailRecipePlayer) {
+                    dom.detailRecipePlayer.pause?.();
+                    dom.detailRecipePlayer.removeAttribute("src");
+                    dom.detailRecipePlayer.load?.();
+                    dom.detailRecipePlayer.classList.add("hidden");
+                }
+                if (dom.detailRecipeIframe) {
+                    dom.detailRecipeIframe.src = `https://www.youtube.com/embed/${ytId}`;
+                    dom.detailRecipeIframe.title = recipe?.video?.name || "Vídeo recepta";
+                }
+                dom.detailRecipeVideo?.classList.remove("hidden");
+                dom.detailRecipeLink.classList.add("hidden");
+                dom.detailRecipeNoVideo?.classList.add("hidden");
+            } else if (isLocalVideo) {
+                if (dom.detailRecipeIframe) dom.detailRecipeIframe.src = "";
+                dom.detailRecipeVideo?.classList.add("hidden");
+                dom.detailRecipeLink.classList.add("hidden");
+                dom.detailRecipeNoVideo?.classList.add("hidden");
+                if (dom.detailRecipePlayer) {
+                    dom.detailRecipePlayer.src = videoUrl;
+                    dom.detailRecipePlayer.title = recipe?.video?.name || "Vídeo recepta";
+                    dom.detailRecipePlayer.setAttribute("aria-label", recipe?.video?.name || "Vídeo recepta");
+                    dom.detailRecipePlayer.classList.remove("hidden");
+                }
+            } else {
+                if (dom.detailRecipeIframe) dom.detailRecipeIframe.src = "";
+                if (dom.detailRecipePlayer) {
+                    dom.detailRecipePlayer.pause?.();
+                    dom.detailRecipePlayer.removeAttribute("src");
+                    dom.detailRecipePlayer.load?.();
+                    dom.detailRecipePlayer.classList.add("hidden");
+                }
+                dom.detailRecipeVideo?.classList.add("hidden");
+                dom.detailRecipeLink.classList.add("hidden");
+                if (dom.detailRecipeNoVideo) {
+                    dom.detailRecipeNoVideo.textContent = i18n("recipe_no_video", byLang("No s'ha trobat cap recepta per a aquest bolet.", "No recipe was found for this mushroom."));
+                    dom.detailRecipeNoVideo.classList.remove("hidden");
+                }
+            }
         }
 
         // Mostrar ubicación geográfica
@@ -1241,7 +1320,7 @@
         const longitude = contentLocation?.geo?.longitude;
 
         if (dom.detailLocationName) {
-            dom.detailLocationName.textContent = `${t("mushroomLocationPrefix")} ${locationName}.`;
+            dom.detailLocationName.textContent = `${i18n("mushroom_location_prefix", byLang("Aquesta espècie es pot trobar a", "This species can be found in"))} ${locationName}.`;
         }
 
         // Inicializar mapa de detalle si hay coordenadas
@@ -1251,7 +1330,7 @@
                 initDetailMap(latitude, longitude, locationName, commonName);
             }, 100);
         } else if (dom.detailMap) {
-            dom.detailMap.innerHTML = `<p class="text-sm text-[#618968] p-4">${t("mushroomNoCoords")}</p>`;
+            dom.detailMap.innerHTML = `<p class="text-sm text-[#618968] p-4">${i18n("mushroom_no_coords", byLang("No hi ha coordenades disponibles per aquest bolet.", "No coordinates available for this mushroom."))}</p>`;
         }
 
         state.speechText = `${item.name || commonName}. ${description}`.trim();
@@ -1315,33 +1394,12 @@
         }
     });
 
-    // Header transparency on scroll — transparent at top, solid on scroll
-    const headerBar = document.getElementById("headerBar");
-    const headerTextElements = document.querySelectorAll(".header-text-light");
-    window.addEventListener("scroll", () => {
-        if (!headerBar) return;
-        if (window.scrollY > 50) {
-            headerBar.className = "fixed top-0 left-0 right-0 z-50 w-full bg-white backdrop-blur-md border-b border-primary/10 px-4 md:px-10 py-2 flex items-center justify-between transition-all duration-300";
-            headerTextElements.forEach(el => {
-                if (el.id === "brand-title") el.className = "text-xl font-extrabold tracking-tight text-[#111812]";
-                else if (el.id === "brand-subtitle") el.className = "text-[10px] uppercase tracking-widest text-[#618968] font-bold";
-                else if (el.id === "nav-catalog") el.className = "text-sm font-semibold text-[#111812] hover:text-primary transition-colors";
-                else if (el.id === "open-map-btn-header") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-[#618968] hover:text-primary transition-colors";
-                else if (el.id === "nav-game") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-[#618968] hover:text-primary transition-colors";
-            });
-        } else {
-            headerBar.className = "fixed top-0 left-0 right-0 z-50 w-full bg-transparent backdrop-blur-md border-none px-4 md:px-10 py-2 flex items-center justify-between transition-all duration-300";
-            headerTextElements.forEach(el => {
-                if (el.id === "brand-title") el.className = "text-xl font-extrabold tracking-tight text-white/90 header-text-light";
-                else if (el.id === "brand-subtitle") el.className = "text-[10px] uppercase tracking-widest text-white/60 font-bold header-text-light";
-                else if (el.id === "nav-catalog") el.className = "text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
-                else if (el.id === "open-map-btn-header") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
-                else if (el.id === "nav-game") el.className = "bg-transparent border-0 p-0 appearance-none text-sm font-semibold text-white/80 hover:text-white transition-colors header-text-light";
-            });
-        }
-    });
-
     dom.audioButton?.addEventListener("click", toggleSpeech);
+
+    dom.detailDescriptionAudio?.addEventListener("ended", () => {
+        state.speechState = "stopped";
+        setAudioButtonState("stopped");
+    });
 
     dom.detailHeroImg?.addEventListener("error", () => {
         if (!dom.detailHeroImg) return;
@@ -1351,13 +1409,68 @@
         if (dom.detailHeroSourceWebp) dom.detailHeroSourceWebp.srcset = "";
     });
 
+    const unlockDeferredImages = () => {
+        unlockDetailHeroImages();
+        unlockCatalogImages();
+    };
+
+    window.addEventListener("pointermove", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("pointerdown", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("touchstart", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("touchmove", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("wheel", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("scroll", unlockDeferredImages, { once: true, passive: true, capture: true });
+    window.addEventListener("keydown", unlockDeferredImages, { once: true, capture: true });
+
     dom.searchInput?.addEventListener("input", (event) => {
         state.searchQuery = event.target.value;
         applyFilters();
     });
 
-    dom.languageCaButton?.addEventListener("click", () => setLanguage("ca"));
-    dom.languageEnButton?.addEventListener("click", () => setLanguage("en"));
+    const updateLanguageButtonsUI = () => {
+        if (!dom.languageCaButton || !dom.languageEnButton) return;
+        const activeButtonClass = "px-3 py-1 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-sm";
+        const inactiveButtonClass = "px-3 py-1 rounded-full text-xs font-bold transition-all text-[#618968]";
+        dom.languageCaButton.className = state.lang === "ca" ? activeButtonClass : inactiveButtonClass;
+        dom.languageEnButton.className = state.lang === "en" ? activeButtonClass : inactiveButtonClass;
+        dom.languageCaButton.setAttribute("aria-pressed", state.lang === "ca" ? "true" : "false");
+        dom.languageEnButton.setAttribute("aria-pressed", state.lang === "en" ? "true" : "false");
+    };
+
+    const rerenderDynamicForLanguage = () => {
+        updateLanguageButtonsUI();
+        setFilterButtonsUI();
+        applyFilters();
+
+        if (dom.detailView && !dom.detailView.classList.contains("hidden") && state.selectedEntry) {
+            showDetailView(state.selectedEntry, false);
+        }
+
+        if (dom.gameView && !dom.gameView.classList.contains("hidden")) {
+            if (dom.gameQuestion && !dom.gameQuestion.classList.contains("hidden")) {
+                renderGameQuestion();
+            } else if (dom.gameResults && !dom.gameResults.classList.contains("hidden")) {
+                showGameResults();
+            }
+        }
+
+        if (state.map && dom.mapModal && !dom.mapModal.classList.contains("hidden")) {
+            loadAllMushroomsOnMap();
+        }
+    };
+
+    document.addEventListener("i18n-change", (event) => {
+        const nextLang = event?.detail?.lang === "en" ? "en" : "ca";
+        if (state.lang === nextLang) return;
+        state.lang = nextLang;
+        rerenderDynamicForLanguage();
+    });
+
+    updateLanguageButtonsUI();
+    upgradeMaterialIcons(document);
+
+    dom.languageCaButton?.addEventListener("click", () => window.I18nManager?.setLanguage("ca"));
+    dom.languageEnButton?.addEventListener("click", () => window.I18nManager?.setLanguage("en"));
 
     dom.seasonFilter?.addEventListener("click", (event) => {
         const target = event.target;
@@ -1365,9 +1478,12 @@
         const button = target.closest("button[data-season]");
         if (!button) return;
         const selectedSeason = button.dataset.season;
-        state.selectedSeason = state.selectedSeason === selectedSeason ? null : selectedSeason;
+        if (state.selectedSeasons.has(selectedSeason)) {
+            state.selectedSeasons.delete(selectedSeason);
+        } else {
+            state.selectedSeasons.add(selectedSeason);
+        }
         setFilterButtonsUI();
-        applyFilters();
     });
 
     dom.culinaryFilter?.addEventListener("click", (event) => {
@@ -1377,10 +1493,42 @@
         if (!button) return;
         const selectedScore = clampScore(button.dataset.score);
         state.minCulinary = state.minCulinary === selectedScore ? null : selectedScore;
+        state.hoverCulinary = null;
         // Exclusive filter: reset toxicity when setting culinary
         if (state.minCulinary !== null) state.maxToxicity = null;
         setFilterButtonsUI();
-        applyFilters();
+    });
+
+    dom.culinaryFilter?.addEventListener("mouseover", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("button[data-score]");
+        if (!button) return;
+        state.hoverCulinary = clampScore(button.dataset.score);
+        setFilterButtonsUI();
+    });
+
+    dom.culinaryFilter?.addEventListener("mouseleave", () => {
+        if (state.hoverCulinary === null) return;
+        state.hoverCulinary = null;
+        setFilterButtonsUI();
+    });
+
+    dom.culinaryFilter?.addEventListener("focusin", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("button[data-score]");
+        if (!button) return;
+        state.hoverCulinary = clampScore(button.dataset.score);
+        setFilterButtonsUI();
+    });
+
+    dom.culinaryFilter?.addEventListener("focusout", (event) => {
+        const nextTarget = event.relatedTarget;
+        if (nextTarget instanceof Node && dom.culinaryFilter?.contains(nextTarget)) return;
+        if (state.hoverCulinary === null) return;
+        state.hoverCulinary = null;
+        setFilterButtonsUI();
     });
 
     dom.toxicityFilter?.addEventListener("click", (event) => {
@@ -1390,22 +1538,48 @@
         if (!button) return;
         const selectedScore = clampScore(button.dataset.score);
         state.maxToxicity = state.maxToxicity === selectedScore ? null : selectedScore;
+        state.hoverToxicity = null;
         // Exclusive filter: reset culinary when setting toxicity
         if (state.maxToxicity !== null) state.minCulinary = null;
         setFilterButtonsUI();
-        applyFilters();
+    });
+
+    dom.toxicityFilter?.addEventListener("mouseover", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("button[data-score]");
+        if (!button) return;
+        state.hoverToxicity = clampScore(button.dataset.score);
+        setFilterButtonsUI();
+    });
+
+    dom.toxicityFilter?.addEventListener("mouseleave", () => {
+        if (state.hoverToxicity === null) return;
+        state.hoverToxicity = null;
+        setFilterButtonsUI();
+    });
+
+    dom.toxicityFilter?.addEventListener("focusin", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("button[data-score]");
+        if (!button) return;
+        state.hoverToxicity = clampScore(button.dataset.score);
+        setFilterButtonsUI();
+    });
+
+    dom.toxicityFilter?.addEventListener("focusout", (event) => {
+        const nextTarget = event.relatedTarget;
+        if (nextTarget instanceof Node && dom.toxicityFilter?.contains(nextTarget)) return;
+        if (state.hoverToxicity === null) return;
+        state.hoverToxicity = null;
+        setFilterButtonsUI();
     });
 
     dom.applyFiltersButton?.addEventListener("click", applyFilters);
 
     dom.clearFiltersButton?.addEventListener("click", () => {
-        state.searchQuery = "";
-        if (dom.searchInput) dom.searchInput.value = "";
-        state.selectedSeason = null;
-        state.minCulinary = null;
-        state.maxToxicity = null;
-        state.culinarySortOrder = null;
-        state.toxicitySortOrder = null;
+        resetCatalogFilters();
         setFilterButtonsUI();
         updateSortButtonsUI();
         applyFilters();
@@ -1478,10 +1652,9 @@
             const list = graph.find((node) => node?.["@type"] === "ItemList");
             const elements = Array.isArray(list?.itemListElement) ? list.itemListElement : [];
 
+            resetCatalogFilters();
             state.entries = elements;
-            applyLanguage();
-            setFilterButtonsUI();
-            applyFilters();
+            rerenderDynamicForLanguage();
 
             const pos = Number(new URLSearchParams(window.location.search).get("pos"));
             if (pos) {
@@ -1494,12 +1667,56 @@
         .catch((err) => {
             console.error("Error carregant dades:", err);
             dom.grid.innerHTML = "";
-            if (dom.count) dom.count.textContent = "0 espècies trobades";
+            if (dom.count) dom.count.textContent = formatSpeciesCount(0);
         });
 
     // ============================================
     // MAP FUNCTIONALITY (Geolocation API + Leaflet)
     // ============================================
+
+    const loadLeafletAssets = (base = "https://unpkg.com/leaflet@1.9.4/dist") => {
+        if (typeof window === "undefined") return Promise.reject(new Error("No window"));
+        if (window.L) return Promise.resolve();
+        if (window._leafletLoading) return window._leafletLoading;
+
+        window._leafletLoading = new Promise((resolve, reject) => {
+            const cssHref = `${base}/leaflet.css`;
+            const jsSrc = `${base}/leaflet.js`;
+
+            // Preload stylesheet so it doesn't block first render, then make it a stylesheet when loaded
+            const link = document.createElement("link");
+            link.rel = "preload";
+            link.as = "style";
+            link.href = cssHref;
+            link.crossOrigin = "";
+            link.onload = () => {
+                try { link.rel = "stylesheet"; } catch (e) { /* ignore */ }
+            };
+            link.onerror = () => {
+                // still attempt script load even if CSS preload fails
+                console.warn("Leaflet CSS preload failed");
+            };
+            document.head.appendChild(link);
+
+            // Load script async
+            const script = document.createElement("script");
+            script.src = jsSrc;
+            script.async = true;
+            script.onload = () => {
+                // give browser a tick to apply stylesheet
+                setTimeout(() => {
+                    resolve();
+                }, 50);
+            };
+            script.onerror = () => reject(new Error("Leaflet JS failed to load"));
+            document.head.appendChild(script);
+        }).finally(() => {
+            // cleanup loader flag after settled
+            window._leafletLoading = null;
+        });
+
+        return window._leafletLoading;
+    };
 
     const initMap = () => {
         if (!dom.mapContainer || typeof L === "undefined") return;
@@ -1515,7 +1732,91 @@
 
         // Cargar y mostrar todos los bolets
         loadAllMushroomsOnMap();
+
+        carregarPlantesAlMapa(state.map).catch((error) => {
+            console.error("Error carregant plantes al mapa:", error);
+        });
     };
+
+    const carregarPlantesAlMapa = async (mapa) => {
+        if (!mapa || typeof L === "undefined") return [];
+
+        const remoteBaseUrl = "https://www.florabalear.online";
+        const plantesData = await fetchJson(`${remoteBaseUrl}/data/plants.json`, null);
+        if (!plantesData) throw new Error("No s'ha pogut carregar plants.json");
+
+        const graph = Array.isArray(plantesData?.["@graph"]) ? plantesData["@graph"] : [];
+        const list = plantesData?.["@type"] === "ItemList"
+            ? plantesData
+            : graph.find((node) => node?.["@type"] === "ItemList");
+        const elements = Array.isArray(list?.itemListElement) ? list.itemListElement : [];
+
+        state.plantMarkers.forEach((marker) => marker.remove());
+        state.plantMarkers = [];
+
+        const getPlantMarkerIcon = () => L.divIcon({
+            className: "custom-marker",
+            html: `<div style="background-color: #8b5cf6; width: 25px; height: 25px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; color:white; font-size:14px; line-height:1;">${getIconGlyph("eco")}</div>`,
+            iconSize: [25, 25],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -12]
+        });
+
+        elements.forEach((entry) => {
+            const item = entry.item;
+            if (!item) return;
+
+            const coordinatesProperty = Array.isArray(item?.additionalProperty)
+                ? item.additionalProperty.find((prop) => String(prop?.name || "").toLowerCase() === "coordenades")
+                : null;
+            const coordinatesList = Array.isArray(coordinatesProperty?.value)
+                ? coordinatesProperty.value
+                : [];
+
+            if (coordinatesList.length === 0) return;
+
+            const commonName = getItemLocalizedName(item);
+            const scientific = item.name || "Taxon";
+            const locationName = getItemLocalizedLocation(item);
+            coordinatesList.forEach((coordinates) => {
+                const latitude = Number(coordinates?.latitude);
+                const longitude = Number(coordinates?.longitude);
+                if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return;
+
+                const coordinateName = coordinates?.name || locationName;
+
+                const popupContent = `
+                <div style="min-width: 250px;">
+                    <h3 style="font-size: 1.1rem; font-weight: bold; margin: 0 0 4px 0; color: #111812;">
+                        ${commonName}
+                    </h3>
+                    <p style="font-size: 0.85rem; font-style: italic; color: var(--text-muted); margin: 0 0 8px 0;">
+                        ${scientific}
+                    </p>
+                    <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
+                        <strong>📍 ${byLang("Ubicació", "Location") }:</strong> ${escapeHtml(coordinateName)}
+                    </p>
+                    <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
+                        <strong>Lat:</strong> ${escapeHtml(Number(latitude).toFixed(6))} <strong>Lon:</strong> ${escapeHtml(Number(longitude).toFixed(6))}
+                    </p>
+                    <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
+                        <a href="https://www.florabalear.online" target="_blank" rel="noopener noreferrer">Més info a florabalear.online</a>
+                    </p>
+                </div>
+                `;
+
+                const marker = L.marker([latitude, longitude], { icon: getPlantMarkerIcon() })
+                    .addTo(mapa)
+                    .bindPopup(popupContent, { maxWidth: 300 });
+
+                state.plantMarkers.push(marker);
+            });
+        });
+
+        return state.plantMarkers;
+    };
+
+    window.carregarPlantesAlMapa = carregarPlantesAlMapa;
 
     const initDetailMap = (latitude, longitude, locationName, mushroomName) => {
         if (!dom.detailMap || typeof L === "undefined") return;
@@ -1556,7 +1857,7 @@
             const color = toxicity >= 4 ? '#ef4444' : toxicity >= 3 ? '#f97316' : '#11d432';
             return L.divIcon({
                 className: 'custom-marker',
-                html: `<div style="background-color: ${color}; width: 25px; height: 25px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>`,
+                html: `<div style="background-color: ${color}; width: 25px; height: 25px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; color:white; font-size:14px; line-height:1;">${getIconGlyph("mushroom")}</div>`,
                 iconSize: [25, 25],
                 iconAnchor: [12, 12],
                 popupAnchor: [0, -12]
@@ -1574,38 +1875,52 @@
 
             if (!latitude || !longitude) return;
 
-            const commonName = Array.isArray(item.alternateName) && item.alternateName.length > 0
-                ? item.alternateName[0]
-                : item.name || "Bolet";
+            const commonName = getItemLocalizedName(item);
             const scientific = item.name || "Taxon";
-            const locationName = contentLocation?.name || "Ubicació desconeguda";
-            const toxicity = getPropertyValue(item, "Toxicitat (1-5)") || 1;
-            const culinary = getPropertyValue(item, "Valor culinari (1-5)") || 1;
-            const season = getPropertyValue(item, "Època") || "No especificada";
-            const image = item.image || CARD_FALLBACK;
+            const locationName = getItemLocalizedLocation(item);
+            const toxicity = clampScore(getPropertyValue(item, "Toxicitat (1-5)"));
+            const culinary = clampScore(getPropertyValue(item, "Valor culinari (1-5)"));
+            const season = getItemLocalizedSeason(item);
+            let image = CARD_FALLBACK;
+            if (Array.isArray(item.image) && item.image.length > 0) {
+                image = item.image[0]?.contentUrl || CARD_FALLBACK;
+            } else if (typeof item.image === "string") {
+                image = item.image;
+            }
+
+            const culinaryLabel = byLang("Culinari", "Culinary");
+            const toxicityLabel = byLang("Toxicitat", "Toxicity");
+            const seasonLabel = byLang("Temporada", "Season");
+            const locationPin = byLang("Ubicació", "Location");
 
             // Crear popup con información
+            const imageBase = image.replace(/\.[^./]+$/, "");
             const popupContent = `
                 <div style="min-width: 250px;">
-                    <img src="${image}" alt="${commonName}" 
-                         style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" />
+                    <picture>
+                        <source type="image/avif" srcset="${imageBase}-mitja.avif" />
+                        <source type="image/webp" srcset="${imageBase}-mitja.webp" />
+                        <img src="${imageBase}-mitja.jpg" alt="${escapeHtml(commonName)}"
+                             style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;"
+                             onerror="this.onerror=null;this.src='${CARD_FALLBACK}'" />
+                    </picture>
                     <h3 style="font-size: 1.1rem; font-weight: bold; margin: 0 0 4px 0; color: #111812;">
                         ${commonName}
                     </h3>
-                    <p style="font-size: 0.85rem; font-style: italic; color: #618968; margin: 0 0 8px 0;">
+                    <p style="font-size: 0.85rem; font-style: italic; color: var(--text-muted); margin: 0 0 8px 0;">
                         ${scientific}
                     </p>
-                    <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
-                        <strong>📍</strong> ${locationName}
+                    <p style="font-size: 0.85rem; margin: 4px 0; color: var(--text-soft);">
+                        <strong>📍 ${locationPin}:</strong> ${locationName}
                     </p>
-                    <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
-                        <strong>🍴</strong> Culinari: ${culinary}/5
+                    <p style="font-size: 0.85rem; margin: 4px 0; color: var(--text-soft);">
+                        <strong>🍴 ${culinaryLabel}:</strong> ${culinary}/5
                     </p>
                     <p style="font-size: 0.85rem; margin: 4px 0; color: ${toxicity >= 3 ? '#dc2626' : '#4a5f4d'};">
-                        <strong>☠️</strong> Toxicitat: ${toxicity}/5
+                        <strong>☠️ ${toxicityLabel}:</strong> ${toxicity}/5
                     </p>
                     <p style="font-size: 0.85rem; margin: 4px 0; color: #4a5f4d;">
-                        <strong>📅</strong> ${season}
+                        <strong>📅 ${seasonLabel}:</strong> ${season}
                     </p>
                 </div>
             `;
@@ -1621,7 +1936,10 @@
 
     const getUserLocation = () => {
         if (!navigator.geolocation) {
-            alert("El teu navegador no suporta geolocalització. Prova amb un navegador modern com Chrome, Firefox o Safari.");
+            alert(byLang(
+                "El teu navegador no suporta geolocalització. Prova amb un navegador modern com Chrome, Firefox o Safari.",
+                "Your browser does not support geolocation. Try a modern browser such as Chrome, Firefox, or Safari."
+            ));
             return;
         }
 
@@ -1631,7 +1949,7 @@
         if (dom.getLocationBtn) {
             const originalHTML = dom.getLocationBtn.innerHTML;
             dom.getLocationBtn.disabled = true;
-            dom.getLocationBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span><span>Obtenint ubicació...</span>';
+            dom.getLocationBtn.innerHTML = `<span class="ui-icon animate-spin" aria-hidden="true">${getIconGlyph("progress_activity")}</span><span>${byLang("Obtenint ubicació...", "Getting location...")}</span>`;
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -1652,10 +1970,10 @@
                         .addTo(state.map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>📍 La teva ubicació</strong><br>
+                                <strong>📍 ${byLang("La teva ubicació", "Your location")}</strong><br>
                                 <small>Lat: ${lat.toFixed(5)}</small><br>
                                 <small>Lon: ${lon.toFixed(5)}</small><br>
-                                <small class="text-gray-500">Precisió: ${Math.round(accuracy)}m</small>
+                                <small class="text-gray-500">${byLang("Precisió", "Accuracy")}: ${Math.round(accuracy)}m</small>
                             </div>
                         `)
                         .openPopup();
@@ -1677,20 +1995,23 @@
                     dom.getLocationBtn.disabled = false;
                     dom.getLocationBtn.innerHTML = originalHTML;
 
-                    let message = "No s'ha pogut obtenir la teva ubicació. ";
+                    let message = byLang("No s'ha pogut obtenir la teva ubicació. ", "Could not get your location. ");
 
                     switch (error.code) {
                         case error.PERMISSION_DENIED:
-                            message += "Has denegat el permís de geolocalització. Pots habilitar-lo des de la configuració del navegador.";
+                            message += byLang(
+                                "Has denegat el permís de geolocalització. Pots habilitar-lo des de la configuració del navegador.",
+                                "You denied geolocation permission. You can enable it in your browser settings."
+                            );
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            message += "La informació de la ubicació no està disponible.";
+                            message += byLang("La informació de la ubicació no està disponible.", "Location information is unavailable.");
                             break;
                         case error.TIMEOUT:
-                            message += "La sol·licitud ha caducat. Torna-ho a intentar.";
+                            message += byLang("La sol·licitud ha caducat. Torna-ho a intentar.", "The request timed out. Please try again.");
                             break;
                         default:
-                            message += "S'ha produït un error desconegut.";
+                            message += byLang("S'ha produït un error desconegut.", "An unknown error occurred.");
                     }
 
                     alert(message);
@@ -1705,24 +2026,31 @@
         }
     };
 
-    const openMapModal = () => {
-        if (dom.mapModal) {
-            dom.mapModal.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
+    const openMapModal = async () => {
+        if (!dom.mapModal) return;
 
-            // Inicializar mapa si no existe
-            if (!state.map) {
-                // Pequeño delay para que el modal se renderice
-                setTimeout(() => {
-                    initMap();
-                    if (state.map) state.map.invalidateSize();
-                }, 100);
-            } else {
-                // Recalcular tamaño si ya existe
-                setTimeout(() => {
-                    if (state.map) state.map.invalidateSize();
-                }, 100);
-            }
+        dom.mapModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+
+        try {
+            await loadLeafletAssets();
+        } catch (err) {
+            console.error("Error carregant recursos de Leaflet:", err);
+            // proceed gracefully; initMap will no-op if L is undefined
+        }
+
+        // Inicializar mapa si no existe
+        if (!state.map) {
+            // Pequeño delay para que el modal se renderice
+            setTimeout(() => {
+                initMap();
+                if (state.map) state.map.invalidateSize();
+            }, 100);
+        } else {
+            // Recalcular tamaño si ya existe
+            setTimeout(() => {
+                if (state.map) state.map.invalidateSize();
+            }, 100);
         }
     };
 
@@ -1792,11 +2120,14 @@
         dom.detailView?.classList.add("hidden");
         dom.sidebar?.classList.add("hidden");
         dom.landingHero?.classList.add("hidden");
+        dom.aboutUs?.classList.add("hidden");
+        dom.pageFooter?.classList.add("hidden");
         dom.gameView?.classList.remove("hidden");
         dom.gameIntro?.classList.remove("hidden");
         dom.gameQuestion?.classList.add("hidden");
         dom.gameResults?.classList.add("hidden");
-        dom.main?.scrollIntoView({ behavior: "smooth", block: "start" });
+        dom.main?.classList.add("game-mode");
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
         const url = new URL(window.location.href);
         url.searchParams.set("view", "game");
@@ -1822,11 +2153,11 @@
         const pct = Math.round(((current - 1) / total) * 100);
 
         // Progress
-        if (dom.gameQuestionCounter) dom.gameQuestionCounter.textContent = t("gameQuestionCounter", current, total);
+        if (dom.gameQuestionCounter) dom.gameQuestionCounter.textContent = formatGameQuestionCounter(current, total);
         if (dom.gameProgressPct) dom.gameProgressPct.textContent = `${pct}%`;
         if (dom.gameProgressBar) dom.gameProgressBar.style.width = `${pct}%`;
         if (dom.gameProgressBarWrap) dom.gameProgressBarWrap.setAttribute("aria-valuenow", pct);
-        if (dom.gameScoreDisplay) dom.gameScoreDisplay.textContent = t("gameScoreDisplay", state.gameScore, state.gameCurrentIndex);
+        if (dom.gameScoreDisplay) dom.gameScoreDisplay.textContent = formatGameScoreDisplay(state.gameScore, state.gameCurrentIndex);
 
         // Question text
         if (dom.gameQuestionText) dom.gameQuestionText.textContent = getQuestionText(question);
@@ -1856,7 +2187,7 @@
                             data-key="${key}"
                             class="game-option group flex items-center justify-between w-full px-5 py-4 bg-white border-2 border-[#dbe6dd] rounded-xl hover:border-primary/60 hover:bg-primary/5 transition-all active:scale-[0.98] text-left">
                             <span class="text-base font-semibold text-[#111812] group-hover:text-primary transition-colors">${label}</span>
-                            <span class="material-symbols-outlined text-[#dbe6dd] group-hover:text-primary transition-colors text-lg flex-shrink-0 ml-2">arrow_forward_ios</span>
+                            <span class="ui-icon text-[#dbe6dd] group-hover:text-primary transition-colors text-lg flex-shrink-0 ml-2" aria-hidden="true">${getIconGlyph("arrow_forward_ios")}</span>
                         </button>
                     `;
                 })
@@ -1866,9 +2197,12 @@
         // Hide feedback and next button
         if (dom.gameFeedback) dom.gameFeedback.classList.add("hidden");
         if (dom.gameNextBtn) dom.gameNextBtn.classList.add("hidden");
+
+        startQuestionTimer();
     };
 
     const handleGameAnswer = (selectedKey) => {
+        stopQuestionTimer();
         if (state.gameAnswered) return;
         state.gameAnswered = true;
 
@@ -1880,7 +2214,7 @@
 
         // Update score display
         if (dom.gameScoreDisplay) {
-            dom.gameScoreDisplay.textContent = t("gameScoreDisplay", state.gameScore, state.gameCurrentIndex + 1);
+            dom.gameScoreDisplay.textContent = formatGameScoreDisplay(state.gameScore, state.gameCurrentIndex + 1);
         }
 
         // Style answer buttons
@@ -1893,23 +2227,21 @@
                     "hover:border-primary/60", "hover:bg-primary/5",
                     "active:scale-[0.98]", "border-[#dbe6dd]"
                 );
-                const icon = btn.querySelector(".material-symbols-outlined");
+                const icon = btn.querySelector(".ui-icon");
 
                 if (key === correctKey) {
                     btn.classList.add("border-primary", "bg-primary/10");
                     btn.querySelector("span:first-child").classList.add("text-primary");
                     if (icon) {
-                        icon.textContent = "check_circle";
+                        icon.textContent = getIconGlyph("check_circle");
                         icon.classList.add("text-primary");
-                        icon.style.fontVariationSettings = "'FILL' 1";
                     }
                 } else if (key === selectedKey && !isCorrect) {
                     btn.classList.add("border-red-400", "bg-red-50");
                     btn.querySelector("span:first-child").classList.add("text-red-600");
                     if (icon) {
-                        icon.textContent = "cancel";
+                        icon.textContent = getIconGlyph("cancel");
                         icon.classList.add("text-red-500");
-                        icon.style.fontVariationSettings = "'FILL' 1";
                     }
                 } else {
                     btn.classList.add("opacity-50");
@@ -1924,15 +2256,15 @@
 
             if (isCorrect) {
                 dom.gameFeedback.classList.add("border-primary", "bg-primary/5");
-                dom.gameFeedbackIcon.textContent = "check_circle";
+                dom.gameFeedbackIcon.textContent = getIconGlyph("check_circle");
                 dom.gameFeedbackIcon.classList.add("text-primary");
-                dom.gameFeedbackTitle.textContent = t("gameFeedbackCorrect");
+                dom.gameFeedbackTitle.textContent = byLang("Correcte!", "Correct!");
                 dom.gameFeedbackTitle.className = "font-extrabold text-base mb-1 text-primary";
             } else {
                 dom.gameFeedback.classList.add("border-red-300", "bg-red-50");
-                dom.gameFeedbackIcon.textContent = "cancel";
+                dom.gameFeedbackIcon.textContent = getIconGlyph("cancel");
                 dom.gameFeedbackIcon.classList.add("text-red-500");
-                dom.gameFeedbackTitle.textContent = t("gameFeedbackWrong");
+                dom.gameFeedbackTitle.textContent = byLang("Incorrecte", "Incorrect");
                 dom.gameFeedbackTitle.className = "font-extrabold text-base mb-1 text-red-600";
             }
 
@@ -1942,12 +2274,15 @@
         // Next/finish button
         if (dom.gameNextBtn && dom.gameNextLabel) {
             const isLast = state.gameCurrentIndex === state.gameQuestions.length - 1;
-            dom.gameNextLabel.textContent = isLast ? t("gameLastLabel") : t("gameNextLabel");
+            dom.gameNextLabel.textContent = isLast
+                ? byLang("Veure resultats", "See results")
+                : i18n("game_next_button", byLang("Següent pregunta", "Next question"));
             dom.gameNextBtn.classList.remove("hidden");
         }
     };
 
     const showGameResults = () => {
+        stopQuestionTimer();
         dom.gameQuestion?.classList.add("hidden");
         if (dom.gameResults) {
             dom.gameResults.classList.remove("hidden");
@@ -1975,10 +2310,10 @@
         if (dom.gameFinalPct) dom.gameFinalPct.textContent = `${pct}%`;
         if (dom.gameCorrectCount) dom.gameCorrectCount.textContent = String(score);
         if (dom.gameWrongCount) dom.gameWrongCount.textContent = String(wrong);
-        if (dom.gameCorrectLabel) dom.gameCorrectLabel.textContent = t("gameCorrectLabel");
-        if (dom.gameWrongLabel) dom.gameWrongLabel.textContent = t("gameWrongLabel");
-        if (dom.gameReplayLabel) dom.gameReplayLabel.textContent = t("gameReplayLabel");
-        if (dom.gameCatalogLabel) dom.gameCatalogLabel.textContent = t("gameCatalogLabel");
+        if (dom.gameCorrectLabel) dom.gameCorrectLabel.textContent = i18n("game_correct_label", byLang("Correctes", "Correct"));
+        if (dom.gameWrongLabel) dom.gameWrongLabel.textContent = i18n("game_wrong_label", byLang("Incorrectes", "Incorrect"));
+        if (dom.gameReplayLabel) dom.gameReplayLabel.textContent = i18n("game_replay_button", byLang("Tornar a jugar", "Play again"));
+        if (dom.gameCatalogLabel) dom.gameCatalogLabel.textContent = i18n("game_catalog_button", byLang("Veure catàleg", "View catalog"));
 
         // Results icon & title based on score
         let titleKey = "gameResultsTitleFail";
@@ -1991,10 +2326,17 @@
 
         if (dom.gameResultsIcon) {
             dom.gameResultsIcon.className = `rounded-full p-6 mb-4 ${iconClass}`;
-            dom.gameResultsIcon.innerHTML = `<span class="material-symbols-outlined ${iconColor} text-6xl" style="font-variation-settings: 'FILL' 1">${iconName}</span>`;
+            dom.gameResultsIcon.innerHTML = `<span class="ui-icon ${iconColor} text-6xl" aria-hidden="true">${getIconGlyph(iconName)}</span>`;
         }
-        if (dom.gameResultsTitle) dom.gameResultsTitle.textContent = t(titleKey);
-        if (dom.gameResultsSubtitle) dom.gameResultsSubtitle.textContent = t("gameResultsSubtitle", score, total);
+        if (dom.gameResultsTitle) {
+            dom.gameResultsTitle.textContent = {
+                gameResultsTitlePerfect: byLang("Perfecte! Ets un expert!", "Perfect! You're an expert!"),
+                gameResultsTitleGreat: byLang("Excel·lent! Molt bé!", "Excellent! Well done!"),
+                gameResultsTitleGood: byLang("Bé! Segueix aprenent!", "Good! Keep learning!"),
+                gameResultsTitleFail: byLang("Continua practicant!", "Keep practising!")
+            }[titleKey] || byLang("Continua practicant!", "Keep practising!");
+        }
+        if (dom.gameResultsSubtitle) dom.gameResultsSubtitle.textContent = formatGameResultsSubtitle(score, total);
     };
 
     const goToNextQuestion = () => {
@@ -2007,14 +2349,14 @@
     };
 
     const startGame = () => {
-        if (state.gameQuestions.length === 0) {
-            alert(t("gameLoadError"));
+        if (state.allQuizQuestions.length === 0) {
+            alert(byLang("No s'ha pogut carregar el quiz. Torna-ho a intentar.", "Failed to load the quiz. Please try again."));
             return;
         }
         state.gameCurrentIndex = 0;
         state.gameScore = 0;
         state.gameAnswered = false;
-        state.gameQuestions = shuffleArray(state.gameQuestions);
+        state.gameQuestions = shuffleArray([...state.allQuizQuestions]).slice(0, state.gameQuestionCount);
 
         dom.gameIntro?.classList.add("hidden");
         if (dom.gameResults) {
@@ -2029,13 +2371,80 @@
         renderGameQuestion();
     };
 
+    const stopQuestionTimer = () => {
+        if (state.gameTimerInterval !== null) {
+            clearInterval(state.gameTimerInterval);
+            state.gameTimerInterval = null;
+        }
+        if (dom.gameTimerDisplay) dom.gameTimerDisplay.classList.add("hidden");
+    };
+
+    const startQuestionTimer = () => {
+        stopQuestionTimer();
+        if (!state.gameTimeLimitEnabled) return;
+        state.gameTimeRemaining = 30;
+        if (dom.gameTimerSeconds) dom.gameTimerSeconds.textContent = "30";
+        if (dom.gameTimerDisplay) dom.gameTimerDisplay.classList.remove("hidden");
+        dom.gameTimerDisplay?.classList.add("flex");
+        state.gameTimerInterval = setInterval(() => {
+            state.gameTimeRemaining -= 1;
+            if (dom.gameTimerSeconds) dom.gameTimerSeconds.textContent = String(state.gameTimeRemaining);
+            if (state.gameTimeRemaining <= 0) {
+                stopQuestionTimer();
+                if (!state.gameAnswered) handleGameAnswer(null);
+            }
+        }, 1000);
+    };
+
     // Load quiz.json following the QuizAPI response pattern
     const loadQuizData = () => fetchJson("./quiz.json", null).then((quizData) => {
         if (!quizData) return;
         const questions = Array.isArray(quizData?.hasPart) ? quizData.hasPart : [];
-        state.gameQuestions = questions;
-        if (dom.gameTotalQ) dom.gameTotalQ.textContent = t("gameTotalQ", questions.length);
+        state.allQuizQuestions = questions;
     });
+
+    const setQuestionCount = (count) => {
+        state.gameQuestionCount = count;
+        const activeClass = ["bg-primary", "text-white"];
+        const inactiveClass = ["bg-white", "text-[#618968]", "hover:bg-primary/5"];
+        if (dom.gameQ10Btn && dom.gameQ20Btn) {
+            if (count === 10) {
+                dom.gameQ10Btn.classList.add(...activeClass);
+                dom.gameQ10Btn.classList.remove(...inactiveClass);
+                dom.gameQ20Btn.classList.remove(...activeClass);
+                dom.gameQ20Btn.classList.add(...inactiveClass);
+            } else {
+                dom.gameQ20Btn.classList.add(...activeClass);
+                dom.gameQ20Btn.classList.remove(...inactiveClass);
+                dom.gameQ10Btn.classList.remove(...activeClass);
+                dom.gameQ10Btn.classList.add(...inactiveClass);
+            }
+        }
+    };
+
+    const setTimeLimitEnabled = (enabled) => {
+        state.gameTimeLimitEnabled = enabled;
+        const activeClass = ["bg-primary", "text-white"];
+        const inactiveClass = ["bg-white", "text-[#618968]", "hover:bg-primary/5"];
+        if (dom.gameTimeOffBtn && dom.gameTimeOnBtn) {
+            if (!enabled) {
+                dom.gameTimeOffBtn.classList.add(...activeClass);
+                dom.gameTimeOffBtn.classList.remove(...inactiveClass);
+                dom.gameTimeOnBtn.classList.remove(...activeClass);
+                dom.gameTimeOnBtn.classList.add(...inactiveClass);
+            } else {
+                dom.gameTimeOnBtn.classList.add(...activeClass);
+                dom.gameTimeOnBtn.classList.remove(...inactiveClass);
+                dom.gameTimeOffBtn.classList.remove(...activeClass);
+                dom.gameTimeOffBtn.classList.add(...inactiveClass);
+            }
+        }
+    };
+
+    dom.gameQ10Btn?.addEventListener("click", () => setQuestionCount(10));
+    dom.gameQ20Btn?.addEventListener("click", () => setQuestionCount(20));
+    dom.gameTimeOffBtn?.addEventListener("click", () => setTimeLimitEnabled(false));
+    dom.gameTimeOnBtn?.addEventListener("click", () => setTimeLimitEnabled(true));
 
     // Game event listeners
     dom.gameStartBtn?.addEventListener("click", startGame);
@@ -2052,6 +2461,13 @@
         const btn = target.closest(".game-option[data-key]");
         if (!btn) return;
         handleGameAnswer(btn.getAttribute("data-key"));
+    });
+
+    dom.navCatalog?.addEventListener("click", () => {
+        if (dom.mapModal && !dom.mapModal.classList.contains("hidden")) {
+            closeMapModal();
+        }
+        showCatalogView(true);
     });
 
     dom.navGame?.addEventListener("click", () => {
